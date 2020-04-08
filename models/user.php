@@ -69,7 +69,7 @@ class User{
             $_SESSION['password'] = $user['user_PWD'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-            echo "<script> location.href='/awesome-isolation-blog/index.php?controller=blog&action=read&id=1';</script>";
+            echo "<script> location.href='/awesome/index.php?controller=blog&action=read&id=1';</script>";
            
         }
        else if ($pwd===TRUE && $user['user_TYPE']==="Blogger") {
@@ -77,14 +77,14 @@ class User{
             $_SESSION['password'] = $user['user_PWD'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-           echo "<script> location.href='/awesome-isolation-blog/index.php?controller=user&action=blogger';</script>";
+           echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
        }   
         else if ($pwd===TRUE && $user['user_TYPE']==="Subscriber") {
             $_SESSION['username'] =  $user['user_UN'];
             $_SESSION['password'] = $user['user_PWD'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-          echo "<script> location.href='/awesome-isolation-blog/index.php?controller=blog&action=read&id=3';</script>";
+          echo "<script> location.href='/awesome/index.php?controller=blog&action=read&id=3';</script>";
       
         } else {
             die("Incorrect details");

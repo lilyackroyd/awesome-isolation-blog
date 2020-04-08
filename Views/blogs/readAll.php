@@ -27,7 +27,7 @@
         <!-----one------->
         <div class="flex-row" role="cell"><div class="card">
                         <a href='?controller=blog&action=read&id=<?php echo $blog->id; ?>' class="whole-card-link">
-                        <img  class="card-img-top" alt="..." src="/awesome-isolation-blog/<?php echo $blog->img ?>"/> 
+                        <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title ?></h4>
                             <p class="card-text">excerpt text here</p>

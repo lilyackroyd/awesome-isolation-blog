@@ -1,10 +1,12 @@
-  <?php session_start();?>   
+  <?php 
+  include_once 'controllers/header_controller.php';
+  session_start();?>   
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>The Awesome Isolation Blog</title>
-        <!--SECTION STYLESHEET GOES HERE----><link rel=stylesheet href="">
         <link rel=stylesheet href="views/css/site-wide.css">
         <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -19,19 +21,19 @@
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
 
         <div class="logo">
-            <a href="/awesome-isolation-blog/index.php"><img src="Views/images/blog-logo-long.png" alt="logo" style="width:175px;border:0;"></a>
+            <a href="/awesome/index.php"><img src="Views/images/blog-logo-long.png" alt="logo" style="width:175px;border:0;"></a>
         </div>
 
         <ul class="menu">
             <div id="menu-left">
-                <li><a id="item-1" href="/awesome-isolation-blog/index.php?controller=blog&action=readAll&tag=family">FAMILY</a></li>
-                <li><a id="item-2" href="/awesome-isolation-blog/index.php?controller=blog&action=readAll&tag=food">FOOD</a></li>
-                <li><a  id="item-3"href="/awesome-isolation-blog/index.php?controller=blog&action=readAll&tag=fitness">KEEP FIT</a></li>
-                <li> <a  id="item-4"href="/awesome-isolation-blog/index.php?controller=blog&action=readAll&tag=craft">CRAFT</a></li>
+                <li><a id="item-1" href="/awesome/index.php?controller=blog&action=readAll&tag=family">FAMILY</a></li>
+                <li><a id="item-2" href="/awesome/index.php?controller=blog&action=readAll&tag=food">FOOD</a></li>
+                <li><a  id="item-3"href="/awesome/index.php?controller=blog&action=readAll&tag=fitness">KEEP FIT</a></li>
+                <li> <a  id="item-4"href="/awesome/index.php?controller=blog&action=readAll&tag=craft">CRAFT</a></li>
             </div>
             <div id="menu-right">
-                <li><a  id="item-5"href="">My Account</a></li>
-                <li><a id="log-in"  href="/awesome-isolation-blog/index.php?controller=user&action=login"> Log in </a></li>
+                <li><a  id="item-5"href="<?php echo $accountAction= getAccountPage();?>">My Account</a></li>
+                <li><a id="log-in"  href="<?php echo $loginAction=getLoginAction();?>"><?php echo $loginText=getLoginText();?></a></li>
                 <li>
                     <form method="post" action="search-page.php" name="search" class="search-bar">
                         <input type="text" name="search" placeholder="search...">

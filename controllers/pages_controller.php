@@ -1,5 +1,5 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/awesome-isolation-blog/models/user.php';
+include '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/user.php';
 
 class PagesController {
    
