@@ -50,6 +50,20 @@ class userController {
 //   }     
    }
    
+   function register(){
+       require_once('views/users/register.php');
+       echo "testing";
+       //if (empty($_POST)){
+//        return call('pages','error');s
+     //  if ((!empty($_POST)) && (isset($_POST['submit']))) {
+     //      $member1 = new Member (
+     //           $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS),
+     //           $password = password_hash($password, PASSWORD_BCRYPT),
+     //           $firstName = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS),
+     //           $lastName = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
+     //           $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
+     //           $userType = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
+   }
 
    
    
