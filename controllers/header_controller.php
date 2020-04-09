@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 function getLoginText(){
 if (!empty($_SESSION)) {
     $btntext=" Log out ";
@@ -18,7 +16,7 @@ if (!empty($_SESSION)) {
 
 function getLoginAction(){
 if (!empty($_SESSION)) {
-   $action='?controller=user&action=logout';   
+   $action='?controller=pages&action=logout';   
       return $action;
 }else {
 $action='?controller=user&action=login';
@@ -29,11 +27,11 @@ $action='?controller=user&action=login';
 
 function getAccountPage(){
    if (empty($_SESSION)){
-       $action='loginView.php';
+       $action='?controller=user&action=login';
     return $action;
    }
 elseif (!empty($_SESSION) && $_SESSION["usertype"]==='Admin') {
-     $action='admin-panel.php';
+     $action='?controller=user&action=admin';
     return $action;
 }elseif (!empty($_SESSION) && $_SESSION["usertype"]==='Blogger'){
       $action='?controller=user&action=blogger';

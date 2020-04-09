@@ -24,34 +24,22 @@ class userController {
 //    }
     }
     
-   function blogger(){ 
-       
+   function blogger(){        
        require_once('views/users/blogger.php');  
 //       if (empty($_SESSION)){
-//     return call('pages','error');
-     
+//     return call('pages','error');     
 //    try{
      $usn = $_SESSION['username'];
-  
-
      $blogger=User::getUser($usn); 
-
      return $blogger;
-
 //    } catch (Exception $ex) {
 //   return call('pages','error');
-//   }
-       
+//   }     
    }
    
-     function logout(){ 
-       
-         
-       session_unset();
-       session_destroy();
-       header('Location: index.php');
-       
-   }
+   
+   
+
    
    
    

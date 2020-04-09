@@ -14,7 +14,9 @@ class PagesController {
       require_once('views/pages/error.php');
     }
     
-    
+    public function logout() {
+      require_once('views/pages/logout.php');
+    }
 
     
     
