@@ -36,12 +36,33 @@ class BlogController{
 
 } 
 
+     public function home() {
 
-    
-    
-    
+     try{
+      // we use the given tags to get the blogs by genre
+    $blogs = Blog::allHome();
+     require_once('views/blogs/home.php');
+    }
+ catch (Exception $ex){
+   return call('pages','error');
+ }
+
+}  
+  
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>

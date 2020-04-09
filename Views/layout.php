@@ -21,7 +21,7 @@
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
 
         <div class="logo">
-            <a href="/awesome/index.php"><img src="Views/images/blog-logo-long.png" alt="logo" style="width:175px;border:0;"></a>
+            <a href="?controller=blog&action=home"><img src="Views/images/blog-logo-long.png" alt="logo" style="width:175px;border:0;"></a>
         </div>
 
         <ul class="menu">

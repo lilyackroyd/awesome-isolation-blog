@@ -50,7 +50,6 @@ class Blog {
             throw new Exception('A real exception should go here');
         }
     }
-    
 
     public static function all($tag) {
         $db = Db::getInstance();
@@ -60,7 +59,8 @@ class Blog {
         if ($blogtag === "Food") {
             $req = $db->query("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
                         FROM blog_posts 
-                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Food';");
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Food' AND blog_posts.blog_STATUS='Published'
+                        ORDER by blog_posts.date_PUB DESC;");
 
             foreach ($req->fetchAll() as $blog) {
                 $list[] = new Blog(
@@ -70,7 +70,8 @@ class Blog {
         } elseif ($blogtag === "Family") {
             $req = $db->query("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
                         FROM blog_posts 
-                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Family';");
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Family' AND blog_posts.blog_STATUS='Published'
+                        ORDER by blog_posts.date_PUB DESC;");
 
             foreach ($req->fetchAll() as $blog) {
                 $list[] = new Blog(
@@ -80,7 +81,8 @@ class Blog {
         } elseif ($blogtag === "Fitness") {
             $req = $db->query("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
                         FROM blog_posts 
-                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Fitness';");
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Fitness' AND blog_posts.blog_STATUS='Published'
+                        ORDER by blog_posts.date_PUB DESC;");
 
             foreach ($req->fetchAll() as $blog) {
                 $list[] = new Blog(
@@ -90,7 +92,8 @@ class Blog {
         } elseif ($blogtag === "Craft") {
             $req = $db->query("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
                         FROM blog_posts 
-                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Craft';");
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_ID >0 AND genre_TAG ='Craft' AND blog_posts.blog_STATUS='Published'
+                        ORDER by blog_posts.date_PUB DESC;");
 
             foreach ($req->fetchAll() as $blog) {
                 $list[] = new Blog(
@@ -98,6 +101,53 @@ class Blog {
             }
             return $list;
         }
+    }
+
+    public static function allHome() {
+        $list = [];
+        $db = Db::getInstance();
+        $req = $db->query(
+                "(
+SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
+FROM blog_posts 
+INNER JOIN Users ON blog_posts.user_ID=Users.user_ID 
+WHERE blog_ID >0  AND  genre_TAG = 'Food' AND blog_STATUS='Published'
+ORDER by blog_posts.date_PUB DESC
+LIMIT 3
+)
+UNION
+(
+SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
+FROM blog_posts 
+INNER JOIN Users ON blog_posts.user_ID=Users.user_ID 
+WHERE blog_ID >0  AND  genre_TAG = 'Craft' AND blog_STATUS='Published'
+ORDER by blog_posts.date_PUB DESC
+LIMIT 3
+)
+UNION
+(
+SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
+FROM blog_posts 
+INNER JOIN Users ON blog_posts.user_ID=Users.user_ID 
+WHERE blog_ID >0  AND  genre_TAG = 'Family' AND blog_STATUS='Published'
+ORDER by blog_posts.date_PUB DESC
+LIMIT 3
+)
+UNION
+(
+ SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
+FROM blog_posts 
+INNER JOIN Users ON blog_posts.user_ID=Users.user_ID 
+WHERE blog_ID >0  AND  genre_TAG = 'Fitness' AND blog_STATUS='Published'
+ORDER by blog_posts.date_PUB DESC
+LIMIT 3
+);"
+        );
+        foreach ($req->fetchAll() as $blog) {
+            $list[] = new Blog(
+                    $blog['blog_ID'], $blog['genre_TAG'], $blog['user_ID'], $blog['blog_TITLE'], $blog['blog_TXT'], $blog['blog_IMG'], $blog['blog_VIDEO'], $blog['blog_STATUS'], $blog['date_PUB'], $blog['comm_COUNT'], $blog['user_FN'], $blog['user_LN'], $blog['user_IMG']);
+        }
+        return $list;
     }
 
 }
