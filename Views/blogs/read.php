@@ -71,7 +71,7 @@
                         
                         
                         <!-- Display total number of comments on this post  -->
-			<h2><span id="comments_count"><?php $comments=getBlogComments();echo count($comments) ?></span> Comment(s)</h2>
+			<h2><span id="comments_count"><?php $comments=commentController::readComments();echo count($comments) ?></span> Comment(s)</h2>
 			<hr>
                         
                         
@@ -84,10 +84,10 @@
 				<?php foreach ($comments as $comment): ?>
 				<!-- comment -->
 				<div class="comment clearfix">
-					<img src="<?php echo getProfileImagebyID($comment->userid)?>" alt="" class="profile_pic">
+					<img src="<?php echo commentController::getProfileImagebyID($comment->userid)?>" alt="" class="profile_pic">
 					
                                         <div class="comment-details">
-						<span class="comment-name"><?php echo getUsernameById($comment->userid) ?></span>
+						<span class="comment-name"><?php echo commentController::getUsernameById($comment->userid) ?></span>
 						
                                          <p><?php echo $comment->text;?></p>   
                                          
@@ -110,7 +110,7 @@
                                         
                                         
 					<!-- GET ALL REPLIES -->
-					<?php $replies = getRepliesByCommentId($comment->commid) ?>
+					<?php $replies = commentController::readReplies($comment->commid) ?>
 					<div class="replies_wrapper_<?php echo $comment->commid; ?>">
 						<?php if (isset($replies)): ?>
 							<?php foreach ($replies as $reply): ?>
@@ -118,9 +118,9 @@
                                             
                                             <!-- reply -->
 								<div class="comment reply clearfix">
-									<img src="<?php echo getProfileImagebyID($comment->userid)?>" alt="" class="profile_pic">
+									<img src="<?php echo commentController::getProfileImagebyID($comment->userid)?>" alt="" class="profile_pic">
 									<div class="comment-details">
-										<span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
+										<span class="comment-name"><?php echo commentController::getUsernameById($reply['ruser_ID']) ?></span>
 										
 										<p><?php echo $reply['reply_TXT']; ?></p>
 										<a class="reply-btn" href="#">reply</a>

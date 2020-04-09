@@ -81,26 +81,33 @@ class Comments {
         }
 
         
+      //Gets comment count by blog id
+    public static function addRetrieve($blogid, $userid, $comment_text){
         
-    //FUNCTION TO GET BLOG POST BASED ON ID
-//    public static function getBlog($id) {
-//
-//        $db = Db::getInstance();
-//
-//        $id = intval($id);
-//        $req = $db->prepare('SELECT * FROM blog_posts WHERE blog_ID = :id');
-//        $req->execute(array('id' => $id));
-//        $blog = $req->fetch();
-//        
-//        if($blog){
-//      return new Blog($blog['blog_ID'], $blog['genre_TAG'], $blog['user_ID'], $blog['blog_TITLE'], $blog['blog_TXT'], $blog['blog_IMG'], $blog['blog_VIDEO'], $blog['blog_STATUS'], $blog['date_PUB'], $blog['comm_COUNT']);
-//    }
-//    else
-//    {
-//        //replace with a more meaningful exception
-//        throw new Exception('A real exception should go here');
-//    }
-//    } 
+	$db = Db::getInstance();
+        
+        // insert comment into database
+	  $request = $db->prepare('INSERT INTO Comments (blog_ID, user_ID, comm_TXT) VALUES (:blogid, (SELECT user_ID from Users WHERE user_UN = :username), :text)');
+	  $request->execute(array('blogid' => $blogid, 'userid' => $userid,'text' => $comment_text));
+
+          if($request){    
+              	// Query same comment from database to send back to be displayed
+	$inserted_id = $db->lastInsertId();
+       
+         $req = $db->prepare('SELECT * FROM Comments WHERE comm_ID=:id');
+	 $req->execute(array('id' => $inserted_id));
+         $inserted_comment = $req->fetch();
+          }
+          
+         return  $inserted_comment;
+          
+        }      
+        
+
+        
+        
+        
+        	
 }
 
 ?>
