@@ -150,6 +150,44 @@ LIMIT 3
         return $list;
     }
 
+    
+    
+    public static function search($searches) {
+        $db = Db::getInstance();
+
+        $stmt = $db->prepare("SELECT * FROM `blog_posts` WHERE `blog_TITLE` LIKE '%$searches%' OR `KEYWORDS` LIKE '%$searches%'");
+        $stmt ->execute(["%" . $searches . "%"]);
+        $results = $stmt->fetchAll();
+ 
+        return $results;
+
+    }
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 ?>

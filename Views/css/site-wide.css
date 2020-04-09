@@ -6,8 +6,7 @@
     min-height: 100vh;
 }
 
-a{
-    color:black;
+a{color:black;
 }
 
 .header {
@@ -284,7 +283,7 @@ input[type=text] {
     border: 0px solid #fff;
     font-size: 16px;
     background-color: white;
-    background-image: url('search-icon-2.png') ;
+    background-image: url('http://localhost/awesome/Views/images/search-icon-2.png') ;
     background-position: 10px 10px; 
     background-size: 25px 25px; 
     background-repeat: no-repeat;
@@ -679,3 +678,26 @@ img.account-img{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/******SEARCH RESULTS PAGE******/
+
+.table-container-search{
+    width:100%;
+    padding:0;
+    justify-content: flex-start;
+    margin-left:10px;
+}
+
+
+ .flex-table-search {width:100%;
+  display: flex;
+  flex-flow: row wrap;
+  transition: 0.5s;
+  justify-content: flex-start;
+}   
+    
+.flex-row-search{ width:440px;height:480px;  padding:10px;
+}  
+
+.search-title{
+    width:100%;
+}

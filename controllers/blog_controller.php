@@ -33,22 +33,40 @@ class BlogController{
  catch (Exception $ex){
    return call('pages','error');
  }
-
 } 
 
      public function home() {
-
      try{
-      // we use the given tags to get the blogs by genre
     $blogs = Blog::allHome();
      require_once('views/blogs/home.php');
     }
  catch (Exception $ex){
    return call('pages','error');
  }
+}  
+
+public function search() {
+                  if (!isset($_POST['search']))
+      return call('pages', 'error');
+     try{
+    $searches = filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+    $results=Blog::search($searches);
+     require_once('views/blogs/search.php');
+       return json_encode($results); 
+   } 
+ catch (Exception $ex){
+   return call('pages','error');
+ }
 
 }  
-  
+
+
+
+
+
+
+
+
     
 }
 

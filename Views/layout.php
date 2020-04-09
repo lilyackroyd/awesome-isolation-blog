@@ -35,7 +35,7 @@
                 <li><a  id="item-5"href="<?php echo $accountAction= getAccountPage();?>">My Account</a></li>
                 <li><a id="log-in"  href="<?php echo $loginAction=getLoginAction();?>"><?php echo $loginText=getLoginText();?></a></li>
                 <li>
-                    <form method="post" action="search-page.php" name="search" class="search-bar">
+                    <form method="post" action="?controller=blog&action=search" name="search" class="search-bar">
                         <input type="text" name="search" placeholder="search...">
                     </form>
                 </li>
