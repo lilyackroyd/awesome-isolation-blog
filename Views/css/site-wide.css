@@ -6,6 +6,10 @@
     min-height: 100vh;
 }
 
+a{
+    color:black;
+}
+
 .header {
     background-color: #fff;
     box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
@@ -587,5 +591,91 @@ img.account-img{
 
 #blogger-name h1{
     padding-top:40px;
+}
+
+/******LOG IN*********/
+
+.login_sign-in {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bolder;
+    padding-bottom: 20px;;
+}
+
+.login_login-container {
+    background: #f9bb26;
+    margin: 0px 350px 0 350px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 7px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px 10px 10px ;
+    margin-top: 30px;
+    box-sizing: border-box;
+    width: 60%;
+    text-align: center;
+}
+
+.login_forgotten-pass {
+    margin-top:20px;
+    font-size: 15px;
+    text-align: center;
+    color: black;
+    font-style: italic;
+}
+
+.login_message {
+    text-align: center;  
+}
+
+#submit {
+    text-align: center;
+    background-color: black;
+    border-radius: 30px;
+    border-color: black;
+    color: white;
+    font-weight: bolder;
+}
+
+#submit:hover {
+    color: black;
+    background-color: white;
+     border-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+#create {
+    text-align: center;
+    background-color: black;
+    border-radius: 30px;
+    border-color: black;
+    color: white;
+    font-weight: bolder;
+    padding: 10px 10px 10px;
+    margin-top:15px;
+
+}
+
+#create a{
+    color: white;
+}
+
+#create a:hover{
+    color: black;
+}
+
+
+#create:hover {
+    color: black;
+    background-color: white;
+     border-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

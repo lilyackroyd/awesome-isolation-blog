@@ -10,18 +10,17 @@
                 <form action= "" method="post" id=form1> 
 
          
-                 <input id="username" class="shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your Username" name="username" autofocus required>
+                 <input id="username" class="shadow-sm p-3  bg-white rounded form" placeholder="Your Username" name="username" autofocus required>
                  <span class="error"></span>
-                 <input type= "password" id="password"  class="shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your Password" name="password"  required> 
+                 <input type= "password" id="password"  class="shadow-sm p-3  bg-white rounded form" placeholder="Your Password" name="password"  required> 
                  
                    <p class="login_forgotten-pass"><a href="">Forgotten your password?</a></p>
-                   
-
-                    <button type="submit" id="submit" value="submit" form="form1" name='login' class="form">LOG IN</button>    
+ 
+                    <button type="submit" id="submit" value="submit" form="form1" name='login' class="form">Log in</button>    
                 </form>
          
                     <div class="login_create-acc">
-                     <button type="submit" value="register" class="login_register" id="create"> <a href="" class="login_registeracc">CREATE ACCOUNT</a></button>
+                     <button type="submit" value="register"  id="create"> <a href="" class="login_registeracc">Create account</a></button>
                     </div>
             </div>
         </div>

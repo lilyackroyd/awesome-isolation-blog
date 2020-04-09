@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>ccv</title>
+        <title>The Awesome Isolation Blog</title>
     </head>
     <body>
         <?php
