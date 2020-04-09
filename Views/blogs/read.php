@@ -60,8 +60,9 @@
 			<?php if (isset($_SESSION)): ?>
                         <form class="clearfix" action="?controller=blog&action=read&id=<?php echo $_GET['id']?>" method="post" id="comment_form">
 					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-                                        <button class="btn btn-primary btn-sm pull-right" name="submit_comment" id="submit_comment" >Submit comment</button>
+                                        <button class="btn btn-primary btn-sm pull-right" onsubmit="commentController::addComment()" name="submit_comment" id="submit_comment" >Submit comment</button>
 				</form>
+                        
 			<?php else: ?>
 				<div class="well" style="margin-top: 20px;">
 					<h4 class="text-center"><a href="?controller=user&action=login">Log in</a> to post a comment</h4>

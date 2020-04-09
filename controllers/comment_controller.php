@@ -55,7 +55,7 @@ include_once 'models/comments.php';
 	$comment_text = $_POST['comment_text'];
         
         
-         $inserted_comment=Comments::addRetrieve($blogid, $userid, $comment_text);	
+        $inserted_comment=Comments::addRetrieve($blogid, $userid, $comment_text);	
     
         
 	// if insert was successful, get that same comment from the database and return it

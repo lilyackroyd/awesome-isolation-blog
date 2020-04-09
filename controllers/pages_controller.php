@@ -18,8 +18,16 @@ class PagesController {
       require_once('views/pages/logout.php');
     }
 
+        public function about() {
+      require_once('views/pages/about.php');
+    }
     
+        public function contact() {
+      require_once('views/pages/contact.php');
+    }
     
-    
+          public function faq() {
+      require_once('views/pages/faq.php');
+    }
     
 }
