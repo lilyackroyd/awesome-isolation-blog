@@ -69,7 +69,7 @@ class User{
             $_SESSION['password'] = $user['user_PWD'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-            echo "<script> location.href='/awesome/index.php?controller=blog&action=read&id=1';</script>";
+            echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
            
         }
        else if ($pwd===TRUE && $user['user_TYPE']==="Blogger") {
@@ -84,7 +84,7 @@ class User{
             $_SESSION['password'] = $user['user_PWD'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-          echo "<script> location.href='/awesome/index.php?controller=blog&action=read&id=3';</script>";
+          echo "<script> location.href='/awesome/index.php?controller=blog&action=home';</script>";
       
         } else {
             die("Incorrect details");

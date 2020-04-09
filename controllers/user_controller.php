@@ -37,7 +37,18 @@ class userController {
 //   }     
    }
    
-   
+      function admin(){        
+       require_once('views/users/admin.php');  
+//       if (empty($_SESSION)){
+//     return call('pages','error');     
+//    try{
+     $usn = $_SESSION['username'];
+     $admin=User::getUser($usn); 
+     return $admin;
+//    } catch (Exception $ex) {
+//   return call('pages','error');
+//   }     
+   }
    
 
    
