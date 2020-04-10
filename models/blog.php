@@ -47,7 +47,7 @@ class Blog {
             return new Blog($blog['blog_ID'], $blog['genre_TAG'], $blog['user_ID'], $blog['blog_TITLE'], $blog['blog_TXT'], $blog['blog_IMG'], $blog['blog_VIDEO'], $blog['blog_STATUS'], $blog['date_PUB'], $blog['comm_COUNT'], $blog['user_FN'], $blog['user_LN'], $blog['user_IMG']);
         } else {
             //replace with a more meaningful exception
-            throw new Exception('A real exception should go here');
+            throw new Exception('Blog could not be found, sorry!');
         }
     }
 

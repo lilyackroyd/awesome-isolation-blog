@@ -32,18 +32,25 @@
 
 <!----main-section  - if needed. This is where the rest of the page content goes------------> 
 <section class="main-section">
-
     <div class="blog-text">  
         <p><?php echo $blog->text ?></p> 
     </div>  
-
-
 </section>
 
 
-<div class="video-block"> 
-    <iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $blog->video ?>" frameborder="none" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div> 
+<?php $video=$blog->video ;
+if ($video != ""){
+    echo 
+    '<div class="video-block" id="video"> 
+    <iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/'.$video.'" frameborder="none" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>';
+}else{?>
+    <script type="text/javascript">$('#video').hide()</script>;
+<?php
+}?>
+
+
+ 
 
 
 
@@ -53,7 +60,7 @@
 
 
 
-<!----comment section---------------------------------------------------------------->    
+<!-------------------------------------comment section---------------------------------------------------------------->    
 
 
 <div class="comment-block">
