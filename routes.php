@@ -30,7 +30,7 @@
 // Add an entry for each new controller and its actions
 $controllers = array('pages' => ['error', 'logout', 'about', 'contact', 'faq'],
                     'blog' => ['readAll','read','create','update','delete','home','search'],
-                    'user' => ['login','blogger','admin','register'],
+                    'user' => ['login','blogger','admin','register','myblogs'],
                     'controllerXXX' => ['actionYYY', 'actionZZZ'],
                     );
 

@@ -35,7 +35,7 @@
                         
                         
                          <div class="flex-row" role="cell">
-                            <div class="card" style="width: 22rem;"><a class="acc-link" href="#" >
+                            <div class="card" style="width: 22rem;"><a class="acc-link" href="?controller=user&action=myblogs" >
                                 <div class="card-body-account">
                                     <img class="acc-icon" src="Views/images/edit.png"style="width: 70px;height: 70px;"/>   
                                     <h2 class="card-title">My blogs</h2>

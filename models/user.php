@@ -63,7 +63,7 @@ class User{
         if ($pwd===$user['user_PWD']){
           $pwd=TRUE;  
         }
-       // $isVerified=password_verify($this->password, $user['user_PWD']);
+       // for when we have hashed passwords - $isVerified=password_verify($this->password, $user['user_PWD']);
         if ($pwd===TRUE && $user['user_TYPE']==="Admin") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid']= $user['user_ID'];
@@ -92,6 +92,16 @@ class User{
         
     }
     
+
+       public static function getUserBlogs($id) {
+       $db = Db::getInstance();
+       $userid=$id;
+
+       $req = $db->query("SELECT * FROM blog_posts WHERE user_ID = 4 ORDER by blog_STATUS ASC;");
+       //$req->execute([':id' => $userid]);
+       $blogs= $req->fetchall(PDO::FETCH_ASSOC);
+            return $blogs;
+        }
 
    
  
