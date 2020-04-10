@@ -8,7 +8,7 @@
                 <!-------------------------BLOG SECTION 1--------------------------->               
                 <div class="view-all">
                     <ul>
-                        <li>  <h3>Food subtitle</h3></li>
+                        <li>  <h3>Food and recipes</h3></li>
                         <li class="viewalllink"> <a href="?controller=blog&action=readAll&tag=food">View all <i class="fa fa-angle-right"></i></a></li> 
                     </ul>
                 </div>      
@@ -44,8 +44,8 @@
                             <!-------------------------BLOG SECTION 2--------------------------->               
                 <div class="view-all">
                     <ul>
-                        <li>  <h3>Fitness subtitle</h3></li>
-                        <li> <a href="?controller=blog&action=readAll&tag=fitness">View all <i class="fa fa-angle-right"></i></a></li> 
+                        <li>  <h3>Fitness and exercise</h3></li>
+                       <li class="viewalllink"> <a href="?controller=blog&action=readAll&tag=fitness">View all <i class="fa fa-angle-right"></i></a></li> 
                     </ul>
                 </div>      
   <div class="table-container" role="table" aria-label="">
@@ -79,8 +79,8 @@
                              <!-------------------------BLOG SECTION 3--------------------------->               
                 <div class="view-all">
                     <ul>
-                        <li>  <h3>Family subtitle</h3></li>
-                        <li> <a href="?controller=blog&action=readAll&tag=family"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
+                        <li>  <h3>Family and kids</h3></li>
+                        <li class="viewalllink"><a href="?controller=blog&action=readAll&tag=family"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
                     </ul>
                 </div>      
   <div class="table-container" role="table" aria-label="">
@@ -114,8 +114,8 @@
                               <!-------------------------BLOG SECTION 4--------------------------->               
                 <div class="view-all">
                     <ul>
-                        <li>  <h3>Craft subtitle</h3></li>
-                        <li> <a href="?controller=blog&action=readAll&tag=craft"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
+                        <li>  <h3>Crafts and activities</h3></li>
+                        <li class="viewalllink"> <a href="?controller=blog&action=readAll&tag=craft"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
                     </ul>
                 </div>      
   <div class="table-container" role="table" aria-label="">
