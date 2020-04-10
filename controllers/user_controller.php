@@ -52,8 +52,20 @@ class userController {
    
    function register(){
        require_once('views/users/register.php');
-       echo "testing";
-       //if (empty($_POST)){
+   }
+   
+   function adminSelect(){
+       echo "You're an admin";
+   }
+   
+   function bloggerSelect(){
+       echo "You're a blogger";
+   }
+   
+   function subscriberSelect(){
+       echo "You're a subscriber";
+   }
+   //if (empty($_POST)){
 //        return call('pages','error');s
      //  if ((!empty($_POST)) && (isset($_POST['submit']))) {
      //      $member1 = new Member (
@@ -63,33 +75,6 @@ class userController {
      //           $lastName = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
      //           $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
      //           $userType = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
-   }
-
-   
-   
-   
-   
-   
    
 }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    
-
-    
+  
