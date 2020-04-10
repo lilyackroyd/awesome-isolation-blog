@@ -755,3 +755,72 @@ textarea { display: block; margin-bottom: 10px; }
     font-size: 0.8em; 
     text-decoration: none;
 }
+
+/*****ABOUT US******/
+
+ .table-container-about{
+    width:100%;
+    padding:0;
+    justify-content: flex-start;
+    margin-left:84px;
+    float:right;
+}
+
+ .flex-table-about {width:100%;
+  flex-direction: row;
+  display: flex;
+  flex-flow: row wrap;
+  transition: 0.5s;
+  justify-content: flex-start;
+}  
+
+.flex-row-about{ width:440px;height:300px;  padding:10px;   
+}
+
+
+
+
+.card-about {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container-about {
+  padding: 0 16px;
+}
+
+
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}

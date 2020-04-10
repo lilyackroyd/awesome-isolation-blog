@@ -1,5 +1,6 @@
 <?php 
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';  
+//include __DIR__ . '../awesome/connection.php';
 include_once 'models/comments.php'; 
    $db = Db::getInstance();
    
