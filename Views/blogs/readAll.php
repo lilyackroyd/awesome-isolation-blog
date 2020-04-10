@@ -1,12 +1,34 @@
 <section class="intro-section">
 
-                    <h1>Welcome to the <?php echo $_GET['tag']?> section</h1>
-                    <p>a subheading</p>
+                    <h1>Welcome to the <?php $tag=$_GET['tag']; echo $tag?> section</h1>
+                    <p>
+                        <?php
+                        if ($tag === 'food') {
+                        echo "A one stop shop of helpful recipes and resources for store cupboard and self isolation cooking.";
+                        }elseif ($tag === 'fitness') {
+                        echo"Get tips on how to get moving during self-isolation, from at-home activities for kids to exercises for gym goers. ";
+                        }elseif ($tag === 'craft') {
+                        echo "Creative projects and new hobbies to try at home.";
+                        }elseif ($tag === 'family') {
+                        echo "Tips on maintaining good relations with children and partners from working from home, to keeping the family occupied.";
+                        }?>
+                    </p>
 
                 </section>  
                 <div class="view-all">
                     <ul>
-                        <li>  <h3> a subtitle</h3></li>
+                        <li>  <h3>
+                            <?php
+                        if ($tag==='food'){
+                            echo "Get cooking...";
+                        }elseif ($tag==='family'){
+                            echo "Keep them occupied...";
+                        }elseif ($tag==='fitness'){
+                            echo "Keep fit...";
+                         }elseif ($tag==='craft'){
+                            echo "Get creative...";
+                         }?>
+                        </h3></li>
 
                     </ul>
                 </div>
