@@ -1,21 +1,16 @@
 
-<!DOCTYPE html>
+
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-* {
-  box-sizing: border-box;
-}
 
 /* style the container */
-.container {
-  position: relative;
+.contact-container {
+   margin-left: 80px;
+   margin-right: 84px;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px 0 30px 0;
@@ -114,37 +109,31 @@ input[type=submit]:hover {
   text-align: center;
   background-color: #666;
   border-radius: 0px 0px 4px 4px;
+     margin-left: 80px;
+   margin-right: 84px;
 }
 
-/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 650px) {
-  .col {
-    width: 100%;
-    margin-top: 0;
-  }
-  /* hide the vertical line */
-  .vl {
-    display: none;
-  }
-  /* show the hidden text on small screens */
-  .hide-md-lg {
-    display: block;
-    text-align: center;
-  }
-}
 </style>
-</head>
-<body>
+
+
     
-   
-<h2>Contact US </h2>
-<p>Team Awesome is happy to know that you visited our site. Please feel free to contact us if you need any help. 
+  <section class="intro-section">
+
+                    <h1>Contact us</h1>
+                    <p>Team Awesome are happy to know that you visited our site. Please feel free to contact us if you need any help. 
     You can contact via any means below. We will be glad to hear from you.</p>
 
-<div class="container">
-  <form action="/action_page.php">
+                </section>   
+    
+
+
+<div class="contact-container">
+    <h2 style="text-align:center">Login with Social Media or Manually</h2>
+     
+    
+ 
     <div class="row">
-      <h2 style="text-align:center">Login with Social Media or Manually</h2>
+      
       <div class="vl">
         <span class="vl-innertext">or</span>
       </div>
@@ -165,14 +154,15 @@ input[type=submit]:hover {
         <div class="hide-md-lg">
           <p>Or sign in manually:</p>
         </div>
-
-        <input type="text" name="username" placeholder="Username" required>
+        <form action="">
+        <input type="password" class="contact" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
+        </form>
       </div>
       
     </div>
-</form>
+
 </div>
 
 <div class="bottom-container">
