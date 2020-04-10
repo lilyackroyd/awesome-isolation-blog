@@ -2,8 +2,11 @@ $(document).ready(function(){
 	// When user clicks on submit comment to add comment under post
 	$(document).on('click', '#submit_comment', function(e) {
 		e.preventDefault();
+                
 		var comment_text = $('#comment_text').val();
+               console.log(comment_text);
 		var url = $('#comment_form').attr('action');
+               console.log(url);
 		// Stop executing if not value is entered
 		if (comment_text === "" ) return;
 		$.ajax({
@@ -14,7 +17,9 @@ $(document).ready(function(){
 				comment_posted: 1
 			},
 			success: function(data){
+                            console.log(data);
 				var response = JSON.parse(data);
+                                
 				if (data === "error") {
 					alert('There was an error adding comment. Please try again');
 				} else {

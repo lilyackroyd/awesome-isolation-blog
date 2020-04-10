@@ -1,28 +1,43 @@
 <?php 
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';  
 //include __DIR__ . '../awesome/connection.php';
-include_once 'models/comments.php'; 
-   $db = Db::getInstance();
-   
- class commentController{       
-        
-     
+include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
+
+$blogid=1;
+$user_id=1;
+          $db = Db::getInstance();
 	
 
         // Retrieves the blogs comments from the blog id
-        function readComments(){
+        function getBlogComments(){
       $blogid = ($_GET['id']);
       $comments = Comments::getComments($blogid);
       return $comments;
         }
+      
         
-        // Receives a comment id and returns the username
-	function readReplies($id)
+	// Receives a user id and returns the username
+      function getUsernameById($id)
+	{ $username= Comments::getUsername($id);
+        return $username;       
+        }
+        
+
+	// Receives a comment id and returns the username
+	function getRepliesByCommentId($id)
 	{ $replies=Comments::getReplies($id);
         return $replies;       
 	}
-      
-        // Receives a post id and returns the total number of comments on that post
+        
+        // Receives a user id and returns the profile image
+        function getProfileImagebyID($id) {
+        $profileimage= Comments::getProfileImage($id);
+        return $profileimage;
+        }
+        
+
+        
+	// Receives a post id and returns the total number of comments on that post
 	function getCommentsCountByPostId($blogid)
 	{global $db;
         $req = $db->prepare('SELECT COUNT(*) AS total FROM Comments where blog_ID=:id');
@@ -31,39 +46,41 @@ include_once 'models/comments.php';
         return $data['total'];
         }
         
-	// Receives a user id and returns the username
-      function getUsernameById($id)
-	{ $username= Comments::getUsername($id);
-        return $username;       
-        }
         
-         // Receives a user id and returns the profile image
-        function getProfileImagebyID($id) {
-        $profileimage= Comments::getProfileImage($id);
-        return $profileimage;
-        }
         
-
+        
 
 // If the user clicked submit on comment form...
-        function addComment(){
-
-        if (isset($_POST['comment_posted'])) {
-  
-        $username=$_SESSION['username'];
-        $blogid=$_GET['id'];
+        
+if (isset($_POST['comment_posted'])) {
+        
+	global $db;
+        
+        
 	// grab the comment that was submitted through Ajax call
 	$comment_text = $_POST['comment_text'];
         
-        
-        $inserted_comment=Comments::addRetrieve($blogid, $userid, $comment_text);	
+        	
     
         
+	// insert comment into database
+	  $request = $db->prepare('INSERT INTO Comments (blog_ID, user_ID, comm_TXT) VALUES (:blogid, :userid, :text)');
+	  $request->execute(array('blogid' => $blogid, 'userid' => $user_id,'text' => $comment_text));
+          //$result = $req->fetch();
+          
+	// Query same comment from database to send back to be displayed
+	$inserted_id = $db->lastInsertId();
+       
+         $req = $db->prepare('SELECT * FROM Comments WHERE comm_ID=:id');
+	 $req->execute(array('id' => $inserted_id));
+         $inserted_comment = $req->fetch();
+        
+	
 	// if insert was successful, get that same comment from the database and return it
-	if ( $inserted_comment) {
+	if ($request) {
             
 		$comment = "<div class='comment clearfix'>
-					<img src='profile.png' alt='' class='profile_pic'>
+					<img src='Views/images/profile.png' alt='' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_ID']) . "</span>
 						
@@ -88,9 +105,9 @@ include_once 'models/comments.php';
 	}
 }
 
-        }
 
-function addReply(){
+
+
 // If the user clicked submit on reply form...
 if (isset($_POST['reply_posted'])) {
 	global $db;
@@ -136,17 +153,4 @@ if (isset($_POST['reply_posted'])) {
 		echo "error";
 		//exit();
 	}
-}}
-
-
-
-
-
-
-
-
-
-
-
-
- }
+}

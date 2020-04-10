@@ -2,6 +2,8 @@
 
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
 
+
+
 class Comments {
 
     public $commid;
@@ -80,34 +82,7 @@ class Comments {
         return $data;
         }
 
-        
-      //Gets comment count by blog id
-    public static function addRetrieve($blogid, $userid, $comment_text){
-        
-	$db = Db::getInstance();
-        
-        // insert comment into database
-	  $request = $db->prepare('INSERT INTO Comments (blog_ID, user_ID, comm_TXT) VALUES (:blogid, (SELECT user_ID from Users WHERE user_UN = :username), :text)');
-	  $request->execute(array('blogid' => $blogid, 'userid' => $userid,'text' => $comment_text));
 
-          if($request){    
-              	// Query same comment from database to send back to be displayed
-	$inserted_id = $db->lastInsertId();
-       
-         $req = $db->prepare('SELECT * FROM Comments WHERE comm_ID=:id');
-	 $req->execute(array('id' => $inserted_id));
-         $inserted_comment = $req->fetch();
-          }
-          
-         return  $inserted_comment;
-          
-        }      
-        
-
-        
-        
-        
-        	
 }
 
 ?>
