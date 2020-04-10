@@ -66,7 +66,7 @@ class User{
        // $isVerified=password_verify($this->password, $user['user_PWD']);
         if ($pwd===TRUE && $user['user_TYPE']==="Admin") {
             $_SESSION['username'] = $user['user_UN'];
-            $_SESSION['password'] = $user['user_PWD'];
+   
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
@@ -74,14 +74,14 @@ class User{
         }
        else if ($pwd===TRUE && $user['user_TYPE']==="Blogger") {
             $_SESSION['username'] = $user['user_UN'];
-            $_SESSION['password'] = $user['user_PWD'];
+      
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
            echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
        }   
         else if ($pwd===TRUE && $user['user_TYPE']==="Subscriber") {
             $_SESSION['username'] =  $user['user_UN'];
-            $_SESSION['password'] = $user['user_PWD'];
+    
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
           echo "<script> location.href='/awesome/index.php?controller=blog&action=home';</script>";
