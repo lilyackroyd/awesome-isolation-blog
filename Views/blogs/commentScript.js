@@ -5,14 +5,23 @@ $(document).ready(function(){
                 
 		var comment_text = $('#comment_text').val();
                console.log(comment_text);
+               
+               var user_id = $('#user_id').val();
+               console.log(blog_id);
+               
+               var blog_id = $('#blog_id').val();
+               console.log(blog_id);
+               
 		var url = $('#comment_form').attr('action');
                console.log(url);
+               
 		// Stop executing if not value is entered
 		if (comment_text === "" ) return;
 		$.ajax({
 			url: url,
 			type: "POST",
-			data: {
+			data: { blog_id: blog_id,
+                                user_id: user_id,
 				comment_text: comment_text,
 				comment_posted: 1
 			},

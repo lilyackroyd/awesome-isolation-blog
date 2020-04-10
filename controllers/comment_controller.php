@@ -1,13 +1,8 @@
 <?php 
-include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';  
+ 
 //include __DIR__ . '../awesome/connection.php';
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
 
-$blogid=1;
-$user_id=1;
-
-          $db = Db::getInstance();
-	
 
         // Retrieves the blogs comments from the blog id
         function getBlogComments(){
@@ -38,16 +33,6 @@ $user_id=1;
         
 
         
-	// Receives a post id and returns the total number of comments on that post
-	function getCommentsCountByPostId($blogid)
-	{global $db;
-        $req = $db->prepare('SELECT COUNT(*) AS total FROM Comments where blog_ID=:id');
-	$req->execute(['id' => $blogid]);
-        $data = $req->fetch();
-        return $data['total'];
-        }
-        
-        
         
         
 
@@ -55,28 +40,18 @@ $user_id=1;
         
 if (isset($_POST['comment_posted'])) {
         
-	global $db;
-        
+	$blogid = $_POST['blog_id']; 
+        $user_id = $_POST['user_id']; 
         
 	// grab the comment that was submitted through Ajax call
 	$comment_text = $_POST['comment_text'];
         
-        	
+        // insert comment into database
+        $request=Comments::insertComments($blogid, $user_id,$comment_text);	
     
+        // Query same comment from database to send back to be displayed
+        $inserted_comment=Comments::retrieveNewComment();
         
-	// insert comment into database
-	  $request = $db->prepare('INSERT INTO Comments (blog_ID, user_ID, comm_TXT) VALUES (:blogid, :userid, :text)');
-	  $request->execute(array('blogid' => $blogid, 'userid' => $user_id,'text' => $comment_text));
-          //$result = $req->fetch();
-          
-	// Query same comment from database to send back to be displayed
-	$inserted_id = $db->lastInsertId();
-       
-         $req = $db->prepare('SELECT * FROM Comments WHERE comm_ID=:id');
-	 $req->execute(array('id' => $inserted_id));
-         $inserted_comment = $req->fetch();
-        
-	
 	// if insert was successful, get that same comment from the database and return it
 	if ($request) {
             
@@ -89,14 +64,14 @@ if (isset($_POST['comment_posted'])) {
 						<a class='reply-btn' href='#' data-id='" . $inserted_comment['comm_ID'] . "'>reply</a>
 					</div>
 					<!-- reply form -->
-					<form action='post_details.php' class='reply_form clearfix' id='comment_reply_form_".$inserted_comment['comm_ID']."' data-id='" . $inserted_comment['comm_ID'] . "'>
+					<form action='Views/blogs/read.php' class='reply_form clearfix' id='comment_reply_form_".$inserted_comment['comm_ID']."' data-id='" . $inserted_comment['comm_ID'] . "'>
 						<textarea class='form-control' name='reply_text' id='reply_text' cols='30' rows='2'></textarea>
 						<button class='btn btn-primary btn-xs pull-right submit-reply'>Submit reply</button>
 					</form>
 				</div>";
 		$comment_info = array(
 			'comment' => $comment,
-			'comments_count' => getCommentsCountByPostId($blogid)
+			'comments_count' => Comments::getCommentsCount($blogid)
 		);
 		echo json_encode($comment_info);
 		exit();
@@ -112,30 +87,19 @@ if (isset($_POST['comment_posted'])) {
 // If the user clicked submit on reply form...
 if (isset($_POST['reply_posted'])) {
 	global $db;
+        
 	// grab the reply that was submitted through Ajax call
 	$reply_text = $_POST['reply_text']; 
 	$comment_id = $_POST['comment_id']; 
         
         
-	// insert reply into database
-         $request = $db->prepare('INSERT INTO Replies (ruser_ID, comm_ID, reply_TXT) VALUES ( :id , :comm_ID, :reply_TXT)');
-	 $request->execute(array('id' => $user_id,
-                 'comm_ID' => $comment_id,
-                 'reply_TXT' => $reply_text
-                 ));
-         
-         
-       $inserted_id = $db->lastInsertId();
-       
-          $req = $db->prepare('SELECT * FROM Replies WHERE reply_ID=:id');
-	 $req->execute(array('id' => $inserted_id));
-         $inserted_reply = $req->fetch();
-        
+        // insert reply into database
+        $request=Comments::insertReply($user_id, $comment_id, $reply_text);
 
-        
-        
-        
-        
+        // Query same reply from database to send back to be displayed
+        $inserted_reply=Comments::retrieveNewReply();
+         
+
 	// if insert was successful, get that same reply from the database and return it
 	if ($request) {
             
@@ -152,6 +116,6 @@ if (isset($_POST['reply_posted'])) {
 		exit();
 	} else {
 		echo "error";
-		//exit();
+		exit();
 	}
 }

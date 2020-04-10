@@ -75,6 +75,8 @@ if ($video != ""){
 			<?php if (!empty($_SESSION)): ?>
                         <form class="clearfix" action="Views/blogs/read.php" method="post" id="comment_form">
 					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                        <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['userid']?>">
+                                        <input type="hidden" id="blog_id" name="blog_id" value="<?php echo $_GET['id']?>">
                                         <button class="btn btn-primary btn-sm pull-right" name="submit_comment" id="submit_comment" >Submit comment</button>
 				</form>
 			<?php else: ?>
@@ -113,7 +115,7 @@ if ($video != ""){
                                         
                                         <script>
                                         function myFunction() {
-                                        document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+                                        document.getElementById("demo").innerHTML = "Reported";
                                         }
                                         </script>
                                         
@@ -122,9 +124,10 @@ if ($video != ""){
                                         
                                         
 					<!-- reply form -->
-                                        <form action="commentsView.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
+                                        <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
 						<textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
 						<button class="btn btn-primary btn-xs pull-right submit-reply">Submit reply</button>
+                                                
 					</form>
 
                                         
@@ -143,7 +146,8 @@ if ($video != ""){
 										<span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
 										
 										<p><?php echo $reply['reply_TXT']; ?></p>
-										<a class="reply-btn" href="#">reply</a>
+										<a class="reply-btn" href="" data-id="<?php echo $comment->commid;?>">reply</a>
+                                                                                <a class ="flag-btn" id="demo" href="">report  &#128681;</a>
 									</div>
 								</div>
 							<?php endforeach ?>

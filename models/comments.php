@@ -2,8 +2,6 @@
 
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
 
-
-
 class Comments {
 
     public $commid;
@@ -38,8 +36,6 @@ class Comments {
         return $list;
     }
 
-    
-    
     //FUNCTION TO USERNAME BY ID
     public static function getUsername($id) {
         $db = Db::getInstance();
@@ -49,8 +45,6 @@ class Comments {
         return $username['user_UN'];
     }
 
-    
-    
     //FUNCTION TO PROFILE IMG BY ID
     public static function getProfileImage($id) {
         $db = Db::getInstance();
@@ -60,8 +54,6 @@ class Comments {
         return $username['user_IMG'];
     }
 
-    
-    
     // Receives a comment id and returns the replies
     public static function getReplies($id) {
         $db = Db::getInstance();
@@ -70,25 +62,64 @@ class Comments {
         $replies = $req->fetchAll();
         return $replies;
     }
-    
-    
+
     //Gets comment count by blog id
-    public static function getCommentsCount($blogid){
-	$db = Db::getInstance();
-        $req = $db->prepare('SELECT COUNT(*) AS total FROM Comments where blog_ID=:id');
-	$req->execute(['id' => $blogid]);
-        $cmdata = $req->fetch();
-        $data= $cmdata['total'];
-        return $data;
-        }
-
-    public static function reportComment($id){
+    public static function getCommentsCount($blogid) {
         $db = Db::getInstance();
-        $req = $db->prepare('UPDATE Comments SET comm_STATUS = "Reported" WHERE (comm_ID =Id)');
-	$req->execute(['id' => $id]);
+        $req = $db->prepare('SELECT COUNT(*) AS total FROM Comments where blog_ID=:id');
+        $req->execute(['id' => $blogid]);
+        $cmdata = $req->fetch();
+        $data = $cmdata['total'];
+        return $data;
     }
-        
-}
 
+    // insert comment into database
+    public static function insertComments($blogid, $user_id, $comment_text) {
+        $db = Db::getInstance();
+        $request = $db->prepare('INSERT INTO Comments (blog_ID, user_ID, comm_TXT) VALUES (:blogid, :userid, :text)');
+        $request->execute(array('blogid' => $blogid, 'userid' => $user_id, 'text' => $comment_text));
+        return $request;
+    }
+
+    // Query same comment from database to send back to be displayed
+    public static function retrieveNewComment() {
+        $db = Db::getInstance();
+        $inserted_id = $db->lastInsertId();
+        $req = $db->prepare('SELECT * FROM Comments WHERE comm_ID=:id');
+        $req->execute(array('id' => $inserted_id));
+        $inserted_comment = $req->fetch();
+        return $inserted_comment;
+    }
+
+    // insert reply into database
+    public static function insertReply($user_id, $comment_id, $reply_text) {
+        $db = Db::getInstance();
+        $request = $db->prepare('INSERT INTO Replies (ruser_ID, comm_ID, reply_TXT) VALUES ( :id , :comm_ID, :reply_TXT)');
+        $request->execute(array('id' => $user_id,
+            'comm_ID' => $comment_id,
+            'reply_TXT' => $reply_text
+        ));
+        return $request;
+    }
+
+    
+    // Query same reply from database to send back to be displayed
+    public static function retrieveNewReply() {
+        $db = Db::getInstance();
+        $inserted_id = $db->lastInsertId();
+        $req = $db->prepare('SELECT * FROM Replies WHERE reply_ID=:id');
+        $req->execute(array('id' => $inserted_id));
+        $inserted_reply = $req->fetch();
+        return $inserted_reply;
+    }
+
+    
+    public static function reportComment($id) {
+        $db = Db::getInstance();
+        $req = $db->prepare('UPDATE Comments SET comm_STATUS = "Reported" WHERE (comm_ID =id)');
+        $req->execute(['id' => $id]);
+    }
+
+}
 ?>
 
