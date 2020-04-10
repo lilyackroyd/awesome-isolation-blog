@@ -5,6 +5,7 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'
 
 $blogid=1;
 $user_id=1;
+
           $db = Db::getInstance();
 	
 

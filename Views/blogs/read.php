@@ -53,26 +53,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!----comment section---------------------------------------------------------------->    
 
 
 <div class="comment-block">
-        <!----comment section---------------------------------------------------------------->    
+     
         
 
 
@@ -87,7 +72,7 @@
 				</form>
 			<?php else: ?>
 				<div class="well" style="margin-top: 20px;">
-					<h4 class="text-center"><a href="loginView.php">Log in</a> to post a comment</h4>
+					<h4 class="text-center"><a href="?controller=user&action=login">Log in</a> to post a comment</h4>
 				</div>
 			<?php endif ?>
 			
@@ -116,9 +101,14 @@
                                          
                                         <!-- reply link -->        
 						<a class="reply-btn" href="" data-id="<?php echo $comment->commid;?>">reply</a>
-                                                <a class ="flag-btn" href="">report  &#128681;</a>
+                                                <a class ="flag-btn" id="demo" href="">report  &#128681;</a>
 					</div>
                                         
+                                        <script>
+                                        function myFunction() {
+                                        document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+                                        }
+                                        </script>
                                         
                                         
                                         

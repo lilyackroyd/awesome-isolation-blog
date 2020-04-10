@@ -82,7 +82,12 @@ class Comments {
         return $data;
         }
 
-
+    public static function reportComment($id){
+        $db = Db::getInstance();
+        $req = $db->prepare('UPDATE Comments SET comm_STATUS = "Reported" WHERE (comm_ID =Id)');
+	$req->execute(['id' => $id]);
+    }
+        
 }
 
 ?>

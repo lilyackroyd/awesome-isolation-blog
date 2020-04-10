@@ -9,7 +9,7 @@
                 <div class="view-all">
                     <ul>
                         <li>  <h3>Food subtitle</h3></li>
-                        <li> <a href="?controller=blog&action=readAll&tag=food"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
+                        <li class="viewalllink"> <a href="?controller=blog&action=readAll&tag=food">View all <i class="fa fa-angle-right"></i></a></li> 
                     </ul>
                 </div>      
   <div class="table-container" role="table" aria-label="">
@@ -29,7 +29,9 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text">excerpt text here</p>
+                            <p class="card-text"><?php $string = $blog->text;
+                                                echo $excerpt = substr($string, 0, 100)?>
+                            </p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
@@ -43,7 +45,7 @@
                 <div class="view-all">
                     <ul>
                         <li>  <h3>Fitness subtitle</h3></li>
-                        <li> <a href="?controller=blog&action=readAll&tag=fitness"><p>View all <i class="fa fa-angle-right"></i></p></a></li> 
+                        <li> <a href="?controller=blog&action=readAll&tag=fitness">View all <i class="fa fa-angle-right"></i></a></li> 
                     </ul>
                 </div>      
   <div class="table-container" role="table" aria-label="">
@@ -63,7 +65,8 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text">excerpt text here</p>
+                            <p class="card-text"><?php $string = $blog->text;
+                                                echo $excerpt = substr($string, 0, 100)?></p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
@@ -97,7 +100,8 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text">excerpt text here</p>
+                            <p class="card-text"><?php $string = $blog->text;
+                                                echo $excerpt = substr($string, 0, 100)?></p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
@@ -131,7 +135,8 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text">excerpt text here</p>
+                            <p class="card-text"><?php $string = $blog->text;
+                                                echo $excerpt = substr($string, 0, 100)?></p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
