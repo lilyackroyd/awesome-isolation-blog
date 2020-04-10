@@ -1,5 +1,5 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/user.php';
+include 'models/user.php';
 
 class PagesController {
    
