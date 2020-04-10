@@ -41,7 +41,7 @@
                                     <p class="card-text"><?php $string = $blog['blog_TXT'];
                                 echo $excerpt = substr($string, 0, 100)
                                 ?></p>
-                                    <a href='?controller=blog&action=read&id=<?php echo $blog['blog_ID']; ?>'>Edit / Delete</a>
+                                    <a  href='?controller=blog&action=read&id=<?php echo $blog['blog_ID']; ?>'>Edit / Delete</a>
                                 </div></a>
 
                         </div></div>

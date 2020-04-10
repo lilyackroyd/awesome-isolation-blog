@@ -4,6 +4,24 @@
 <!----intro-section  - if needed. This is where the page title and subheading go------------>        
 <section class="intro-section">
 
+    <div class="editdelete">  
+ <?php 
+if(!empty ($_SESSION)) {
+if($_SESSION['usertype']==='Admin'|$_SESSION['usertype']==='Blogger' ) {
+    $alloweduser=TRUE;
+}
+
+if ($alloweduser===TRUE){
+     
+        echo "<input type='button' class='btn btn-danger' id='editdelete' value='Edit blog' >";
+        echo "<input type='button' class='btn btn-danger' id='editdelete' value='Delete blog' >";
+}else{?>
+    <script type="text/javascript">$('#editdelete').hide()</script>;
+<?php
+}}?>
+    </div> 
+    
+    
 
 
     <div class="blog-image"> 
