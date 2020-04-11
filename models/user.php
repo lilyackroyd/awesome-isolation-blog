@@ -93,16 +93,6 @@ class User{
     }
     
 
-       public static function getUserBlogs($id) {
-       $db = Db::getInstance();
-       $userid=$id;
-
-       $req = $db->query("SELECT * FROM blog_posts WHERE user_ID = 4 ORDER by blog_STATUS ASC;");
-       //$req->execute([':id' => $userid]);
-       $blogs= $req->fetchall(PDO::FETCH_ASSOC);
-            return $blogs;
-        }
-
    
  
     

@@ -150,25 +150,67 @@ LIMIT 3
         return $list;
     }
 
-    
-    
     public static function search($searches) {
         $db = Db::getInstance();
 
         $stmt = $db->prepare("SELECT * FROM `blog_posts` WHERE `blog_TITLE` LIKE '%$searches%' OR `KEYWORDS` LIKE '%$searches%'");
-        $stmt ->execute(["%" . $searches . "%"]);
+        $stmt->execute(["%" . $searches . "%"]);
         $results = $stmt->fetchAll();
         return $results;
     }
-    
-    
+
+    public static function getUserBlogs($id) {
+        $db = Db::getInstance();
+        $userid = intval($id);
+        $list = [];
+        $req = $db->prepare("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,Users.user_FN, Users.user_LN, Users.user_IMG
+                        FROM blog_posts
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_posts.user_ID = '" . $userid . "';");
+        $req->execute();
+        foreach ($req->fetchAll() as $blog) {
+            $list[] = new Blog(
+                    $blog['blog_ID'], $blog['genre_TAG'], $blog['user_ID'], $blog['blog_TITLE'], $blog['blog_TXT'], $blog['blog_IMG'], $blog['blog_VIDEO'], $blog['blog_STATUS'], $blog['date_PUB'], $blog['comm_COUNT'], $blog['user_FN'], $blog['user_LN'], $blog['user_IMG']);
+        }
+        return $list;
+    }
 
     
+      public static function deleteBlog($id) {
+        $db = Db::getInstance();
+
+                $blog = intval($id);
+                self::removeAllBlogComments($id);
+        $req = $db->prepare('delete FROM blog_posts WHERE blog_ID = :blogid');
+      $req->execute(array('blogid' => $blog));
+//                
+                //BlogPost::deleteBlogImage($blog);
+    }
     
-
-
-
-
+        
+    public static function removeAllBlogComments($id) {
+        $db = Db::getInstance();
+        $blogid = intval($id);
+        $req = $db->prepare('delete FROM Comments WHERE blog_ID = :id');
+        $req->execute(array('id' => $id));
+    }
+    
+    
+//    //attempt to write method to delete blog image so image folder doesn't get clogged up
+//    public static function deleteBlogImage($blogid) {
+//        if($blogid == ($_GET['blogid'])) {
+//    $path =   join(DIRECTORY_SEPARATOR, array(__DIR__,'..','views','images', $blogid));
+//    $blogfile = $path . '.jpeg';
+//    	if (file_exists($blogfile)) {
+//		unlink($blogfile); 
+//	}  
+//    } 
+//    }
+    
+ 
+    
+    
+    
+    
     
     
     
