@@ -64,40 +64,34 @@ class userController {
     
 
     
-  function register() {
+   function register() {
         require_once('views/users/register.php');
         include_once('User_validation.php');
         
-        if (isset($_POST['admin'])){
-            $usertype="Admin";
-            echo $usertype;
-        } else if (isset($_POST['blogger'])){
-            $usertype="Blogger";
-            echo $usertype;
-        } else if (isset($_POST['admin'])){
-            $usertype="Subscriber";
-            echo $usertype;
-            
-            
-            
-        if (isset($_POST['submit'])) {
-        $validation = new User_validation($_POST);
-        $errors = $validation->validateForm();
+        if (isset($_POST['submit'])){
+            $validation = new User_validation($_POST);
+            $errors = $validation->validateForm();
+            var_dump ($errors);
         }
-}
+        //if (isset($_POST['admin'])){
+        //    $usertype="Admin";
+        //    echo $usertype;
+        //} else if (isset($_POST['blogger'])){
+        //    $usertype="Blogger";
+        //    echo $usertype;
+        //} else if (isset($_POST['admin'])){
+        //    $usertype="Subscriber";
+        //    echo $usertype;
+        //}    
+            
+            
+      //  if (isset($_POST['submit'])) {
+      //  $validation = new User_validation($_POST);
+      //  $errors = $validation->validateForm();
+      //  }
+
     }
 
-    function adminSelect() {
-        echo "You're an admin";
-    }
-
-    function bloggerSelect() {
-        echo "You're a blogger";
-    }
-
-    function subscriberSelect() {
-        echo "You're a subscriber";
-    }
 
     //if (empty($_POST)){
 //        return call('pages','error');s
@@ -115,6 +109,7 @@ function regValidation() {
     if (isset($_POST['submit'])) {
         $validation = new User_validation($_POST);
         $errors = $validation->validateForm();
+     
     }
 }    
 }

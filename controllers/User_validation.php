@@ -1,5 +1,5 @@
 <?php
-
+       
 
 class User_validation {
 
@@ -89,18 +89,19 @@ class User_validation {
      private function validateImage(){
         
     //  var_dump($this->filedata);
-        if (!file_exists($this->filedata['image']['tmp_name'])) {
-            $this->adderror('image', 'please upload picture');
+        if (!file_exists($this->data['image'])) {
+            $this->adderror('image', 'Please upload picture');
    }  
      
   }    
     private function validateAdminCode() {
-        $val = ($this->data['user_code']);
+        $userType="";
+        $val = ($this->data['admin_code']);
         if ($userType== "Admin"){
             $userType = "Admin";
             echo "";
         } else {
-        $this->addError('lib_code', 'That code is incorrect, please try again or contact an administrator');
+        $this->addError('admin_code', 'That code is incorrect, please try again or contact an administrator');
         }
     }
     
