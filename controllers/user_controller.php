@@ -58,6 +58,18 @@ class userController {
         require_once('views/users/register.php');
         include_once('User_validation.php');
         
+        if (isset($_POST['admin'])){
+            $usertype="Admin";
+            echo $usertype;
+        } else if (isset($_POST['blogger'])){
+            $usertype="Blogger";
+            echo $usertype;
+        } else if (isset($_POST['admin'])){
+            $usertype="Subscriber";
+            echo $usertype;
+            
+            
+            
         if (isset($_POST['submit'])) {
         $validation = new User_validation($_POST);
         $errors = $validation->validateForm();
@@ -95,3 +107,4 @@ function regValidation() {
         $errors = $validation->validateForm();
     }
 }    
+}
