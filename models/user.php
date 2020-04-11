@@ -93,15 +93,6 @@ class User{
     }
     
 
-       public static function getUserBlogs($id) {
-       $db = Db::getInstance();
-       $userid = intval($id);
-       $req = $db->query("SELECT * FROM blog_posts WHERE user_ID = '".$userid."';");
-       $req->execute();
-       $blogs= $req->fetchall(PDO::FETCH_ASSOC);
-            return $blogs;
-        }
-
    
  
     
