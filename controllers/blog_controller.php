@@ -71,6 +71,19 @@ class BlogController {
         Blog::deleteBlog($_GET['id']);
         require_once('Views/user/myblogs.php');
         }
+        
+        
+        public function update() {
+
+  
+      if($_SERVER['REQUEST_METHOD'] == 'GET'){
+          if (!isset($_GET['id'])) {
+          return call('pages', 'error');}
+     
+        $blog = Blog::find($_GET['id']);
+        require_once('views/blogs/update.php');
+        }}
+     
 
   
   

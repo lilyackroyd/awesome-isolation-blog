@@ -16,7 +16,7 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comment_
         // shows the edit / delete buttons if true, otherwise hides them
         if ($alloweduser === TRUE) {
             ?>
-            <button id="editdelete" class="btn btn-danger" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Update blog</button>
+            <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
             <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
     <?php } else { ?>
             <script type="text/javascript">$('#editdelete').hide();</script>
@@ -198,6 +198,8 @@ echo count($comments) ?></span> Comment(s)</h2>
     <!-- Bootstrap Javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Comment section Javascript & AJAX -->
-    <script src="Views/blogs/commentScript.js"></script>
+    <script src="Views/javascript/commentScript.js"></script>
     <!-- delete blog js -->
-    <script src="Views/blogs/deleteBlog.js"></script>
+    <script src="Views/javascript/deleteBlog.js"></script>
+        <!-- update blog js -->
+    <script src="Views/javascript/updateBlog.js"></script>
