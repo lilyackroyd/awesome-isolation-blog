@@ -5,13 +5,12 @@
 <section class ="main-section" align="center">
     
     <!--Form to add blog post-->
-    <!--Need to add action in -->
-    <form method="post" name="createblog" class="createblog">
+    <form method="post" class="createblog">
         <div class="pure-form pure-form-aligned" >
         <div class="pure-control-group">
             
             <!--Title input-->
-        <p>Title for your blog<br/></p>
+        <p>Title for your blog:<br/></p>
         <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="blogTitle" placeholder="Enter Title" required="">
         
         <!--Content input-->
@@ -33,8 +32,8 @@
         <label for='fitness'>Craft</label></br>
         </br>
          
-        <!--ADD KEYWORDS OPTION-->
-        <p>Please enter any relevant keywords for your blog.</br> (Keywords make it easier for visitors to find your blog)</p>
+        <!--Keywords-->
+        <p>Please enter any relevant keywords for your blog.</br> <i>(Keywords make it easier for visitors to find your blog)</i></p>
         <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="keywords" placeholder="Enter keywords">
             
         
