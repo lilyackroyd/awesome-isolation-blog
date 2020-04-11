@@ -4,8 +4,18 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comment_
    
 <section class="intro-section">
 
+
 <!------edit and delete buttons that appear above the image if the user is an admin or the author----->
-    <div class="editdelete">  
+<div class="editdelete"> 
+        
+    <?php if($blog->status==='Draft'){ 
+        $msg= '<div class="alert alert-secondary" role="alert">
+  This is blog is still in draft. <a href="?controller=blog&action=update&id='.$blog->id.'"/>Publish</a> it now.
+</div>'; echo $msg;
+    }elseif($blog->status==='Published'){?>
+            <script type="text/javascript">$('.draft-banner').hide()</script>;
+        <?php }?>
+
         <?php
         //checks if the user is eligible
         if (!empty($_SESSION)) {
@@ -22,8 +32,8 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comment_
             <script type="text/javascript">$('#editdelete').hide();</script>
         <?php }}
     ?>
-    </div> 
-
+   
+</div>
 
 
 
