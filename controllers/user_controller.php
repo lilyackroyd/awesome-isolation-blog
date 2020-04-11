@@ -54,16 +54,16 @@ class userController {
     
       public function myblogs() {
          $id=$_SESSION['userid'];
-        if (empty($id))
-            return call('pages', 'error');
-//        try {
-            // we use the given tags to get the blogs by genre
-            $blogs = User::getUserBlogs($id);
+        if (empty($id)){
+        return call('pages', 'error');}
+        try {
+        $blogs = User::getUserBlogs($id);
              require_once('views/users/myblogs.php');
-//        } catch (Exception $ex) {
-//            return call('pages', 'error');
-//        }
-    }
+             return $blogs;
+        } catch (Exception $ex) {
+            return call('pages', 'error');
+        }
+      }
       
     
     

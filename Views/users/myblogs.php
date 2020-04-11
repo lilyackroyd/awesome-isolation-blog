@@ -1,6 +1,6 @@
 <div class="flex-container">
     <section class="intro-section"> 
-        <h1>You have <?php echo count($blogs) ?> blogs.</h1><p>     
+        <h1>You have <?php echo count($blogs) ?> blog(s).</h1><p>     
             <?php
             $count = [];
             foreach ($blogs as $blog) {

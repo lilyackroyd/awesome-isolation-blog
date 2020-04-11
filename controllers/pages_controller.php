@@ -1,5 +1,5 @@
 <?php
-include 'models/user.php';
+//include 'models/user.php';
 
 class PagesController {
    
