@@ -13,7 +13,7 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comment_
   This is blog is still in draft. <a href="?controller=blog&action=update&id='.$blog->id.'"/>Publish</a> it now.
 </div>'; echo $msg;
     }elseif($blog->status==='Published'){?>
-            <script type="text/javascript">$('.draft-banner').hide()</script>;
+            <script type="text/javascript">$('.draft-banner').hide()</script>
         <?php }?>
 
         <?php
@@ -146,14 +146,10 @@ echo count($comments) ?></span> Comment(s)</h2>
 
                                 <!-- reply link -->        
                                 <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-                                <a class ="flag-btn" id="demo" href="">report  &#128681;</a>
+                                <button  id="report" onclick="deleteBlog(<?php echo $comment->commid; ?>,<?php echo $_SESSION['userid']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
 
-                            <script>
-                                function myFunction() {
-                                    document.getElementById("demo").innerHTML = "Reported";
-                                }
-                            </script>
+                        
 
 
 
@@ -184,8 +180,8 @@ echo count($comments) ?></span> Comment(s)</h2>
                                                 <span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
 
                                                 <p><?php echo $reply['reply_TXT']; ?></p>
-                                                <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-                                                <a class ="flag-btn" id="demo" href="">report  &#128681;</a>
+                                                
+                                                
                                             </div>
                                         </div>
                             <?php endforeach ?>
