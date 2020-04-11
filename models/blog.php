@@ -221,7 +221,7 @@ LIMIT 3
         }
         //checks blog text
         if(isset($_POST['blogContent'])&& $_POST['blogContent']!=""){
-            $filteredText = filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filteredText = $_POST['blogContent'];//filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         //checks genre
         if(isset($_POST['genretag'])&& $_POST['genretag']!=""){
