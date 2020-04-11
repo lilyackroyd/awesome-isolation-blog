@@ -207,7 +207,77 @@ LIMIT 3
 //    }
     
  
+    public static function add() {
+            $db = Db::getInstance();
+            $req = $db->prepare("Insert into blog_posts(genre_TAG, user_ID, blog_TITLE, blog_TXT, blog_IMG, blog_VIDEO, blog_STATUS, date_PUB, KEYWORDS) values (:genretag, (SELECT user_ID from users WHERE user_UN = :username), :blogTitle, :blogContent, :blogimage, :videolink, :blogstatus, CURRENT_DATE, :keywords)");
+                $req->bindParam(':genretag', $genre);
+                $req->bindParam(':username', $username);
+                $req->bindParam(':blogTitle', $title);
+                $req->bindParam(':blogContent', $text);
+                $req->bindParam(':blogimage', $img);
+                $req->bindParam(':videolink', $video);
+                $req->bindParam(':blogstatus', $status);
+                $req->bindParam(':keywords', $keywords);
+        // set parameters and execute
+        if(!empty($_SESSION)){
+            $username = $_SESSION["username"];
+            }
+        if(isset($_POST['blogTitle'])&& $_POST['blogTitle']!=""){
+            $filteredTitle = filter_input(INPUT_POST,'blogTitle', FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        if(isset($_POST['blogContent'])&& $_POST['blogContent']!=""){
+            $filteredContent = filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
+            $filteredvideo = filter_input(INPUT_POST, 'videolink', FILTER_SANITIZE_URL);
+        }
+        if(isset($_POST['keywords'])&& $_POST['keywords']!=""){
+            $filteredkeywords = filter_input(INPUT_POST, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+            $title = $filteredTitle;
+            $text = $filteredContent;
+            $video = $filteredvideo;
+            $keywords = $filteredkeywords;
+            $req->execute();
+        //upload blog image
+        Blog::uploadFile($title);
+        
+    }
     
+    const AllowedTypes = ['image/jpeg', 'image/jpg'];
+    const InputKey = 'myUploader';
+
+//die() function calls replaced with trigger_error() calls
+//replace with structured exception handling
+    public static function uploadFile(string $name) {
+
+        if (empty($_FILES[self::InputKey])) {
+            //die("File Missing!");
+            trigger_error("File Missing!");
+        }
+
+        if ($_FILES[self::InputKey]['error'] > 0) {
+            trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
+        }
+
+
+        if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
+            trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
+        }
+
+        $tempFile = $_FILES[self::InputKey]['tmp_name'];
+        $path = "C:/xampp/htdocs/awesome/views/images/";
+        $destinationFile = $path . $name . '.jpeg';
+
+        if (!move_uploaded_file($tempFile, $destinationFile)) {
+            trigger_error("Handle Error");
+        }
+
+        //Clean up the temp file
+        if (file_exists($tempFile)) {
+            unlink($tempFile);
+        }
+    }    
     
     
     

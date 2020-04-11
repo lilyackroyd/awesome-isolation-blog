@@ -3,6 +3,7 @@
     <p>Please fill in the below form to create a blog and add it to the website.<br/></p>
 </section>
 <section class ="main-section" align="center">
+    
     <!--Form to add blog post-->
     <!--Need to add action in -->
     <form method="post" name="createblog" class="createblog">
@@ -16,7 +17,7 @@
         <!--Content input-->
         <div align="center">
         <p>Please type the content for your blog below.<br/></p>
-        <textarea class="boxsizingBorder" name="blogContent" placeholder="Enter blog text." required="" rows="10" cols="150"></textarea>
+        <textarea class="boxsizingBorder" name="blogContent" placeholder="Enter blog text" required="" rows="10" cols="150"></textarea>
         </br>
         <div>
         
@@ -24,14 +25,20 @@
         <p>Please choose the relevant genre tag from the list:</br></p>
         <input type='radio' id='food' name='genretag' value ='food'>
         <label for="food">Food</label></br>
-        <input type='radio' id ='family' name='genretag' value='family'>
+        <input type='radio' id ='family' name='genretag' value='family' >
         <label for="family">Family</label></br>
-        <input type='radio' id ='craft' name='genretag' value='craft'>
+        <input type='radio' id ='craft' name='genretag' value='craft' >
         <label for='craft'>Craft</label></br>
-        <input type='radio' id ='fitness' name='genretag' value='fitness'>
+        <input type='radio' id ='fitness' name='genretag' value='fitness' >
         <label for='fitness'>Craft</label></br>
         </br>
          
+        <!--ADD KEYWORDS OPTION-->
+        <p>Please enter any relevant keywords for your blog.</br> (Keywords make it easier for visitors to find your blog)</p>
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="keywords" placeholder="Enter keywords">
+            
+        
+        
         <!--Image upload, not fully ready yet-->
         <p>Please upload a relevant image to be displayed with your blog.</p>
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
@@ -50,9 +57,13 @@
 //////        }
         ?> -->
         </br>
-        <p>If you want to embed a YouTube video, please paste the embed link here.</br></p>
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="videolink" placeholder="Link here.">
+        </br>
         
+        <!--include youTube link-->
+        <p>If you want to embed a YouTube video, please paste the embed link here.</br></p>
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="videolink" placeholder="Link here">
+        
+        <!--Status to be either draft or published-->
         <p>Please choose the status of your blog</br></p>
         <input type='radio' id='draft' name='blogstatus' value ='draft'>
         <label for="draft">Draft</label></br>
