@@ -60,7 +60,31 @@ public function search() {
 
 }  
 
+public function create() {
+    //URL is ?controller=products&action=create (directed from my account page)
+    //if the request is a GET request then there is no blog to add yet so direct to create new blog post
+    //otherwise if its a POST then the form has been submitted so the blog post is added to the database
+    if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+        require_once('Views/blogs/create.php');
+    }
+    else {
+        require_once('views/blogs/readAll.php');
+    }
+}
 
+
+// public function create() {
+//      // we expect a url of form ?controller=products&action=create
+//      // if it's a GET request display a blank form for creating a new product
+//      // else it's a POST so add to the database and redirect to readAll action
+//      if($_SERVER['REQUEST_METHOD'] == 'GET'){
+//          require_once('views/blogs/create.php');
+//      }
+//      else { 
+//          BlogPost::add();
+//            $blogposts = BlogPost::all('BlogID', 'desc'); //$blogposts is used within the view
+//            require_once('views/blogs/readAll.php');
+//      }
 
 
 

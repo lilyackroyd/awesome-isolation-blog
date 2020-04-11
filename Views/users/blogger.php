@@ -23,7 +23,7 @@
 
                         
                         <div class="flex-row-account" role="cell">
-                            <div class="card" style="width: 22rem;"><a class="acc-link" href="#">
+                            <div class="card" style="width: 22rem;"><a class="acc-link" href="?controller=blog&action=create">
                                 <div class="card-body-account">
                                     <img class="acc-icon" src="Views/images/plus2.png"style="width: 70px;height: 70px;"/>
                                     <h2 class="card-title">Create a blog</h2>
