@@ -1,6 +1,6 @@
 <section class="intro-section">
-    <h1>Edit blog</h1>
-    <p>Make changes to your blog and save as a draft or publish now<br/></p>
+    <h1>Edit "<?php echo$blog->title?>"</h1>
+    <p>Make changes and save as a draft or publish now.<br/></p>
 </section>
 <section class ="main-section" align="center">
 
@@ -10,7 +10,7 @@
             
             <!--Title input-->
         <p>Title<br/></p>
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="blogTitle" placeholder="<?=$blog->title?>" required="">
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="blogTitle" value="<?=$blog->title?>" required>
         
         
         
@@ -18,7 +18,7 @@
         <!--Content input-->
         <div align="center">
         <p>Your content<br/></p>
-        <textarea class="boxsizingBorder" name="blogContent" placeholder="<?=$blog->text?>"required="" rows="10" cols="150"></textarea>
+        <textarea class="boxsizingBorder" name="blogContent"  required rows="10" cols="150"><?= $blog->text?></textarea>
         </br>
         <div>
         
@@ -29,23 +29,28 @@
         <!--Genre tag input using radio buttons-->
        
         <p>Please choose the relevant genre tag from the list:</br></p>
-        <input type='radio' id='food' name='genretag' value ='food'<?php if ($blog->genre==='Food'){echo "checked";}?>>
+        <input type='radio' id='genretag' name='genretag' value ='Food'<?php if ($blog->genre==='Food'){echo "checked";}?>>
         <label for="food">Food</label></br>
-        <input type='radio' id ='family' name='genretag' value='family' <?php if ($blog->genre==='Family'){echo "checked";}?>>
+        <input type='radio' id ='genretag' name='genretag' value='Family' <?php if ($blog->genre==='Family'){echo "checked";}?>>
         <label for="family">Family</label></br>
-        <input type='radio' id ='craft' name='genretag' value='craft'<?php if ($blog->genre==='Craft'){echo "checked";}?>>
+        <input type='radio' id ='genretag' name='genretag' value='Craft'<?php if ($blog->genre==='Craft'){echo "checked";}?>>
         <label for='craft'>Craft</label></br>
-        <input type='radio' id ='fitness' name='genretag' value='fitness'<?php if ($blog->genre==='Fitness'){echo "checked";}?> >
-        <label for='fitness'>Craft</label></br>
+        <input type='radio' id ='genretag' name='genretag' value='Fitness'<?php if ($blog->genre==='Fitness'){echo "checked";}?> >
+        <label for='fitness'>Fitness</label></br>
         </br>
          
-        
-        
+        <script>
+        document.getElementById("genretag").required = true;
+        </script>
+
+        <!--Keywords-->
+        <p>Please enter any relevant keywords for your blog.</br> <i>(Keywords make it easier for visitors to find your blog)</i></p>
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="keywords" placeholder="Enter keywords">
         
         <!--Image upload, not fully ready yet-->
         <p>Image</p>
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
-        <input type="file" name="blogimage"/>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
+        <input type="file" name="blogimage" value="<?= $blog->img?>"/>
         </br>
 <!--        <?php
 //        const InputKey = 'blogimage';
@@ -69,11 +74,13 @@
    
         
         <p>Save as draft or publish</br></p>
-        <input type='radio' id='draft' name='blogstatus' value ='draft'>
+        <input type='radio' id='status' name='blogstatus' value ='Save draft'<?php if ($blog->status==='Draft'){echo "checked";}?>>
         <label for="draft">Save as draft</label></br>
-        <input type='radio' id='published' name='blogstatus' value='published'>
+        <input type='radio' id='status' name='blogstatus' value='Publish'<?php if ($blog->status==='Published'){echo "checked";}?>>
         <label for='published'>Publish</label></br>
-        </br>
+        <script>
+        document.getElementById("status").required = true;
+        </script>
 
        
  <p align="center">

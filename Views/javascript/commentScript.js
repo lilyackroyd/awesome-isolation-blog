@@ -52,16 +52,28 @@ $(document).ready(function(){
 		// show/hide the appropriate reply form (from the reply-btn (this), go to the parent element (comment-details)
 		// and then its siblings which is a form element with id comment_reply_form_ + comment_id)
 		$(this).parent().siblings('form#comment_reply_form_' + comment_id).toggle(500);
-		$(document).on('click', '.submit-reply', function(e){
+		
+            
+            $(document).on('click', '.submit-reply', function(e){
+                console.log('here'); 
 			e.preventDefault();
 			// elements
+                        
 			var reply_textarea = $(this).siblings('textarea'); // reply textarea element
+                        console.log(reply_textarea);
+                        
+                        var user_id = $('#user_id_reply').val();
+                        console.log(user_id);
+                        
 			var reply_text = $(this).siblings('textarea').val();
+                        
 			var url = $(this).parent().attr('action');
+                        
 			$.ajax({
 				url: url,
 				type: "POST",
-				data: {
+				data: { 
+                                        user_id: user_id,
 					comment_id: comment_id,
 					reply_text: reply_text,
 					reply_posted: 1

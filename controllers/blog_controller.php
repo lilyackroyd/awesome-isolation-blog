@@ -74,8 +74,6 @@ class BlogController {
         
         
         public function update() {
-
-  
       if($_SERVER['REQUEST_METHOD'] == 'GET'){
           if (!isset($_GET['id'])) {
           return call('pages', 'error');}
@@ -87,8 +85,8 @@ class BlogController {
           { 
             $id = $_GET['id'];
             Blog::update($id);       
-            
-            require_once('views/blogs/myblogs.php');
+            $blog = Blog::find($id);
+            header("Location: index.php?controller=blog&action=read&id=$id"); 
       }
     }
      

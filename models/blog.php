@@ -229,14 +229,14 @@ LIMIT 3
         }
          //checks blog image
         if(isset($_POST['blogimage'])&& $_POST['blogimage']!=""){
-            $filteredImage = filter_input(INPUT_POST,'blogimage', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filteredImage = "Views/images/".filter_input(INPUT_POST,'blogimage', FILTER_SANITIZE_SPECIAL_CHARS);
         }
           //checks blog text
         if(isset($_POST['blogstatus'])&& $_POST['blogstatus']!=""){
             $filteredStatus = filter_input(INPUT_POST,'blogstatus', FILTER_SANITIZE_SPECIAL_CHARS);
         }
           //checks blog text
-        if(isset($_POST['videolink'])&& $_POST['videoink']!=""){
+        if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
             $filteredVideo = filter_input(INPUT_POST,'videolink', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         

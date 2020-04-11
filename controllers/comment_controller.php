@@ -86,12 +86,12 @@ if (isset($_POST['comment_posted'])) {
 
 // If the user clicked submit on reply form...
 if (isset($_POST['reply_posted'])) {
-	global $db;
+	
         
 	// grab the reply that was submitted through Ajax call
 	$reply_text = $_POST['reply_text']; 
 	$comment_id = $_POST['comment_id']; 
-        
+        $user_id = $_POST['user_id']; 
         
         // insert reply into database
         $request=Comments::insertReply($user_id, $comment_id, $reply_text);
