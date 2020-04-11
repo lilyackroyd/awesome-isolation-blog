@@ -82,7 +82,15 @@ class BlogController {
      
         $blog = Blog::find($_GET['id']);
         require_once('views/blogs/update.php');
-        }}
+        }
+        else
+          { 
+            $id = $_GET['id'];
+            Blog::update($id);       
+            
+            require_once('views/blogs/myblogs.php');
+      }
+    }
      
 
   

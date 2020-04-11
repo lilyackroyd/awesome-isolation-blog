@@ -1,6 +1,6 @@
 <section class="intro-section">
     <h1>Edit blog</h1>
-    <p>Please fill in the below form to create a blog and add it to the website.<br/></p>
+    <p>Make changes to your blog and save as a draft or publish now<br/></p>
 </section>
 <section class ="main-section" align="center">
 

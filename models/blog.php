@@ -206,7 +206,57 @@ LIMIT 3
 //    } 
 //    }
     
- 
+      
+
+    public static function update($id) {
+        $db = Db::getInstance();
+        
+        if(!empty($_SESSION)){
+            $userid = $_SESSION["userid"];
+        }
+        //checks blog title 
+        if(isset($_POST['blogTitle'])&& $_POST['blogTitle']!=""){
+            $filteredTitle = filter_input(INPUT_POST,'blogTitle', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //checks blog text
+        if(isset($_POST['blogContent'])&& $_POST['blogContent']!=""){
+            $filteredText = filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //checks genre
+        if(isset($_POST['genretag'])&& $_POST['genretag']!=""){
+            $filteredGenre = filter_input(INPUT_POST,'genretag', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+         //checks blog image
+        if(isset($_POST['blogimage'])&& $_POST['blogimage']!=""){
+            $filteredImage = filter_input(INPUT_POST,'blogimage', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+          //checks blog text
+        if(isset($_POST['blogstatus'])&& $_POST['blogstatus']!=""){
+            $filteredStatus = filter_input(INPUT_POST,'blogstatus', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+          //checks blog text
+        if(isset($_POST['videolink'])&& $_POST['videoink']!=""){
+            $filteredVideo = filter_input(INPUT_POST,'videolink', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        
+        
+        $req = $db->prepare("Update blog_posts set blog_TITLE=:title, blog_TXT=:text, blog_IMG=:image, blog_VIDEO=:video, genre_TAG=:genre, blog_STATUS=:status, date_PUB = CURRENT_DATE  WHERE user_ID = :userid AND blog_ID = :id");
+                $req->bindParam(':userid', $userid);
+                $req->bindParam(':title', $filteredTitle);
+                $req->bindParam(':text', $filteredText);
+                $req->bindParam(':id', $id);
+                $req->bindParam(':image', $filteredImage);
+                $req->bindParam(':video', $filteredVideo);
+                $req->bindParam(':status', $filteredStatus);
+                $req->bindParam(':genre', $filteredGenre);
+
+            $req->execute();
+//        //upload blog image if it exists
+//        if (!empty($_FILES[self::InputKey]['blogid'])) {
+//            BlogPost::uploadFile($blogid);
+//	}
+    }
+
     
     
     
