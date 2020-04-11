@@ -50,6 +50,16 @@ class userController {
 //   }     
     }
 
+  function bloggerList(){
+      require_once('models/blogger.php');
+      $blogger = User::getallBloggers();
+      
+      return $blogger;
+          
+  }
+          
+  
+      
   
     
 

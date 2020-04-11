@@ -4,7 +4,7 @@
 
 class User{
  protected $email;
- protected $sername;
+ protected $username;
  protected $password ;
  protected $usertype;
  
@@ -90,6 +90,20 @@ class User{
             die("Incorrect details");
         }
         
+    }
+    
+    public function getallBloggers(){
+        
+        $db = Db::getInstance();
+        $sql = "SELECT * FROM Users WHERE user_TYPE='Blogger'";
+        $req = $db->query($sql);
+        //$result = $req->fetchall();
+        //return $result;
+        foreach ($req->fetchAll() as $blogger) {
+            $list[] = new Blogger(
+                    $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN']);
+        }
+        return $list;
     }
     
 

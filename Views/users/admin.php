@@ -1,3 +1,18 @@
+<?php 
+$bloggers = userController::bloggerlist();
+
+?> <br>
+ <?php if (count($bloggers) > 0) { ?>
+ <?php foreach ($bloggers as $blogger) { ?> <br>
+                  
+<?php echo $blogger->firstname . ' '. $blogger->lastname; ?>
+                    <?php
+                }
+                }
+            else {
+                echo '<p>There are currently no bloggers. </p>';
+            }
+            ?>
 
                 <div class="table-container-intro-account" role="table" aria-label="">
                     <div class="flex-table-account row" role="rowgroup">  
