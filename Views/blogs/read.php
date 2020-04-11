@@ -9,16 +9,16 @@
 if(!empty ($_SESSION)) {
 if($_SESSION['usertype']==='Admin'|$_SESSION['usertype']==='Blogger' ) {
     $alloweduser=TRUE;
-}
+}}
 
-if ($alloweduser===TRUE){
-     
-        echo "<input type='button' class='btn btn-danger' id='editdelete' value='Edit blog' >";
-        echo "<input type='button' class='btn btn-danger' id='editdelete' value='Delete blog' >";
-}else{?>
-    <script type="text/javascript">$('#editdelete').hide()</script>;
+  if ($alloweduser===TRUE) { ?>
+     <button id="editdelete" class="btn btn-danger" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Update blog</button>
+     <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
+ <?php }else {?>
+
+    <script type="text/javascript">$('#editdelete').hide();</script>
 <?php
-}}?>
+ }?>
     </div> 
     
     
@@ -185,5 +185,7 @@ if ($video != ""){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<!-- Comment section Javascript & AJAX -->
 <script src="Views/blogs/commentScript.js"></script>
+<!-- delete blog js -->
+<script src="Views/blogs/deleteBlog.js"></script>

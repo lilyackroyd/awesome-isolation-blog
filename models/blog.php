@@ -174,6 +174,60 @@ LIMIT 3
         return $list;
     }
 
+    
+      public static function deleteBlog($id) {
+        $db = Db::getInstance();
+
+                $blog = intval($id);
+                self::removeAllBlogComments($id);
+        $req = $db->prepare('delete FROM blog_posts WHERE blog_ID = :blogid');
+      $req->execute(array('blogid' => $blog));
+//                
+                //BlogPost::deleteBlogImage($blog);
+    }
+    
+        
+    public static function removeAllBlogComments($id) {
+        $db = Db::getInstance();
+        $blogid = intval($id);
+        $req = $db->prepare('delete FROM Comments WHERE blog_ID = :id');
+        $req->execute(array('id' => $id));
+    }
+    
+    
+//    //attempt to write method to delete blog image so image folder doesn't get clogged up
+//    public static function deleteBlogImage($blogid) {
+//        if($blogid == ($_GET['blogid'])) {
+//    $path =   join(DIRECTORY_SEPARATOR, array(__DIR__,'..','views','images', $blogid));
+//    $blogfile = $path . '.jpeg';
+//    	if (file_exists($blogfile)) {
+//		unlink($blogfile); 
+//	}  
+//    } 
+//    }
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 ?>

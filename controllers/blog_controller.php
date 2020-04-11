@@ -65,7 +65,19 @@ class BlogController {
             return call('pages', 'error');
         }
     }
+    
+    
+        public function delete() {
+        Blog::deleteBlog($_GET['id']);
+        require_once('Views/user/myblogs.php');
+        }
 
+  
+  
+  
+  
+  
+  
     public function create() {
         //URL is ?controller=products&action=create (directed from my account page)
         //if the request is a GET request then there is no blog to add yet so direct to create new blog post
