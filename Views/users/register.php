@@ -26,7 +26,7 @@ function myFunction() {
     </p><div><?php //echo $loginMsg; ?></div>
     
     <div class="login-welcome">
-    <form action='../Controllers/registrationController.php' method="POST">
+    <form action='' method="POST">
         
         <div class="usertype">
             <div class="pure-control-group"> 
@@ -91,13 +91,21 @@ function myFunction() {
             </div>
         </div>
     </div>    
-        
+    <div class="pure-form pure-form-aligned">
+        <div class="hidden"> 
+                <label for="img">Upload your profile image:</label>
+                <input type="file" id="img" name="image" accept="image/*" align="center">
+                <div class ="error">
+                    <?php echo $errors['image'] ?? '' ?>  
+                 </div>
+        </div>
+    </div>    
     <div>        
         <div class="pure-form pure-form-aligned">
             <div class="hidden">
             
-            (Office only) Enter your Admin code:<input class="shadow-sm p-3 mb-5 bg-white rounded form" name='admin_code' id="admin_code">
-            <?php //echo $errors['lib_code'] ?? '' ?>
+            <input type="password" class="shadow-sm p-3 mb-5 bg-white rounded form" placeholder="(Office only) Enter your Admin code:" name='admin_code' id="admin_code">
+            <?php echo $errors['admin_code'] ?? '' ?>
             </div>
             
         </div>

@@ -82,9 +82,9 @@
    <section class="intro-section">
 
                     <h1>About us</h1>
-                    <p>In the wake of COVID-19 Team Awesome Woman of SKY GIT class of 2020 have decided to write a blog.
-  This is to provide information, knowledge and entertainment as people of all ages, families and children are all on lockdown.
-  These blogs are written to make a diffrerence in peoples lives and to bring and connect people together.</p>
+                    <p>In the wake of COVID-19, the women of SKY GIT class of 2020 'Team Awesome' have decided to write a blog.
+  We'll provide information, knowledge and entertainment for people of all ages, and hopefully give you a little light relief while we are all on lockdown.
+  These blogs are written to make a difference in peoples lives and to bring and connect people together.</p>
 
                 </section> 
 

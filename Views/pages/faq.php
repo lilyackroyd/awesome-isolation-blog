@@ -53,17 +53,17 @@ p.double {border-style: double;
 </div>
 
 <div class="question">
-  <strong>2. How do I subscribe?</strong><p>You can subscribe to The Awesome Isolation blog here. Fill in your details and log in.</p>
+    <strong>2. How do I subscribe?</strong><p>You can subscribe to The Awesome Isolation blog <a href="?controller=user&action=register"/>here.</a> Fill in your details and log in.</p>
 </div>
 
     <div class="question">
   <strong>3. Where's my account? </strong> <p>
-      If you're a blogger for The Awesome Isolation Blog you can log in using your username and password <a href="?controller=user&action=register"/>here</a>.</p>
+      If you're a blogger for The Awesome Isolation Blog you can log in using your username and password <a href="?controller=user&action=login"/>here</a>.</p>
 </div>
 
 <div class="question">
  <strong>3. Can I publish my blog on your website?</strong> <p> Yes you can publish your blog on our site. 
-      Go to our contact page to register your credentials. </p>
+     Go to our <a href="?controller=user&action=register"/>registration page</a> to sign up. </p>
 </div>
 <div class="question">
   <strong>4. How much is your subscription charge?</strong><p> Our subscription charge is £4.99 a month. </p>

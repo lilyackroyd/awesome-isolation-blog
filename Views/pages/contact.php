@@ -128,7 +128,7 @@ input[type=submit]:hover {
 
 
 <div class="contact-container">
-    <h2 style="text-align:center">Login with Social Media or Manually</h2>
+    <h2 style="text-align:center">Login with social media or manually</h2>
      
     
  
