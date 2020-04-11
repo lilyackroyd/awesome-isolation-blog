@@ -54,8 +54,15 @@ class userController {
     
 
     
-    function register() {
+  function register() {
         require_once('views/users/register.php');
+        include_once('User_validation.php');
+        
+        if (isset($_POST['submit'])) {
+        $validation = new User_validation($_POST);
+        $errors = $validation->validateForm();
+        }
+}
     }
 
     function adminSelect() {
@@ -80,4 +87,11 @@ class userController {
     //           $lastName = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
     //           $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
     //           $userType = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
-}
+    //  }
+
+function regValidation() {
+    if (isset($_POST['submit'])) {
+        $validation = new User_validation($_POST);
+        $errors = $validation->validateForm();
+    }
+}    
