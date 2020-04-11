@@ -66,31 +66,33 @@ class userController {
     
    function register() {
         require_once('views/users/register.php');
+        require_once('models/blogger.php');
         include_once('User_validation.php');
         
         if (isset($_POST['submit'])){
             $validation = new User_validation($_POST);
             $errors = $validation->validateForm();
-            var_dump ($errors);
-        }
-        //if (isset($_POST['admin'])){
-        //    $usertype="Admin";
-        //    echo $usertype;
-        //} else if (isset($_POST['blogger'])){
-        //    $usertype="Blogger";
-        //    echo $usertype;
-        //} else if (isset($_POST['admin'])){
-        //    $usertype="Subscriber";
-        //    echo $usertype;
-        //}    
-            
-            
-      //  if (isset($_POST['submit'])) {
-      //  $validation = new User_validation($_POST);
-      //  $errors = $validation->validateForm();
-      //  }
-
-    }
+            //var_dump ($errors);
+            }
+        if (!empty($errors)) {
+            echo "There was a problem submitting your form. See below for help.";
+            }
+        if (isset($_POST['submit']) && empty($errors)) {
+            $blogger1 = new Blogger (
+               $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS),
+               $password = password_hash($password, PASSWORD_BCRYPT),
+               $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS),
+               $lastname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
+               $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
+               $usertype = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
+               $image = $_POST['image'];
+               
+               $blogger = Blogger::registerBlogger();
+            }
+        
+      
+      }
+ 
 
 
     //if (empty($_POST)){
@@ -109,7 +111,6 @@ function regValidation() {
     if (isset($_POST['submit'])) {
         $validation = new User_validation($_POST);
         $errors = $validation->validateForm();
-     
-    }
-}    
+        }
+    }    
 }

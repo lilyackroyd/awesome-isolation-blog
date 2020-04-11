@@ -90,14 +90,16 @@ class User_validation {
         
     //  var_dump($this->filedata);
         if (!file_exists($this->data['image'])) {
-            $this->adderror('image', 'Please upload picture');
+            $this->adderror('image', 'Please upload your profile picture');
    }  
      
   }    
     private function validateAdminCode() {
         $userType="";
         $val = ($this->data['admin_code']);
-        if ($userType== "Admin"){
+        if (empty($val)){
+            echo "";
+        } else if ($val== "admin"){
             $userType = "Admin";
             echo "";
         } else {

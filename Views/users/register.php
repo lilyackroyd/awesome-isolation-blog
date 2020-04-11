@@ -1,5 +1,5 @@
 
-//<script>
+<script>
 //$('#hidden').css('display','none'); // Hide the text input box in default
 //function myFunction() {
 //   if($('#subscriber').prop('checked')) {
@@ -9,7 +9,7 @@
 
 
 </script>
-
+<?php $loginMsg=""; ?>
  <section class="intro-section">
               <h1 class="login_sign-in">Enter your details below to start blogging.  </h1> 
             </section>
@@ -22,7 +22,7 @@
                 
     <p>    
      
-    </p><div><?php //echo $loginMsg; ?></div>
+    </p><div><?php echo $loginMsg; ?></div>
     
     <div class="login-welcome">
     <form action="" method="POST" form id='form2'>
