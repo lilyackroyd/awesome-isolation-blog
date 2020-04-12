@@ -54,6 +54,7 @@ class User{
         $req->execute(['username' => $usn]);
         $result = $req->fetch();
         return $result;
+        
     }
     
     public function loginUser() {
