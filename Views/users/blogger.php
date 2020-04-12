@@ -16,50 +16,23 @@ echo $blogger['user_IMG']; ?>" class="account-img"   alt="...">
     </div>
 </div>
 
-<div class="intro-section">               
-    <h2>Your details</h2>
-</div>
-
-<div class="main-section">  
-    <div class="blogger-table">
-        <table role="table" class="table table-striped table-dark">
-            <thead role="rowgroup">
-                <tr role="row">
-                    <th role="columnheader"><h6>First Name</h6></th>
-                    <th role="columnheader"><h6>Last Name</h6></th>
-                    <th role="columnheader"><h6>Email</h6></th>
-                    <th role="columnheader"><h6>Username</h6></th>
-                    <th role="columnheader"><h6>Password</h6></th>
-                    <th role="columnheader"></th>
-
-
-                </tr>
-            </thead>
-            <tbody role="rowgroup">
-                <tr role="row">
-                    <td role="cell"><p><?= $blogger['user_FN'] ?></p></td>
-                    <td role="cell"><p><?= $blogger['user_LN'] ?></p></td>
-                    <td role="cell"><p><?= $blogger['user_EMAIL'] ?></p></td>
-                    <td role="cell"><p><?= $blogger['user_UN'] ?></p></td>
-                    <td role="cell"><p><?= $blogger['user_PWD'] ?></p></td>
-                    <td role="cell"><a href="memUpdate.php?user_ID=<?= $blogger['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a></td>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-</div>
-
-
-
-
 
 <div class="table-container-account" role="table" aria-label="">
     <div class="flex-table-account row" role="rowgroup">  
 
  
-
+<div class="accountrow" role="cell">
+                <div class="card" style="width: 22rem;">
+                        <div class="account-your-details">
+                            <h2 class="card-title">Your details</h2>
+                            <p>First name: <?= $blogger['user_FN'] ?></p>
+                            <p>Last name: <?= $blogger['user_LN'] ?></p>
+                            <p>Email: <?= $blogger['user_EMAIL'] ?></p>
+                            <p>Username: <?= $blogger['user_UN'] ?></p>
+                            <button id="" class="btn btn-primary"><i class="fas fa-edit"></i> Edit details</button>
+                        </div>
+                </div></div>
+        
 
             <div class="accountrow" role="cell">
                 <div class="card" style="width: 22rem;"><a class="acc-link" href="?controller=blog&action=create">

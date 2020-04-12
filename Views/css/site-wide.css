@@ -532,7 +532,8 @@ ul {
 /*******BLOGGER ACC*********/
 
 .intro-section-account{
-    padding-top: 50px;
+    display:flex;
+    justify-content: center;
     width:100%;
     padding-bottom:50px;
 }
@@ -556,13 +557,14 @@ img.account-img{
 }
 
 .table-container-account{
+    display:flex;
     width:100%;
     padding:0;
     justify-content: center;
 
 }
 
-.flex-table-account {width:100%;
+.flex-table-account.row {width:100%;
                      display: flex;
                      flex-flow: row wrap;
                      transition: 0.5s;
@@ -578,8 +580,9 @@ img.account-img{
 }  
 
 .flex-row-intro-account{ 
+    display:flex;
     justify-content: center;
-    padding-right:60px;
+    
 }  
 
 .card-body-account{
@@ -590,7 +593,14 @@ img.account-img{
     height:300px;
     text-align: center;
     border-width: 4px;
+}
 
+.account-your-details{
+    color: black;
+    padding:20px;
+    border-color: black;
+    height:300px;
+    border-width: 4px;
 }
 
 .acc-link {
@@ -665,8 +675,22 @@ img.account-img{
 		
 	}
 
+        .main-section-account{
+    display:flex;
+    justify-content: center;
+ }
 
-
+ .blogger-table{
+     width:55%;
+     padding-right:26px;
+     margin-bottom:20px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
 /******LOG IN*********/
 
 .login_sign-in {
