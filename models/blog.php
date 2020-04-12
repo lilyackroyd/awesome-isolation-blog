@@ -288,7 +288,7 @@ LIMIT 3
             $filteredkeywords = filter_input(INPUT_POST, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if(isset($_POST['caption'])&& $_POST['caption']!=""){
-            $filteredcaption = "/Views/images/".filter_input(INPUT_POST, 'caption', FILTER_SANITIZE_SPECIAL_CHARS) . ".jpeg";
+            $filteredcaption = "Views/images/".filter_input(INPUT_POST, 'caption', FILTER_SANITIZE_SPECIAL_CHARS) . ".jpeg";
         }
 //        if(isset($_FILES['myUploader'])&& $_FILES['myUploader']!=""){
 //            $filteredImage = filter_input(INPUT_POST,'myUploader', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -345,7 +345,7 @@ LIMIT 3
     
     
     	   $tempFile = $_FILES[self::InputKey]['tmp_name'];
-            $path = realpath(__DIR__ . '/..') .  $img;
+            $path = realpath(__DIR__ . '/..') . '/' .  $img;
 	       $destinationFile = $path ;
             $error = $_FILES[self::InputKey]['error'];
 

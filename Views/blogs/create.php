@@ -29,7 +29,7 @@
         <input type='radio' id ='craft' name='genretag' value='Craft' >
         <label for='craft'>Craft</label></br>
         <input type='radio' id ='fitness' name='genretag'value='Fitness'>
-        <label for='fitness'>Craft</label></br>
+        <label for='fitness'>Fitness</label></br>
         </br>
        
         <!--Keywords-->
