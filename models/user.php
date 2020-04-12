@@ -105,10 +105,8 @@ class User{
         }
         return $list;
     }
-    
-
    
- 
+ }
     
     
 
@@ -119,5 +117,5 @@ class User{
  
  
  
-}
+
 

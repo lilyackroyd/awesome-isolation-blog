@@ -1,14 +1,16 @@
 <?php
 
 class Blogger extends User{
+    public $id;
     public $img;
     public $firstname;
     public $lastname;
  
     
-public function __construct($img, $firstname, $lastname) {
+public function __construct($id, $img, $firstname, $lastname) {
     parent::__construct($username, $password, $email, $usertype);
-		$this->username = $username;
+                $this->id = $id;
+                $this->username = $username;
                 $this->password = $password;
                 $this->email = $email;
                 $this->usertype = $usertype;
