@@ -146,9 +146,10 @@ echo count($comments) ?></span> Comment(s)</h2>
 
                                 <!-- reply link -->        
                                 <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-                                <button  id="report" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
+                                <button  class="report" id="report-<?php echo $comment->commid; ?>" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
-
+                            
+                            
                         
 
 
