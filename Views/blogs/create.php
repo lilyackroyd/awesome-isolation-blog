@@ -5,7 +5,7 @@
 <section class ="main-section" align="center">
     
     <!--Form to add blog post-->
-    <form method="post" class="createblog">
+    <form method="post" class="createblog" enctype="multipart/form-data">
         <div class="pure-form pure-form-aligned" >
         <div class="pure-control-group">
             
@@ -22,16 +22,16 @@
         
         <!--Genre tag input using radio buttons-->
         <p>Please choose the relevant genre tag from the list:</br></p>
-        <input type='radio' id='food' name='genretag' value ='food'>
+        <input type='radio' id='food' name='genretag' value ='Food'>
         <label for="food">Food</label></br>
-        <input type='radio' id ='family' name='genretag' value='family' >
+        <input type='radio' id ='family' name='genretag' value='Family'>
         <label for="family">Family</label></br>
-        <input type='radio' id ='craft' name='genretag' value='craft' >
+        <input type='radio' id ='craft' name='genretag' value='Craft' >
         <label for='craft'>Craft</label></br>
-        <input type='radio' id ='fitness' name='genretag' value='fitness' >
+        <input type='radio' id ='fitness' name='genretag'value='Fitness'>
         <label for='fitness'>Craft</label></br>
         </br>
-         
+       
         <!--Keywords-->
         <p>Please enter any relevant keywords for your blog.</br> <i>(Keywords make it easier for visitors to find your blog)</i></p>
         <input class="shadow-sm p-3 mb-5 bg-white rounded form" name="keywords" placeholder="Enter keywords">
@@ -40,8 +40,14 @@
         
         <!--Image upload, not fully ready yet-->
         <p>Please upload a relevant image to be displayed with your blog.</p>
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
-        <input type="file" name="blogimage"/>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
+        <input type="file" name="blogimage" >
+
+        </br>
+        </br>
+        
+        <p>Please give a one word caption for your image.</p>
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form" name = "caption" placeholder="Enter caption">
         </br>
 <!--        <?php
 //        const InputKey = 'blogimage';
