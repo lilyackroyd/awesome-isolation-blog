@@ -1,5 +1,5 @@
 <?php
-include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comment_controller.php';
+include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
 ?>
    
 <section class="intro-section">
@@ -146,7 +146,7 @@ echo count($comments) ?></span> Comment(s)</h2>
 
                                 <!-- reply link -->        
                                 <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-                                <button  id="report" onclick="deleteBlog(<?php echo $comment->commid; ?>,<?php echo $_SESSION['userid']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
+                                <button  id="report" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
 
                         
@@ -211,3 +211,5 @@ echo count($comments) ?></span> Comment(s)</h2>
     <script src="Views/javascript/deleteBlog.js"></script>
         <!-- update blog js -->
     <script src="Views/javascript/updateBlog.js"></script>
+         <!-- rpeort comment js -->
+    <script src="Views/javascript/reportComment.js"></script>

@@ -116,8 +116,9 @@ class Comments {
     
     public static function reportComment($id) {
         $db = Db::getInstance();
-        $req = $db->prepare('UPDATE Comments SET comm_STATUS = "Reported" WHERE (comm_ID =id)');
+        $req = $db->prepare('UPDATE Comments SET flag = "1" WHERE (comm_ID =:id)');
         $req->execute(['id' => $id]);
+        if($req){return $msg="here";};
     }
 
 }

@@ -6,5 +6,5 @@
     }
     function goBackToHome() {
         window.refresh;
-        window.location.href = "index.php?controller=blog&action=home";
+        window.location.href = "index.php?controller=blog&action=myblogs";
 }

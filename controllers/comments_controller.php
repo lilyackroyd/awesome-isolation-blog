@@ -4,6 +4,17 @@
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
 
 
+class CommentsController {
+      public function report() {
+        Comments::reportComment($_GET['commid']);
+        //require_once('Views/user/myblogs.php');
+        
+        }
+}
+
+
+
+
         // Retrieves the blogs comments from the blog id
         function getBlogComments(){
       $blogid = ($_GET['id']);
@@ -31,7 +42,7 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'
         return $profileimage;
         }
         
-
+  
         
         
         
