@@ -144,8 +144,12 @@ echo count($comments) ?></span> Comment(s)</h2>
 
                                 <p><?php echo $comment->text; ?></p>   
 
-                                <!-- reply link -->        
+                                <!-- reply link -->    
+                                <?php if (!empty($_SESSION)): ?>
                                 <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
+                                <?php else: ?>
+                                <a href="?controller=user&action=login" class="reply-btnlogin">Log in to reply</a>
+                                <?php endif ?>
                                 <button  class="report" id="report-<?php echo $comment->commid; ?>" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
                             
@@ -157,7 +161,8 @@ echo count($comments) ?></span> Comment(s)</h2>
 
 
                             <!-- reply form -->
-                                                                    <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
+                            
+                            <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
                             <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
                                 <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
                                 <input type="hidden" id="user_id_reply" name="user_id" value="<?php echo $_SESSION['userid'] ?>">

@@ -65,9 +65,10 @@ if (isset($_POST['comment_posted'])) {
         
 	// if insert was successful, get that same comment from the database and return it
 	if ($request) {
-            
+                $image=Comments::getProfileImage($user_id);
+                
 		$comment = "<div class='comment clearfix'>
-					<img src='Views/images/profile.png' alt='' class='profile_pic'>
+					<img src='Views/".$image."' alt='' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_ID']) . "</span>
 						
@@ -113,9 +114,9 @@ if (isset($_POST['reply_posted'])) {
 
 	// if insert was successful, get that same reply from the database and return it
 	if ($request) {
-            
+                $image=Comments::getProfileImage($user_id);
 		$reply = "<div class='comment reply clearfix'>
-					<img src='profile.png' alt='' class='profile_pic'>
+					<img src='Views/".$image."' alt='' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_reply['ruser_ID']) . "</span>
 					

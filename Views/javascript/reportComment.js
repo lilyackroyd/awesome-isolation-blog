@@ -1,9 +1,4 @@
 
-               
-
-
-
-
 function reportComment(commid,blogid) {
      
      $("#report-"+commid).text("reported ✓" );
@@ -18,10 +13,7 @@ function reportComment(commid,blogid) {
         //goBackToBlog(blogid);
     }
     
-    
-    
-    
-    
+   
 //    function goBackToBlog(blogid) {
 //        window.refresh;
 //        window.location.href = "index.php?controller=blog&action=read&id=" + blogid,true;
