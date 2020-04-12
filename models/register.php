@@ -19,8 +19,9 @@ public function __construct($id, $img, $firstname, $lastname) {
 
 
 public function registerBlogger() {
-     $db = Db::getInstance();
-     $new_mem = $pdo->prepare("INSERT INTO Users ( user_UN, user_PWD, user_FN, user_LN, user_EMAIL, user_IMG, user_TYPE)
+    require_once 'controllers/user_controller.php';
+    $db = Db::getInstance();
+    $new_mem = $db->prepare("INSERT INTO Users ( user_UN, user_PWD, user_FN, user_LN, user_EMAIL, user_IMG, user_TYPE)
               VALUES (  :username, :password, :userfn, :userln, :email, :img, :type, )");
 
         $new_mem->execute([
@@ -30,7 +31,7 @@ public function registerBlogger() {
             'userln' => $lastname,
             'email' => $email,
             'img' => $image,
-            'type' => $userType,
+            'type' => $usertype,
                 ]);
 
         $loginMsg = '<div class="alert alert-success alert-dismissible fade show">

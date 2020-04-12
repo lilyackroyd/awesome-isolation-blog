@@ -25,7 +25,7 @@
     </p><div><?php echo $loginMsg; ?></div>
     
     <div class="login-welcome">
-    <form action="" method="POST" form id='form2'>
+    <form action="" method="POST" form id='form2'enctype="multipart/form-data">
         
         <div class="usertype">
             <div class="pure-control-group"> 

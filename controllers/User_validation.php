@@ -86,14 +86,12 @@ class User_validation {
             $this->addError('password_confirm', 'Your passwords do not match, please try again.'); 
     }
     }
-     private function validateImage(){
-        
-    //  var_dump($this->filedata);
+    private function validateImage(){
         if (!file_exists($this->data['image'])) {
-            $this->adderror('image', 'Please upload your profile picture');
-   }  
+        $this->addError('image', 'Please upload your profile picture');
+        }  
+     }
      
-  }    
     private function validateAdminCode() {
         $userType="";
         $val = ($this->data['admin_code']);

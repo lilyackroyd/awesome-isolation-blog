@@ -1,8 +1,14 @@
 <?php
 
-/**
- * @author Claire Winterbottom
- */
+$username = "";
+$password = "";
+$firstname = "";
+$lastname = "";
+$email = "";
+$usertype = "";
+$image = "";
+$blogger1="";
+
 class userController {
 
     function login() {
@@ -66,28 +72,28 @@ class userController {
     
    function register() {
         require_once('views/users/register.php');
-        require_once('models/blogger.php');
+        require_once('models/register.php');
         include_once('User_validation.php');
         
         if (isset($_POST['submit'])){
             $validation = new User_validation($_POST);
             $errors = $validation->validateForm();
-            //var_dump ($errors);
+            return ($errors);
             }
         if (!empty($errors)) {
             echo "There was a problem submitting your form. See below for help.";
             }
-        if (isset($_POST['submit']) && empty($errors)) {
-            $blogger1 = new Blogger (
+        else if (isset($_POST['submit']) && empty($errors)) {
+            $blogger1 = new Register (
                $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS),
-               $password = password_hash($password, PASSWORD_BCRYPT),
+               $password = password_hash('password', PASSWORD_BCRYPT),
                $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS),
                $lastname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
-               $usertype = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
-               $image = $_POST['image'];
-               
-               $blogger = Blogger::registerBlogger();
+               $usertype = $_POST['usertype'],
+               $image = $_FILES['image']);
+                }  
+               Register::registerBlogger($blogger1);
             }
         
       
@@ -95,22 +101,4 @@ class userController {
  
 
 
-    //if (empty($_POST)){
-//        return call('pages','error');s
-    //  if ((!empty($_POST)) && (isset($_POST['submit']))) {
-    //      $member1 = new Member (
-    //           $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS),
-    //           $password = password_hash($password, PASSWORD_BCRYPT),
-    //           $firstName = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS),
-    //           $lastName = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
-    //           $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
-    //           $userType = filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS) );
-    //  }
-
-function regValidation() {
-    if (isset($_POST['submit'])) {
-        $validation = new User_validation($_POST);
-        $errors = $validation->validateForm();
-        }
-    }    
-}
+   
