@@ -169,20 +169,25 @@ class User{
         $num_rows = self::checkUserExists();
         echo $num_rows;
         if ($num_rows == 0) {
-            $req = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD) VALUES (:email, :username, :password)");
+            
+            $req = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
             $req->bindParam(':username', $username);
             $req->bindParam(':password', $password);
             $req->bindParam(':email', $email);
+             $req->bindParam(':usertype', $usertype);
 //            try {
                 if (isset($_POST['username']) && $_POST['username'] != "") {
-                    $username = $filteredUser = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+                    $username =  filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
                 }
                 if (isset($_POST['password']) && $_POST['password'] != "") {
-                    $password = $filteredContent = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+                    $password =  filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
                     //$pswHash = User::hashPassword($password);
                 }
                 if (isset($_POST['email']) && $_POST['email'] != "") {
-                    $email = $filteredEmail = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+                    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+                 if (isset($_POST['usertype']) && $_POST['usertype'] != "") {
+                    $usertype = ucfirst(filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS));
                 }
                 $req->execute();
 //                $_SESSION["username"] = $_POST['username'];

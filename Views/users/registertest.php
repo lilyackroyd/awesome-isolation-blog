@@ -78,7 +78,7 @@
 
             <div class="blogger box">
                  <input type="email" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" id='email' name='email' autofocus placeholder="Your email" >
-                <input class="blogger-list" placeholder="Create a username" id='username' name='username' >
+                <input class="blogger-list blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='username' name='username' >
                 <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='password' name='password' >
                 <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='password_confirm' name='password_confirm' >
                 <input class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='firstname' > 
