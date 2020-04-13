@@ -57,12 +57,12 @@
 
         <!--Keywords-->
         <p>Please enter any relevant keywords for your blog.</br> <i>(Keywords make it easier for visitors to find your blog)</i></p>
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form-update" name="keywords" placeholder="Enter keywords">
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form-update" name="keywords" value="<?= $blog->img?>">
         
         <!--Image upload, not fully ready yet-->
         <p>Image</p>
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
-        <input type="file" name="blogimage" value="<?= $blog->img?>"/>
+        <input type="file" name="blogimage" value=""/>
         </br>
 <!--        <?php
 //        const InputKey = 'blogimage';

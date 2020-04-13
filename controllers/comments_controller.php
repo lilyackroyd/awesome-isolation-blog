@@ -1,6 +1,6 @@
 <?php 
  
-//include __DIR__ . '../awesome/connection.php';
+
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
 
 

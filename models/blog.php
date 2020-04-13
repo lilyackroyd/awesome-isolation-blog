@@ -230,7 +230,9 @@ LIMIT 3
          //checks blog image
         if(isset($_POST['blogimage'])&& $_POST['blogimage']!=""){
             $filteredImage = "Views/images/".filter_input(INPUT_POST,'blogimage', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
+        }  
+        
+        
           //checks blog text
         if(isset($_POST['blogstatus'])&& $_POST['blogstatus']!=""){
             $filteredStatus = filter_input(INPUT_POST,'blogstatus', FILTER_SANITIZE_SPECIAL_CHARS);

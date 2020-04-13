@@ -39,8 +39,10 @@
                                 <div class="card-body">
                                     <h4 class="card-title"><?php echo $blog->title ?></h4>
                                     <p class="card-text"><?php $string = strip_tags("$blog->text");
-                                        echo $excerpt = substr($string, 0, 100)
-                                        ?></p>
+                                                 $excerpt = substr($string, 0, 100);
+                                                 echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
+//                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
+                                                        ?></p>
                                     <a  href='?controller=blog&action=read&id=<?php echo $blog->id; ?>'>Edit / Delete</a>
                                 </div></a>
 
