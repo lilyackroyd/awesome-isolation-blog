@@ -57,7 +57,7 @@
 
         <!--Keywords-->
         <p>Please enter any relevant keywords for your blog.</br> <i>(Keywords make it easier for visitors to find your blog)</i></p>
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form-update" name="keywords" value="<?= $blog->img?>">
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form-update" name="keywords" value="">
         
         <!--Image upload, not fully ready yet-->
         <p>Image</p>

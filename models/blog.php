@@ -190,10 +190,19 @@ LIMIT 3
     public static function removeAllBlogComments($id) {
         $db = Db::getInstance();
         $blogid = intval($id);
+        $req = $db->prepare('select comm_ID FROM Comments WHERE blog_ID = :id');
+        $comments = $req->fetch();
+        self::removeAllCommentReplies($comments);
+        $req->execute(array('id' => $id));
         $req = $db->prepare('delete FROM Comments WHERE blog_ID = :id');
         $req->execute(array('id' => $id));
     }
     
+    public static function removeAllCommentReplies($comments) {
+        $db = Db::getInstance();
+        $req = $db->prepare('delete FROM Replies WHERE comm_ID = :comments');
+        $req->execute(array('comments' => $commentss));
+    }
     
 //    //attempt to write method to delete blog image so image folder doesn't get clogged up
 //    public static function deleteBlogImage($blogid) {
@@ -237,9 +246,13 @@ LIMIT 3
         if(isset($_POST['blogstatus'])&& $_POST['blogstatus']!=""){
             $filteredStatus = filter_input(INPUT_POST,'blogstatus', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-          //checks blog text
-        if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
-            $filteredVideo = filter_input(INPUT_POST,'videolink', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        
+         if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
+            //video link pasted into input, so sanitize URL
+            $filteredVideo = filter_input(INPUT_POST, 'videolink', FILTER_SANITIZE_URL);
+            //every youtube video link ends with a unique 11 character code so reduce string to just the 11 characters 
+            $videolink = substr($filteredVideo, -11);
         }
         
         
@@ -249,7 +262,7 @@ LIMIT 3
                 $req->bindParam(':text', $filteredText);
                 $req->bindParam(':id', $id);
                 $req->bindParam(':image', $filteredImage);
-                $req->bindParam(':video', $filteredVideo);
+                $req->bindParam(':video', $videolink);
                 $req->bindParam(':status', $filteredStatus);
                 $req->bindParam(':genre', $filteredGenre);
 
