@@ -29,7 +29,7 @@ echo $blogger['user_IMG']; ?>" class="account-img"   alt="...">
                             <p>Last name: <?= $blogger['user_LN'] ?></p>
                             <p>Email: <?= $blogger['user_EMAIL'] ?></p>
                             <p>Username: <?= $blogger['user_UN'] ?></p>
-                            <button id="" class="btn btn-primary"><i class="fas fa-edit"></i> Edit details</button>
+                            <button id="" onClick="document.location.href='?controller=user&action=update'" class="btn btn-primary"><i class="fas fa-edit"></i> Edit details</button>
                         </div>
                 </div></div>
         

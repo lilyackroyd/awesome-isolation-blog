@@ -7,7 +7,7 @@ $lastname = "";
 $email = "";
 $usertype = "";
 $image = "";
-$blogger1="";
+$blogger1 = "";
 
 class userController {
 
@@ -41,8 +41,32 @@ class userController {
 //   }     
     }
 
-  
+    function update() {
+          if($_SERVER['REQUEST_METHOD'] == 'GET'){
+          if (empty($_SESSION)) {
+          return call('pages', 'error');
+          }
+        $usn = $_SESSION['username'];
+        $blogger = User::getUser($usn);
+        require_once('views/users/update.php');
+        }
+        else
+        {
+        User::update($_SESSION['userid']);
+        header("Location: index.php?controller=user&action=blogger"); 
+         }
+    }
 
+    
+    
+ 
+     
+ 
+    
+    
+    
+    
+    
     function admin() {
         require_once('views/users/admin.php');
 //       if (empty($_SESSION)){
@@ -55,57 +79,40 @@ class userController {
 //   return call('pages','error');
 //   }     
     }
-
-  function bloggerList(){
-      require_once('models/members.php');
-      $blogger = User::getallBloggers();
-      
-      return $blogger;
-          
-  }
-  
-  function subscriberList(){
-      require_once('models/members.php');
-      $subscriber = User::getallSubscribers();
-      
-      return $subscriber;
-  }
-          
-  
-      
-  
+    
     
 
-    
-   function register() {
+    function bloggerList() {
+        require_once('models/members.php');
+        $blogger = User::getallBloggers();
+
+        return $blogger;
+    }
+
+    function subscriberList() {
+        require_once('models/members.php');
+        $subscriber = User::getallSubscribers();
+
+        return $subscriber;
+    }
+
+    function register() {
         require_once('views/users/register.php');
         require_once('models/register.php');
         include_once('User_validation.php');
-        
-        if (isset($_POST['submit'])){
+
+        if (isset($_POST['submit'])) {
             $validation = new User_validation($_POST);
             $errors = $validation->validateForm();
             return ($errors);
-            }
+        }
         if (!empty($errors)) {
             echo "There was a problem submitting your form. See below for help.";
-            }
-        else if (isset($_POST['submit']) && empty($errors)) {
-            $blogger1 = new Register (
-               $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS),
-               $password = password_hash('password', PASSWORD_BCRYPT),
-               $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS),
-               $lastname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS),
-               $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS),
-               $usertype = $_POST['usertype'],
-               $image = $_FILES['image']);
-                }  
-               Register::registerBlogger($blogger1);
-            }
-        
-      
-      }
- 
+        } else if (isset($_POST['submit']) && empty($errors)) {
+            $blogger1 = new Register(
+                    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS), $password = password_hash('password', PASSWORD_BCRYPT), $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS), $lastname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS), $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS), $usertype = $_POST['usertype'], $image = $_FILES['image']);
+        }
+        Register::registerBlogger($blogger1);
+    }
 
-
-   
+}

@@ -120,6 +120,41 @@ class User{
         }
         return $list;
     }
+    
+       public static function update($id) {
+        $db = Db::getInstance();
+
+        //checks firstname 
+        if(isset($_POST['firstName'])&& $_POST['firstName']!=""){
+            $firstName = filter_input(INPUT_POST,'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //checks lastname
+        if(isset($_POST['lastName'])&& $_POST['lastName']!=""){
+            $lastName = filter_input(INPUT_POST,'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //checks username
+        if(isset($_POST['userName'])&& $_POST['userName']!=""){
+            $userName = filter_input(INPUT_POST,'userName', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+         //checks genre
+        if(isset($_POST['email'])&& $_POST['email']!=""){
+            $email = filter_input(INPUT_POST,'email', FILTER_SANITIZE_SPECIAL_CHARS);
+        } 
+ 
+        $req = $db->prepare("Update Users set user_FN=:firstname, user_LN=:lastname, user_UN=:username, user_EMAIL=:email WHERE user_ID=:id");
+                $req->bindParam(':firstname',  $firstName);
+                $req->bindParam(':lastname', $lastName);
+                $req->bindParam(':username', $userName);
+                $req->bindParam(':email', $email);
+                $req->bindParam(':id', $id);
+            $req->execute();
+    } 
+    
+    
+    
+    
+    
+    
  }
     
     

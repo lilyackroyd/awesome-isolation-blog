@@ -277,7 +277,7 @@ p, text{ font-family: 'Open Sans', sans-serif;
 
 /****SEARCH BAR******/
 
-input[type=text] {
+input[id=search] {
     width: 30px;
     box-sizing: border-box;
     border: 0px solid #fff;
@@ -293,7 +293,7 @@ input[type=text] {
     margin-right:40px;
 }
 
-input[type=text]:focus {
+input[id=search]:focus {
     width: 80%;
     outline: none;
     box-sizing: border-box;
@@ -301,7 +301,7 @@ input[type=text]:focus {
     border-radius: 50px;
 }
 
-input[type=text]:focusout {
+input[id=search]:focusout {
 
 }
 
