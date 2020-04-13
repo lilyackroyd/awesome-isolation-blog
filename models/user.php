@@ -107,6 +107,19 @@ class User{
         return $list;
     }
    
+    public function getallSubscribers(){
+        
+        $db = Db::getInstance();
+        $sql = "SELECT * FROM Users WHERE user_TYPE='Subscriber'";
+        $req = $db->query($sql);
+        //$result = $req->fetchall();
+        //return $result;
+        foreach ($req->fetchAll() as $subscriber) {
+            $list[] = new Members(
+                    $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN']);
+        }
+        return $list;
+    }
  }
     
     

@@ -1,6 +1,6 @@
 <?php 
 $bloggers = userController::bloggerlist();
-
+$subscribers = userController::subscriberList();
 ?> <br>
  <?php if (count($bloggers) > 0) { ?>
  <?php foreach ($bloggers as $blogger) { ?> <br>
@@ -11,6 +11,18 @@ $bloggers = userController::bloggerlist();
                 }
             else {
                 echo '<p>There are currently no bloggers. </p>';
+            }
+            ?>
+ 
+ <?php if (count($subscribers) > 0) { ?>
+ <?php foreach ($subscribers as $subscriber) { ?> <br>
+                  
+<?php echo $subscriber->firstname . ' '. $subscriber->lastname; ?>
+                    <?php
+                }
+                }
+            else {
+                echo '<p>There are currently no subscribers. </p>';
             }
             ?>
 

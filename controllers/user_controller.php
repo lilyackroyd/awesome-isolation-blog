@@ -63,6 +63,13 @@ class userController {
       return $blogger;
           
   }
+  
+  function subscriberList(){
+      require_once('models/members.php');
+      $subscriber = User::getallSubscribers();
+      
+      return $subscriber;
+  }
           
   
       
