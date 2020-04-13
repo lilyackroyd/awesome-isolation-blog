@@ -104,9 +104,10 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             require_once('Views/blogs/create.php');
         } else {
-            blog::add();
-            $blogs = Blog::all(); //$products is used within the view
-            require_once('views/blogs/readAll.php');
+            $inserted_id=blog::add();
+            //$blogs = Blog::all(); //$products is used within the view
+            //require_once('views/blogs/readAll.php');
+            header("Location: index.php?controller=blog&action=read&id=$inserted_id"); 
         }
     }
 

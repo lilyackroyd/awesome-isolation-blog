@@ -279,7 +279,7 @@ LIMIT 3
             $filteredTitle = filter_input(INPUT_POST,'blogTitle', FILTER_SANITIZE_SPECIAL_CHARS);
             }
         if(isset($_POST['blogContent'])&& $_POST['blogContent']!=""){
-            $filteredContent = filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filteredContent = $_POST['blogContent'];//filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
             //video link pasted into input, so sanitize URL
@@ -307,6 +307,8 @@ LIMIT 3
             $req->execute();
         //upload blog image
         Blog::uploadFile($img);
+         $inserted_id = $db->lastInsertId();
+         return $inserted_id;
         
     }
 

@@ -901,3 +901,14 @@ textarea { display: block; margin-bottom: 10px; }
 
 }
 
+
+/******CREATE A BLOG PAGE********/
+
+.main-section-create{
+
+    padding-top:50px;
+    padding-left:84px;
+    padding-right:84px;
+    text-align:center;
+}
+

@@ -1,8 +1,17 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+<link type="text/css" rel="stylesheet" href="views/css/jqte-style.css"> 
+</head>
+
+
+
 <section class="intro-section">
     <h1>Create a blog</h1>
     <p>Please fill in the below form to create a blog and add it to the website.<br/></p>
 </section>
-<section class ="main-section" align="center">
+<section class ="main-section-create">
     
     <!--Form to add blog post-->
     <form method="post" class="createblog" enctype="multipart/form-data">
@@ -16,7 +25,8 @@
         <!--Content input-->
         <div align="center">
         <p>Please type the content for your blog below.<br/></p>
-        <textarea class="boxsizingBorder" name="blogContent" placeholder="Enter blog text" required="" rows="10" cols="150"></textarea>
+        <textarea align="left" class="jqte-test"  rows="10" cols="150" name="blogContent"  required placeholder="Enter blog text"></textarea>
+<!--<textarea class="boxsizingBorder" name="blogContent" placeholder="Enter blog text" required="" rows="10" cols="150"></textarea>-->
         </br>
         <div>
         
@@ -86,3 +96,17 @@
          
     
 </section>
+
+
+
+<script>
+	$('.jqte-test').jqte();
+	
+	// settings of status
+	var jqteStatus = true;
+	$(".status").click(function()
+	{
+		jqteStatus = jqteStatus ? false : true;
+		$('.jqte-test').jqte({"status" : jqteStatus});
+	});
+        </script>
