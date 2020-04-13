@@ -282,7 +282,10 @@ LIMIT 3
             $filteredContent = filter_input(INPUT_POST,'blogContent', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if(isset($_POST['videolink'])&& $_POST['videolink']!=""){
-            $filteredvideo = filter_input(INPUT_POST, 'videolink', FILTER_SANITIZE_SPECIAL_CHARS);
+            //video link pasted into input, so sanitize URL
+            $filteredvideo = filter_input(INPUT_POST, 'videolink', FILTER_SANITIZE_URL);
+            //every youtube video link ends with a unique 11 character code so reduce string to just the 11 characters 
+            $videolink = substr($filteredvideo, -11);
         }
         if(isset($_POST['keywords'])&& $_POST['keywords']!=""){
             $filteredkeywords = filter_input(INPUT_POST, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -295,7 +298,7 @@ LIMIT 3
 //        }
             $title = $filteredTitle;
             $text = $filteredContent;
-            $video = $filteredvideo;
+            $video = $videolink;
             $keywords = $filteredkeywords;
             $genre = $_POST['genretag'];
             $status = $_POST['blogstatus'];
