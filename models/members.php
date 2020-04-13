@@ -1,6 +1,6 @@
 <?php
 
-class Blogger extends User{
+class Members extends User{
     public $id;
     public $img;
     public $firstname;
@@ -9,7 +9,7 @@ class Blogger extends User{
     
 public function __construct($id, $img, $firstname, $lastname) {
                 $this->id = $id;
-                $this->img = $image;
+                $this->img = $img;
                 $this->firstname = $firstname;
                 $this->lastname = $lastname;
 	}    

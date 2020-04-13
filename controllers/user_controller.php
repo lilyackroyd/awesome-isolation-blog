@@ -57,7 +57,7 @@ class userController {
     }
 
   function bloggerList(){
-      require_once('models/blogger.php');
+      require_once('models/members.php');
       $blogger = User::getallBloggers();
       
       return $blogger;

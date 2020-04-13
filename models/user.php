@@ -101,7 +101,7 @@ class User{
         //$result = $req->fetchall();
         //return $result;
         foreach ($req->fetchAll() as $blogger) {
-            $list[] = new Blogger(
+            $list[] = new Members(
                     $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN']);
         }
         return $list;
