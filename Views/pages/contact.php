@@ -47,8 +47,8 @@ input:hover,
   color: white;
 }
 
-.google {
-  background-color: #dd4b39;
+.insta {
+  background-color: #f58529;
   color: white;
 }
 
@@ -128,7 +128,7 @@ input[type=submit]:hover {
 
 
 <div class="contact-container">
-    <h2 style="text-align:center">Login with social media or manually</h2>
+    <h2 style="text-align:center">Contact us on social media or manually</h2>
      
     
  
@@ -140,13 +140,13 @@ input[type=submit]:hover {
 
       <div class="col">
         <a href="#" class="fb btn">
-          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+          <i class="fa fa-facebook fa-fw"></i> Via Facebook
          </a>
         <a href="#" class="twitter btn">
-          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+          <i class="fa fa-twitter fa-fw"></i> Via Twitter
         </a>
-        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
-          </i> Login with Google+
+        <a href="#" class="insta btn"><i class="fa fa-instagram fa-fw">
+          </i> Via Instagram
         </a>
       </div>
 
