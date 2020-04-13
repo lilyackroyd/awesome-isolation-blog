@@ -85,9 +85,9 @@
    
         
         <p>Save as draft or publish</br></p>
-        <input type='radio' id='status' name='blogstatus' value ='Save draft'<?php if ($blog->status==='Draft'){echo "checked";}?>>
+        <input type='radio' id='status' name='blogstatus' value ='Draft'<?php if ($blog->status==='Draft'){echo "checked";}?>>
         <label for="draft">Save as draft</label></br>
-        <input type='radio' id='status' name='blogstatus' value='Publish'<?php if ($blog->status==='Published'){echo "checked";}?>>
+        <input type='radio' id='status' name='blogstatus' value='Published'<?php if ($blog->status==='Published'){echo "checked";}?>>
         <label for='published'>Publish</label></br>
         <script>
         document.getElementById("status").required = true;
