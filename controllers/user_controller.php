@@ -57,16 +57,7 @@ class userController {
          }
     }
 
-    
-    
- 
-     
- 
-    
-    
-    
-    
-    
+
     function admin() {
         require_once('views/users/admin.php');
 //       if (empty($_SESSION)){
@@ -85,27 +76,25 @@ class userController {
     function bloggerList() {
         require_once('models/members.php');
         $blogger = User::getallBloggers();
-
         return $blogger;
     }
-
+    
+    
+    
     function subscriberList() {
         require_once('models/members.php');
         $subscriber = User::getallSubscribers();
-
         return $subscriber;
     }
-
+    
+    
+    
     function register() {
         require_once('views/users/register.php');
         require_once('models/register.php');
-
         include_once('User_validation.php');
-
         if (isset($_POST['submit'])) {
-
         require_once('User_validation.php');
-        
         if (isset($_POST['submit'])){
 
             $validation = new User_validation($_POST);
@@ -120,6 +109,28 @@ class userController {
         }
         Register::registerBlogger($blogger1);
     }
+}
+
+
+function registertest(){
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+          require_once('views/users/registertest.php');
+          
+    } else { User::createUser();
+        
+ 
+}
 
 }
+ 
+
+
+
+
+
+
+
+
+
 }
