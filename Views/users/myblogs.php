@@ -5,7 +5,7 @@
             $count = [];
             foreach ($blogs as $blog) {
                 if ($blog->status === 'Published') {
-                    $count[] = count($blog);
+                    $count[] = count((array)$blog);
                 }
             }
             echo count($count)
@@ -15,7 +15,7 @@
             $count = [];
             foreach ($blogs as $blog) {
                 if ($blog->status === 'Draft') {
-                    $count[] = count($blog);
+                    $count[] = count((array)$blog);
                 }
             }
             echo count($count)
