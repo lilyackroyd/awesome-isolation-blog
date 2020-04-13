@@ -29,7 +29,8 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text"><?php $string = $blog->text;
+                            
+                            <p class="card-text"><?php $string = strip_tags("$blog->text");
                                                 echo $excerpt = substr($string, 0, 100)?>
                             </p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
@@ -65,7 +66,7 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text"><?php $string = $blog->text;
+                            <p class="card-text"><?php $string = strip_tags("$blog->text");
                                                 echo $excerpt = substr($string, 0, 100)?></p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
@@ -100,7 +101,7 @@
                         <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img; ?>"/> 
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $blog->title;?></h4>
-                            <p class="card-text"><?php $string = $blog->text;
+                            <p class="card-text"><?php $string = strip_tags("$blog->text");
                                                 echo $excerpt = substr($string, 0, 100)?></p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
