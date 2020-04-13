@@ -99,9 +99,15 @@ class userController {
     function register() {
         require_once('views/users/register.php');
         require_once('models/register.php');
+
         include_once('User_validation.php');
 
         if (isset($_POST['submit'])) {
+
+        require_once('User_validation.php');
+        
+        if (isset($_POST['submit'])){
+
             $validation = new User_validation($_POST);
             $errors = $validation->validateForm();
             return ($errors);
@@ -115,4 +121,5 @@ class userController {
         Register::registerBlogger($blogger1);
     }
 
+}
 }

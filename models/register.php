@@ -19,7 +19,7 @@ public function __construct($id, $img, $firstname, $lastname) {
 
 
 public function registerBlogger() {
-    require_once 'controllers/user_controller.php';
+    //require_once 'controllers/user_controller.php';
     $db = Db::getInstance();
     $new_mem = $db->prepare("INSERT INTO Users ( user_UN, user_PWD, user_FN, user_LN, user_EMAIL, user_IMG, user_TYPE)
               VALUES (  :username, :password, :userfn, :userln, :email, :img, :type, )");
