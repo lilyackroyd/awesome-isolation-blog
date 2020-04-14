@@ -13,8 +13,8 @@ class userController {
 
     function login() {
         require_once('views/users/login.php');
-        if (empty($_POST)){
-        return call('pages','error');}
+//        if (empty($_POST)){
+//        return call('pages','error');}
 //     try{
         if (!empty($_POST)) {echo 
              $usn = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
