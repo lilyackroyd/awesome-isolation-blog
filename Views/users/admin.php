@@ -39,7 +39,7 @@ $subscribers = userController::subscriberList();
                                   <tbody>
                                        <?php foreach ($bloggers as $blogger) { ?> 
                                     <tr>
-                                        <th scope="row"><img src="Views/<?php echo $blogger->img; ?>" width="75" height="75" style ="border-radius: 50%" alt="no profile pic"></th>
+                                        <th scope="row"><img src="<?php echo $blogger->img; ?>" width="75" height="75" style ="border-radius: 50%" alt="no profile pic"></th>
                                       <td><?php echo $blogger->firstname; ?></td>
                                       <td><?php echo $blogger->lastname; ?></td>
                                       <td><?php echo $blogger->id; ?></td>
