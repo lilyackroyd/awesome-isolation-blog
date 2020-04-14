@@ -137,7 +137,7 @@ echo count($comments) ?></span> Comment(s)</h2>
     <?php foreach ($comments as $comment): ?>
                         <!-- comment -->
                         <div class="comment clearfix">
-                            <img src="Views/<?php echo getProfileImagebyID($comment->userid) ?>" alt="" class="profile_pic">
+                            <img src="<?php echo getProfileImagebyID($comment->userid) ?>" alt="" class="profile_pic">
 
                             <div class="comment-details">
                                 <span class="comment-name"><?php echo getUsernameById($comment->userid) ?></span>
@@ -181,7 +181,7 @@ echo count($comments) ?></span> Comment(s)</h2>
 
                                         <!-- reply -->
                                         <div class="comment reply clearfix">
-                                            <img src="Views/<?php echo getProfileImagebyID($reply['ruser_ID']) ?>" alt="" class="profile_pic">
+                                            <img src="<?php echo getProfileImagebyID($reply['ruser_ID']) ?>" alt="" class="profile_pic">
                                             <div class="comment-details">
                                                 <span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
 
