@@ -113,12 +113,10 @@ class userController {
 
 
 function registertest(){
-    
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-          require_once('views/users/registertest.php');
-          
+          require_once('views/users/registertest.php');     
     } else { User::createUser();
-        
+  //send back an error array      
  
 }
 

@@ -151,18 +151,28 @@ class User {
         $numrows = count($rows);
         return $numrows;
     }
-
+    
+      public function hashPassword($password) {
+        $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+        return $hashedpassword;
+    }
+    
+           
     public function createUser() {
         $db = Db::getInstance();
+        //call an error method with all post inputs? If error array is 0 then do the rest, otherwise send back the array?
         $num_rows = self::checkUserExists();
         echo $num_rows;
+        
+        //if user is new:
         if ($num_rows == 0) {
+            //santize and prep all the inputs for insertion
             if (isset($_POST['username']) && $_POST['username'] != "") {
                 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
             }
             if (isset($_POST['password']) && $_POST['password'] != "") {
                 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-                //$pswHash = User::hashPassword($password);
+                 //$hashedpassword = self::hashPassword($password);
             }
             if (isset($_POST['email']) && $_POST['email'] != "") {
                 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -178,13 +188,13 @@ class User {
             }
             $imagepath="Images/".$firstname.$lastname.".jpg";
 
-             //prepare statements for each user type (do we need 2 diff for admin / blogger?
+            //prepare the statements for each user type: (do we need 2 diff for admin / blogger?
             $subscriber = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
             $admin = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
             $blogger = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
 
 
-           //execute the correct query, binding the relevant info for each user type
+           //execute the correct query, with the relevant info for each user type:
 //            try {
                 if ($usertype == 'Subscriber') {
 
