@@ -56,24 +56,26 @@ class User {
     public function loginUser() {
         $usn = $this->username;
         $user = User::getUser($usn);
-        $pwd = $this->password;
-        if ($pwd === $user['user_PWD']) {
-            $pwd = TRUE;
-        }
-        // for when we have hashed passwords - $isVerified=password_verify($this->password, $user['user_PWD']);
-        if ($pwd === TRUE && $user['user_TYPE'] === "Admin") {
+        
+         $isVerified=password_verify($this->password, $user['user_PWD']);
+        //$pwd = $this->password;
+//        if ($pwd === $user['user_PWD']) {
+//            $pwd = TRUE;
+//        }
+       
+        if ($isVerified === TRUE && $user['user_TYPE'] === "Admin") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
-        } else if ($pwd === TRUE && $user['user_TYPE'] === "Blogger") {
+        } else if ($isVerified === TRUE && $user['user_TYPE'] === "Blogger") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
-        } else if ($pwd === TRUE && $user['user_TYPE'] === "Subscriber") {
+        } else if ($isVerified === TRUE && $user['user_TYPE'] === "Subscriber") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
@@ -171,8 +173,8 @@ class User {
                 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
             }
             if (isset($_POST['password']) && $_POST['password'] != "") {
-                $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-                 //$hashedpassword = self::hashPassword($password);
+                $password = $_POST['password'];
+                 $hashedpassword = self::hashPassword($password);
             }
             if (isset($_POST['email']) && $_POST['email'] != "") {
                 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -186,7 +188,7 @@ class User {
             if (isset($_POST['surname']) && $_POST['surname'] != "") {
                 $lastname = ucfirst(filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS));
             }
-            $imagepath="Images/".$firstname.$lastname.".jpg";
+            $imagepath="Views/images/".$firstname.$lastname.".jpg";
 
             //prepare the statements for each user type: (do we need 2 diff for admin / blogger?
             $subscriber = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
@@ -199,7 +201,7 @@ class User {
                 if ($usertype == 'Subscriber') {
 
                     $subscriber->execute([':username' => $username,
-                        ':password' => $password,
+                        ':password' =>  $hashedpassword,
                         ':email' => $email,
                         ':usertype' => $usertype,]);
                     self::uploadFile($imagepath);
@@ -208,7 +210,7 @@ class User {
                 if ($usertype == 'Admin') {
 
                     $admin->execute([':username' => $username,
-                        ':password' => $password,
+                        ':password' =>  $hashedpassword,
                         ':email' => $email,
                         ':usertype' => $usertype,
                         ':firstname' => $firstname,
@@ -221,7 +223,7 @@ class User {
                 if ($usertype == 'Blogger') {
 
                     $blogger->execute([':username' => $username,
-                        ':password' => $password,
+                        ':password' =>  $hashedpassword,
                         ':email' => $email,
                         ':usertype' => $usertype,
                         ':firstname' => $firstname,

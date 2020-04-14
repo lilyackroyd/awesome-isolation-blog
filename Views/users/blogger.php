@@ -8,7 +8,7 @@ echo $blogger['user_FN']; ?> !</h1>
         </div> 
 
         <div class="flex-row-intro-account" role="cell"> 
-            <img src="Views/<?php $blogger = userController::blogger();
+            <img src="<?php $blogger = userController::blogger();
 echo $blogger['user_IMG']; ?>" class="account-img"   alt="...">
 
         </div> 

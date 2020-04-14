@@ -12,7 +12,7 @@ $subscribers = userController::subscriberList();
                         </div> 
                         
                         <div class="flex-row-intro-account" role="cell"> 
-                        <img src="Views/<?php $admin=userController::admin();echo $admin['user_IMG'];?>" class="account-img"   alt="...">
+                        <img src="<?php $admin=userController::admin();echo $admin['user_IMG'];?>" class="account-img"   alt="...">
                     
                         </div> 
                         
