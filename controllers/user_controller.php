@@ -1,32 +1,33 @@
 <?php
 
-$username = "";
-$password = "";
-$firstname = "";
-$lastname = "";
-$email = "";
-$usertype = "";
-$image = "";
-$blogger1 = "";
+//$username = "";
+//$password = "";
+//$firstname = "";
+//$lastname = "";
+//$email = "";
+//$usertype = "";
+//$image = "";
+//$blogger1 = "";
 
 class userController {
 
     function login() {
         require_once('views/users/login.php');
-//        if (empty($_POST)){
-//        return call('pages','error');
+        if (empty($_POST)){
+        return call('pages','error');}
 //     try{
-        if (!empty($_POST)) {
-            $usn = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+        if (!empty($_POST)) {echo 
+             $usn = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
             $psw = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+            
             $login = new User($usn, $psw);
             $login->loginUser();
         }
-//    }
+    }
 //    catch (Exception $ex){
 //   return call('pages','error');
 //    }
-    }
+    
 
     function blogger() {
         require_once('views/users/blogger.php');
@@ -115,13 +116,51 @@ class userController {
 function registertest(){
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           require_once('views/users/registertest.php');     
-    } else { User::createUser();
-  //send back an error array      
+    } 
+    
+
+    else { 
+        //$errors=self::verifyRegistration($_POST['password'],$_POST['password_confirm']);
+        //if($errors==''){
+        User::createUser();
+       // }else {
+//            require_once('views/users/registertest.php');  
+//           return $errors;   
+       ///}
+
+   }
+}
+
+
+
  
-}
+
+
+ function verifyRegistration($pwd1,$pwd2) {
+     if($pwd1==$pwd2){
+         $errors='';
+         return $errors;
+     } else {
+         $errors="Passwords do not match";
+         return $errors;
+         }
+     
+      
+       
+         
+         
+         
+      //check if user exists
+      //check email is email
+      //check username [character no. and numbers]
+      //check passwords match
+      //check password [character no. and numbers]
+      //check image file type
+      //check admin code
+    }
+
 
 }
- 
 
 
 
@@ -129,6 +168,3 @@ function registertest(){
 
 
 
-
-
-}

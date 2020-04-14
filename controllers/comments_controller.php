@@ -68,7 +68,7 @@ if (isset($_POST['comment_posted'])) {
                 $image=Comments::getProfileImage($user_id);
                 
 		$comment = "<div class='comment clearfix'>
-					<img src='Views/".$image."' alt='' class='profile_pic'>
+					<img src='".$image."' alt='' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_ID']) . "</span>
 						
@@ -116,7 +116,7 @@ if (isset($_POST['reply_posted'])) {
 	if ($request) {
                 $image=Comments::getProfileImage($user_id);
 		$reply = "<div class='comment reply clearfix'>
-					<img src='Views/".$image."' alt='' class='profile_pic'>
+					<img src='".$image."' alt='' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_reply['ruser_ID']) . "</span>
 					

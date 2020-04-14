@@ -46,7 +46,7 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments
         </div> 
         <div class="blog-details"> 
             <ul class="blog-details-list">
-                <li> <img class="author-image" src="Views/<?php echo $blog->authorimage ?>"/></li>
+                <li> <img class="author-image" src="<?php echo $blog->authorimage ?>"/></li>
                 <li> <p class="date">By <?php echo $blog->authorfirstname . ' ' . $blog->authorlastname . ' '; ?><span class="dot">&#9679</span></p></li>
                 <li> <p class="date">Published <?php $sqldate = $blog->date;
 $date = strtotime($sqldate);

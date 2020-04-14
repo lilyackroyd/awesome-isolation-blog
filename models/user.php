@@ -159,9 +159,14 @@ class User {
         return $hashedpassword;
     }
     
+    
+    
+    
+    
            
     public function createUser() {
         $db = Db::getInstance();
+      
         //call an error method with all post inputs? If error array is 0 then do the rest, otherwise send back the array?
         $num_rows = self::checkUserExists();
         echo $num_rows;
@@ -188,7 +193,9 @@ class User {
             if (isset($_POST['surname']) && $_POST['surname'] != "") {
                 $lastname = ucfirst(filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS));
             }
-            $imagepath="Views/images/".$firstname.$lastname.".jpg";
+            if ($usertype=='Admin'||$usertype=='Blogger'){
+                $imagepath="Views/images/".$firstname.$lastname.".jpg";
+            }
 
             //prepare the statements for each user type: (do we need 2 diff for admin / blogger?
             $subscriber = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
@@ -204,7 +211,7 @@ class User {
                         ':password' =>  $hashedpassword,
                         ':email' => $email,
                         ':usertype' => $usertype,]);
-                    self::uploadFile($imagepath);
+                    
                          header("Location: index.php?controller=user&action=login"); 
                 }
                 if ($usertype == 'Admin') {

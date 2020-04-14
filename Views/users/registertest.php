@@ -1,7 +1,9 @@
 
 
 <?php include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/user.php'; ?>
-
+<!--<head>
+<script src="jquery-3.4.1.min.js"></script>
+</head>-->
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -46,7 +48,7 @@
         <div class="pure-control-group"> 
             <p> I want to register as a </p>
 
-            <form method="post"  enctype="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data" id="register-form">
              <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
                 
                 
@@ -60,15 +62,19 @@
             
 
             <div class="admin box">
-                <input type="email" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" id='email' name='email' autofocus placeholder="Your email" required >
-                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='username' name='username' >
-                <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='password' name='password' >
-                <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='password_confirm' name='password_confirm' >
-                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='firstname' > 
-                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your surname" name='surname' id='surname' >
+                <input type="email" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" id='admin-email' name='email' autofocus placeholder="Your email" required >
+                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='admin-username' name='username' >
+                <div id="a_username-error"></div>
+                <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='admin-password' name='password' >
+                <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='admin-password_confirm' name='password_confirm' >
+                <div id="a_password-match-error"></div>
+                <div id="a_password-error"></div>
+                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='admin-firstname' > 
+                <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your surname" name='surname' id='admin-surname' >
                 <label for="img">Upload your profile image:</label>
-                <input type="file" id="img" class="admin-list" name="userimage" id='image' accept="image/*" align="center">
+                <input type="file" id="img" class="admin-list" name="userimage" id='admin-image' accept="image/*" align="center">
                 <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="(Office only) Enter your Admin code:" name='admin_code' id="admin_code">
+                <div id="admin-code-error"></div>
             </div>
 
 
@@ -77,28 +83,34 @@
 
 
             <div class="blogger box">
-                 <input type="email" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" id='email' name='email' autofocus placeholder="Your email" >
-                <input class="blogger-list blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='username' name='username' >
-                <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='password' name='password' >
-                <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='password_confirm' name='password_confirm' >
+                 <input type="email" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" id='blogger-email' name='email' autofocus placeholder="Your email" >
+                <input class="blogger-list blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='blogger-username' name='username' >
+                <div id="b_username-error"></div>
+                <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='blogger-password' name='password' >
+                <input type="password" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='blogger-password_confirm' name='password_confirm' >
+                <div id="b_password-match-error"></div>
+                <div id="b_password-error"></div>
                 <input class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='firstname' > 
                 <input class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your surname" name='surname' id='surname' >
                 <label for="img">Upload your profile image:</label>
-                <input type="file" id="img" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" name="userimage" id='image' accept="image/*" align="center">
+                <input type="file" id="img" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" name="userimage" id='blogger-image' accept="image/*" align="center">
             </div>
 
 
 
             <div class="subscriber box">
-               <input type="email" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" id='email' name='email' autofocus placeholder="Your email" >
-                <input class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='username' name='username' >
-                <input type="password" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='password' name='password' >
-                <input type="password" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='password_confirm' name='password_confirm' >
+               <input type="email" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" id='sub_email' name='email' autofocus placeholder="Your email" >
+                <input class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a username" id='sub_username' name='username' >
+                <div id="s_username-error"></div>
+                <input type="password" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Create a password" id='sub_password' name='password' >
+                <input type="password" class="subscriber-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Confirm your password" id='sub_password_confirm' name='password_confirm' >
+                <div id="s_password-match-error"></div>
+                <div id="s_password-error"></div>
             </div>
 
             
             <div class="pure-form pure-form-aligned container-btn">
-        <button type="submit" value="submit"  name='submit'  >Create account</button> 
+        <button type="submit" value="submit"  name='btnsubmit' id="btnsubmit">Create account</button> 
         </div>
             </form>
             
@@ -107,13 +119,17 @@
 
 
 
-    </div>
+  
 
 
+<!-- Javascripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-
-
+ <!-- validate registration js -->
+    <script src="Views/javascript/verifyRegistration.js"></script>
+  </div>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -149,3 +165,5 @@
         });
       
     </script> 
+    
+       

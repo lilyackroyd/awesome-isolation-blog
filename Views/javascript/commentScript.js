@@ -7,7 +7,7 @@ $(document).ready(function(){
                console.log(comment_text);
                
                var user_id = $('#user_id').val();
-               console.log(blog_id);
+               
                
                var blog_id = $('#blog_id').val();
                console.log(blog_id);
@@ -39,6 +39,10 @@ $(document).ready(function(){
 			}
 		});
 	});
+        
+        
+        
+        
 	// When user clicks on submit reply to add reply under comment
 	$(document).on('click', '.reply-btn', function(e){
 		e.preventDefault();
