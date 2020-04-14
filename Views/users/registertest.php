@@ -67,7 +67,7 @@
                 <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='firstname' > 
                 <input class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your surname" name='surname' id='surname' >
                 <label for="img">Upload your profile image:</label>
-                <input type="file" id="img" class="admin-list" name="image" id='image' accept="image/*" align="center">
+                <input type="file" id="img" class="admin-list" name="userimage" id='image' accept="image/*" align="center">
                 <input type="password" class="admin-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="(Office only) Enter your Admin code:" name='admin_code' id="admin_code">
             </div>
 
@@ -84,7 +84,7 @@
                 <input class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your firstname" name='firstname' id='firstname' > 
                 <input class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" placeholder="Your surname" name='surname' id='surname' >
                 <label for="img">Upload your profile image:</label>
-                <input type="file" id="img" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" name="image" id='image' accept="image/*" align="center">
+                <input type="file" id="img" class="blogger-list shadow-sm p-3 mb-5 bg-white rounded form" name="userimage" id='image' accept="image/*" align="center">
             </div>
 
 

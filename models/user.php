@@ -1,97 +1,90 @@
 <?php
 
+class User {
 
+    protected $email;
+    protected $username;
+    protected $password;
+    protected $usertype;
 
-class User{
- protected $email;
- protected $username;
- protected $password ;
- protected $usertype;
- 
- function getEmail() {
-     return $this->email;
- }
+    function getEmail() {
+        return $this->email;
+    }
 
- function getUsername() {
-     return $this->username;
- }
+    function getUsername() {
+        return $this->username;
+    }
 
- function getPassword() {
-     return $this->password;
- }
+    function getPassword() {
+        return $this->password;
+    }
 
- function setEmail($email) {
-     $this->email = $email;
- }
+    function setEmail($email) {
+        $this->email = $email;
+    }
 
- function setUsername($username) {
-     $this->username = $username;
- }
+    function setUsername($username) {
+        $this->username = $username;
+    }
 
- function setPassword($password) {
-     $this->password = $password;
- }
+    function setPassword($password) {
+        $this->password = $password;
+    }
 
- function getUsertype() {
-     return $this->usertype;
- }
+    function getUsertype() {
+        return $this->usertype;
+    }
 
- function setUsertype($usertype) {
-     $this->usertype = $usertype;
- }
- 
- public function __construct($username, $password) {
-		$this->username = $username;
-                $this->password = $password;
-	}
- 
- 
- 
- public function getUser($usn) {
+    function setUsertype($usertype) {
+        $this->usertype = $usertype;
+    }
+
+    public function __construct($username, $password) {
+        $this->username = $username;
+        $this->password = $password;
+    }
+
+    public function getUser($usn) {
         $db = Db::getInstance();
         $sql = "SELECT * FROM Users WHERE user_UN= :username";
         $req = $db->prepare($sql);
         $req->execute(['username' => $usn]);
         $result = $req->fetch();
         return $result;
-        
     }
-    
+
     public function loginUser() {
-        $usn=$this->username;
+        $usn = $this->username;
         $user = User::getUser($usn);
-        $pwd=$this->password;
-        if ($pwd===$user['user_PWD']){
-          $pwd=TRUE;  
+        $pwd = $this->password;
+        if ($pwd === $user['user_PWD']) {
+            $pwd = TRUE;
         }
-       // for when we have hashed passwords - $isVerified=password_verify($this->password, $user['user_PWD']);
-        if ($pwd===TRUE && $user['user_TYPE']==="Admin") {
+        // for when we have hashed passwords - $isVerified=password_verify($this->password, $user['user_PWD']);
+        if ($pwd === TRUE && $user['user_TYPE'] === "Admin") {
             $_SESSION['username'] = $user['user_UN'];
-            $_SESSION['userid']= $user['user_ID'];
+            $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
-           
-        }
-       else if ($pwd===TRUE && $user['user_TYPE']==="Blogger") {
+        } else if ($pwd === TRUE && $user['user_TYPE'] === "Blogger") {
             $_SESSION['username'] = $user['user_UN'];
-            $_SESSION['userid']= $user['user_ID'];
+            $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-           echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
-       }   
-        else if ($pwd===TRUE && $user['user_TYPE']==="Subscriber") {
-            $_SESSION['username'] =  $user['user_UN'];
-            $_SESSION['userid']= $user['user_ID'];
+            echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
+        } else if ($pwd === TRUE && $user['user_TYPE'] === "Subscriber") {
+            $_SESSION['username'] = $user['user_UN'];
+            $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
-          echo "<script> location.href='/awesome/index.php?controller=blog&action=home';</script>";
+            echo "<script> location.href='/awesome/index.php?controller=blog&action=home';</script>";
         } else {
             die("Incorrect details");
         }
     }
-    
-    public function getallBloggers(){
+
+    public function getallBloggers() {
         $db = Db::getInstance();
         $sql = "SELECT * FROM Users WHERE user_TYPE='Blogger'";
         $req = $db->query($sql);
@@ -103,9 +96,8 @@ class User{
         }
         return $list;
     }
-   
-    
-    public function getallSubscribers(){    
+
+    public function getallSubscribers() {
         $db = Db::getInstance();
         $sql = "SELECT * FROM Users WHERE user_TYPE='Subscriber'";
         $req = $db->query($sql);
@@ -117,39 +109,36 @@ class User{
         }
         return $list;
     }
-    
-    
-       public static function update($id) {
+
+    public static function update($id) {
         $db = Db::getInstance();
 
         //checks firstname 
-        if(isset($_POST['firstName'])&& $_POST['firstName']!=""){
-            $firstName = filter_input(INPUT_POST,'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($_POST['firstName']) && $_POST['firstName'] != "") {
+            $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         //checks lastname
-        if(isset($_POST['lastName'])&& $_POST['lastName']!=""){
-            $lastName = filter_input(INPUT_POST,'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($_POST['lastName']) && $_POST['lastName'] != "") {
+            $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         //checks username
-        if(isset($_POST['userName'])&& $_POST['userName']!=""){
-            $userName = filter_input(INPUT_POST,'userName', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($_POST['userName']) && $_POST['userName'] != "") {
+            $userName = filter_input(INPUT_POST, 'userName', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-         //checks genre
-        if(isset($_POST['email'])&& $_POST['email']!=""){
-            $email = filter_input(INPUT_POST,'email', FILTER_SANITIZE_SPECIAL_CHARS);
-        } 
+        //checks genre
+        if (isset($_POST['email']) && $_POST['email'] != "") {
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
         $req = $db->prepare("Update Users set user_FN=:firstname, user_LN=:lastname, user_UN=:username, user_EMAIL=:email WHERE user_ID=:id");
-                $req->bindParam(':firstname',  $firstName);
-                $req->bindParam(':lastname', $lastName);
-                $req->bindParam(':username', $userName);
-                $req->bindParam(':email', $email);
-                $req->bindParam(':id', $id);
-            $req->execute();
-    } 
-    
-    
-    
-     public function checkUserExists() {
+        $req->bindParam(':firstname', $firstName);
+        $req->bindParam(':lastname', $lastName);
+        $req->bindParam(':username', $userName);
+        $req->bindParam(':email', $email);
+        $req->bindParam(':id', $id);
+        $req->execute();
+    }
+
+    public function checkUserExists() {
         $db = Db::getInstance();
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -162,78 +151,136 @@ class User{
         $numrows = count($rows);
         return $numrows;
     }
-    
-    
+
     public function createUser() {
         $db = Db::getInstance();
         $num_rows = self::checkUserExists();
         echo $num_rows;
         if ($num_rows == 0) {
-            
-            $req = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
-            $req->bindParam(':username', $username);
-            $req->bindParam(':password', $password);
-            $req->bindParam(':email', $email);
-             $req->bindParam(':usertype', $usertype);
+            if (isset($_POST['username']) && $_POST['username'] != "") {
+                $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+            if (isset($_POST['password']) && $_POST['password'] != "") {
+                $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+                //$pswHash = User::hashPassword($password);
+            }
+            if (isset($_POST['email']) && $_POST['email'] != "") {
+                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+            if (isset($_POST['usertype']) && $_POST['usertype'] != "") {
+                $usertype = ucfirst(filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS));
+            }
+            if (isset($_POST['firstname']) && $_POST['firstname'] != "") {
+                $firstname = ucfirst(filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS));
+            }
+            if (isset($_POST['surname']) && $_POST['surname'] != "") {
+                $lastname = ucfirst(filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS));
+            }
+            $imagepath="Images/".$firstname.$lastname.".jpg";
+
+             //prepare statements for each user type (do we need 2 diff for admin / blogger?
+            $subscriber = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
+            $admin = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
+            $blogger = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
+
+
+           //execute the correct query, binding the relevant info for each user type
 //            try {
-                if (isset($_POST['username']) && $_POST['username'] != "") {
-                    $username =  filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+                if ($usertype == 'Subscriber') {
+
+                    $subscriber->execute([':username' => $username,
+                        ':password' => $password,
+                        ':email' => $email,
+                        ':usertype' => $usertype,]);
+                    self::uploadFile($imagepath);
+                         header("Location: index.php?controller=user&action=login"); 
                 }
-                if (isset($_POST['password']) && $_POST['password'] != "") {
-                    $password =  filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-                    //$pswHash = User::hashPassword($password);
+                if ($usertype == 'Admin') {
+
+                    $admin->execute([':username' => $username,
+                        ':password' => $password,
+                        ':email' => $email,
+                        ':usertype' => $usertype,
+                        ':firstname' => $firstname,
+                        ':lastname' => $lastname,
+                        ':image' => $imagepath]);
+                    self::uploadFile($imagepath);
+                     
+                    header("Location: index.php?controller=user&action=login"); 
                 }
-                if (isset($_POST['email']) && $_POST['email'] != "") {
-                    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+                if ($usertype == 'Blogger') {
+
+                    $blogger->execute([':username' => $username,
+                        ':password' => $password,
+                        ':email' => $email,
+                        ':usertype' => $usertype,
+                        ':firstname' => $firstname,
+                        ':lastname' => $lastname,
+                        ':image' => $imagepath]);
+                     self::uploadFile($imagepath);
+                         header("Location: index.php?controller=user&action=login"); 
                 }
-                 if (isset($_POST['usertype']) && $_POST['usertype'] != "") {
-                    $usertype = ucfirst(filter_input(INPUT_POST, 'usertype', FILTER_SANITIZE_SPECIAL_CHARS));
-                }
-                $req->execute();
+                
+                //and then add their details to the session
 //                $_SESSION["username"] = $_POST['username'];
 //                header("Location:../../index.php");
-//        return userAdded($username);
-//            } catch (PDOException $e) {
+//                return userAdded($username);
+//                }
+                
+                // otherwise send an error message
+//                catch (PDOException $e) {
 //                $error = $e->errorInfo();
 //                die("Eek, sorry, we couldn't sign you up. Try again?" . $error . $e->getMessage());
 //            }
 //            unset($req);
-//        }   else {
-//            return userExists($username);
+//        } else {
+//            return userExists($username);    
 //        }
-       
-        }
+    }else {echo "error adding";}
+
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- }
-    
-    
-
- 
- 
- 
- 
- 
- 
- 
+  
+    const AllowedTypes = [ 'image/jpg'];
+    const InputKey = 'userimage';
 
 
+    public static function uploadFile(string $imagepath) {
+
+    	   $tempFile = $_FILES[self::InputKey]['tmp_name'];
+            $path = realpath(__DIR__ . '/..') . '/' .  $imagepath;
+	       $destinationFile = $path ;
+            $error = $_FILES[self::InputKey]['error'];
+//        if($error === 0) {           
+	if (!move_uploaded_file($tempFile, $destinationFile)) {
+		echo "";            
+        } 
+        if (file_exists($tempFile)) {
+		unlink($tempFile); 
+        } 
+        }
+                
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

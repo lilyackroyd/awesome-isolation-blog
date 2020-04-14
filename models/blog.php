@@ -200,11 +200,11 @@ LIMIT 3
         $req->execute(array('id' => $id));
     }
     
-    public static function removeAllCommentReplies($comments) {
-        $db = Db::getInstance();
-        $req = $db->prepare('delete FROM Replies WHERE comm_ID = :comments');
-        $req->execute(array('comments' => $commentss));
-    }
+//    public static function removeAllCommentReplies($comments) {
+//        $db = Db::getInstance();
+//        $req = $db->prepare('delete FROM Replies WHERE comm_ID = :comments');
+//        $req->execute(array('comments' => $commentss));
+//    }
     
 //    //attempt to write method to delete blog image so image folder doesn't get clogged up
 //    public static function deleteBlogImage($blogid) {
