@@ -1,6 +1,6 @@
 
 
-<?php include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/user.php'; ?>
+<?php include_once 'models/user.php'; ?>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
