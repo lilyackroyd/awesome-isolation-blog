@@ -1,6 +1,11 @@
 <?php
 
-include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
+
+//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
+
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'connection.php';
+//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
+
 //include_once 'awesome/connection.php';
 
 class Comments {
