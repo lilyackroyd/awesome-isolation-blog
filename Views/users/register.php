@@ -1,4 +1,4 @@
-<?phpinclude_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'models/user.php;?>
+<?phpinclude_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'models/user.php';?>
 
 
 
