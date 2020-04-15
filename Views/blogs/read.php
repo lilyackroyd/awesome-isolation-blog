@@ -1,5 +1,6 @@
 <?php
-include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'controllers/comments_controller.php';
+//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
 //include_once 'controllers/comments_controller.php';
 ?>
 
