@@ -388,11 +388,20 @@ LIMIT 3
     
         public static function insertLike($blogid,$userid) {
         $db = Db::getInstance();
-//        $req = $db->execute("SELECT * FROM blog_posts WHERE blog_ID=$blogid");
-//        $result = $req->fetchAll();
-//        $n = $result['blog_'];
+
+        $req = $db->prepare("INSERT INTO Likes (luser_ID, lblog_ID) VALUES (:userid, :blogid)");
+        $req->execute(array('userid' => $userid,'blogid' => $blogid,));
         
+        $stmt = $db->execute("SELECT blog_LIKES FROM blog_posts WHERE blog_ID=:blogid");
+        $stmt->execute(array('blogid' => $blogid,));
+        $stmt->fetchAll();
+        $n = ['0']['blog_LIKES'];
         
+        $stmt = $db->prepare("UPDATE blog_posts SET blog_LIKES= :n +1 WHERE blog_ID=:blogid");
+        $stmt->execute(array('blogid' => $blogid,
+                             'n' => $n,));
+        
+      
         
         
             
@@ -401,11 +410,11 @@ LIMIT 3
 //		$row = mysqli_fetch_array($result);
 //		$n = $row['likes'];
 
-		mysqli_query($con, "INSERT INTO likes (userid, postid) VALUES (1, $postid)");
-		mysqli_query($con, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
-
-		echo $n+1;
-		exit();
+//		mysqli_query($con, "INSERT INTO likes (userid, postid) VALUES (1, $postid)");
+//		mysqli_query($con, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
+//
+//		echo $n+1;
+//		exit();
         }
     
     

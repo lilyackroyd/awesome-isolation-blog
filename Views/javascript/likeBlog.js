@@ -28,15 +28,25 @@
                 console.log(blogid); 
                 var userid = icon.getAttribute('data-user');    
                 console.log(userid); 
+                
+        var xmlhttp = new XMLHttpRequest();
+     
+        xmlhttp.open("GET", "?controller=blog&action=likes&blogid=" + blogid + "&userid=" + userid, true);
+        xmlhttp.send();
+      
+        
+    
+                });});
+
                     
 //			$.ajax({
-//				url: 'index.php',
+//				url: 'BlogController/likes',
 //				type: 'post',
 //				data: {
-//					'liked': 1,
+//					  'liked': 1,
 //					'blogid': blogid,
 //                                        'userid': userid
-//				},
+//				}
 //				success: function(response){
 //					$post.parent().find('span.likes_count').text(response + " likes");
 //					$post.addClass('hide');
@@ -63,7 +73,7 @@
 //					$post.siblings().removeClass('hide');
 //				}
 //			});
-		});
-	});
+//		});
+
 
 

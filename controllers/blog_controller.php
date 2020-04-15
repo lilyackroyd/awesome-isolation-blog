@@ -108,21 +108,26 @@ class BlogController {
        public function likes() {
            //Blog::deleteBlog($_GET['id']);
  
-        if (isset($_POST['liked'])) {
-		$blogid = $_POST['blogid'];
-                $userid = $_POST['userid'];
-                Blog::insertLike($blogid,$userid);
+//                
+//		$blogid = $_GET['blogid'];
+//                $userid = $_GET['userid'];
+                Blog::insertLike($_GET['blogid'],$_GET['userid']);
+                
+         
                 
 	
 	}
 	
         
         
-         }
+         
         
         
         
         
 }
+
+
+             
 
 ?>
