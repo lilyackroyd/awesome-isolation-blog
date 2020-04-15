@@ -91,12 +91,6 @@ class BlogController {
     }
      
 
-
-  
-  
-  
-  
-  
     public function create() {
         //URL is ?controller=products&action=create (directed from my account page)
         //if the request is a GET request then there is no blog to add yet so direct to create new blog post
@@ -111,6 +105,24 @@ class BlogController {
         }
     }
 
+       public function likes() {
+           //Blog::deleteBlog($_GET['id']);
+ 
+        if (isset($_POST['liked'])) {
+		$blogid = $_POST['blogid'];
+                $userid = $_POST['userid'];
+                Blog::insertLike($blogid,$userid);
+                
+	
+	}
+	
+        
+        
+         }
+        
+        
+        
+        
 }
 
 ?>
