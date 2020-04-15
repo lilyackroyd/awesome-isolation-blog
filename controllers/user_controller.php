@@ -18,7 +18,7 @@ class userController {
 //     try{
         if (!empty($_POST)) {echo 
              $usn = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-            $psw = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+             $psw = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             
             $login = new User($usn, $psw);
             $login->loginUser();

@@ -58,25 +58,25 @@ class User {
         $user = User::getUser($usn);
         
         //hash passwords, uncomment to turn on
-//         $isVerified=password_verify($this->password, $user['user_PWD']);
-        $pwd = $this->password;
+        $isVerified=password_verify($this->password, $user['user_PWD']);
+//        $pwd = $this->password;
         if ($pwd === $user['user_PWD']) {
             $pwd = TRUE;
         }
        
-        if (/*$isVerified === TRUE*/ $pwd === TRUE && $user['user_TYPE'] === "Admin") {
+        if ($isVerified === TRUE && $user['user_TYPE'] === "Admin") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
-        } else if (/*$isVerified === TRUE*/ $pwd === TRUE  && $user['user_TYPE'] === "Blogger") {
+        } else if ($isVerified === TRUE  && $user['user_TYPE'] === "Blogger") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
-        } else if (/*$isVerified === TRUE*/ $pwd === TRUE  && $user['user_TYPE'] === "Subscriber") {
+        } else if ($isVerified === TRUE  && $user['user_TYPE'] === "Subscriber") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
