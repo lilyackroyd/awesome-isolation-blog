@@ -1,5 +1,5 @@
 <?php
-include_once 'controllers/comments_controller.php';
+include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
 ?>
 
 <section class="intro-section">
