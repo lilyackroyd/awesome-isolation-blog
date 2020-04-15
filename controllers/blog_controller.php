@@ -69,7 +69,7 @@ class BlogController {
     
         public function delete() {
         Blog::deleteBlog($_GET['id']);
-        require_once('Views/user/myblogs.php');
+        //require_once('Views/user/myblogs.php');
         }
         
         
