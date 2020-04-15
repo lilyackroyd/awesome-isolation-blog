@@ -33,7 +33,7 @@
                      
                 </form>
          <div class="login_create-acc">
-                    <button type="submit" value="register"  id="create"> <a href="?controller=user&action=register" class="login_registeracc">Create account</a></button>
+                    <a href="?controller=user&action=register" class="login_registeracc"><button type="submit" value="register"  id="create"> Create account</button></a>
                     </div>
                     
                 
