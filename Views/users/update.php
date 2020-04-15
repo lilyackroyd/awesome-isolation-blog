@@ -6,13 +6,20 @@
 
 
 
-<section class ="main-section-update" >
+<section class ="main-section-update-user" >
+    <form method="post" action="" name="update details" class="" enctype="multipart/form-data">
 
-    
 
 
-    <form method="post" action="" name="update details" class="">
+        <div class="update-img-container" role="cell"> 
+            <img src="<?php echo $blogger['user_IMG']; ?>" class="update-img"   alt="...">
+        </div> 
+        
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
+        <input type="file" name="userimage" >
 
+        
+        
         <div class="form-group">
             <div class="row">
                 <div class="col">
@@ -23,6 +30,7 @@
                 </div>
             </div></div>
         <br/>
+
 
         
         <div class="form-group">
@@ -35,9 +43,12 @@
                 </div>
             </div></div>
         <br/>
-
-      <input class="btn btn-primary " type="submit" name="update" value="Update details">  
         
+        
+
+        <input class="btn btn-primary " type="submit" name="update" value="Update details">  
+
 
     </form>         
 
+</section>

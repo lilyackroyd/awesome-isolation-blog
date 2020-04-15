@@ -3,7 +3,7 @@
     <div class="flex-table-account row" role="rowgroup">  
 
         <div class="flex-row-intro-account" id="blogger-name" role="cell"> 
-            <h1>Hello, <?php $blogger = userController::blogger();
+            <h1 class="hello">Hello, <?php $blogger = userController::blogger();
 echo $blogger['user_FN']; ?> !</h1>  
         </div> 
 

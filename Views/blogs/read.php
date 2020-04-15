@@ -1,39 +1,70 @@
 <?php
 include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
 ?>
-   
+
 <section class="intro-section">
 
 
-<!------edit and delete buttons that appear above the image if the user is an admin or the author----->
-<div class="editdelete"> 
-        
-    <?php if($blog->status==='Draft'){ 
-        $msg= '<div class="alert alert-secondary" role="alert">
-  This is blog is still in draft. <a href="?controller=blog&action=update&id='.$blog->id.'"/>Publish</a> it now.
-</div>'; echo $msg;
-    }elseif($blog->status==='Published'){?>
+    <!------edit and delete buttons that appear above the image if the user is an admin or the author----->
+    <?php
+        if ($blog->status === 'Draft') {
+            $msg = '<div class="alert alert-secondary draft-banner" role="alert">
+            This is blog is still in draft. <a href="?controller=blog&action=update&id=' . $blog->id . '"/>Publish</a> it now.
+            </div>';
+            echo $msg;
+        } elseif ($blog->status === 'Published') {
+            ?>
             <script type="text/javascript">$('.draft-banner').hide()</script>
-        <?php }?>
+        <?php } ?>
+    
+    <div class="blog-popups"> 
 
         <?php
         //checks if the user is eligible
         if (!empty($_SESSION)) {
             if ($_SESSION['usertype'] === 'Admin' | $_SESSION['userid'] === $blog->userid) {
                 $alloweduser = TRUE;
-        }else {$alloweduser = FALSE;}
-        
-        // shows the edit / delete buttons if true, otherwise hides them
-        if ($alloweduser === TRUE) {
-            ?>
-            <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
-            <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
-    <?php } else { ?>
-            <script type="text/javascript">$('#editdelete').hide();</script>
-        <?php }}
-    ?>
-   
-</div>
+            } else {
+                $alloweduser = FALSE;
+            }
+
+            // shows the edit / delete buttons if true, otherwise hides them
+            if ($alloweduser === TRUE) {
+        ?>
+            <div class="editdelete">
+                <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
+                <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
+            </div>
+ <?php } else { ?>
+                <script type="text/javascript">$('.editdelete').hide();</script>
+    <?php }
+}
+?>
+
+        <div id="favourite">        
+        <svg class="ico" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+        </svg>
+        </div>
+
+
+
+        <script>
+            var likeBtn = document.querySelector('.ico');
+
+            likeBtn.addEventListener('click', function () {
+                likeBtn.classList.toggle('liked');
+            });
+
+            document.addEventListener('keydown', function (key) {
+                if (key.key === 'l' || key.key === 'L') {
+                    likeBtn.classList.toggle('liked');
+                }
+            });
+        </script>
+
+
+    </div>
 
 
 
@@ -48,9 +79,11 @@ include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments
             <ul class="blog-details-list">
                 <li> <img class="author-image" src="<?php echo $blog->authorimage ?>"/></li>
                 <li> <p class="date">By <?php echo $blog->authorfirstname . ' ' . $blog->authorlastname . ' '; ?><span class="dot">&#9679</span></p></li>
-                <li> <p class="date">Published <?php $sqldate = $blog->date;
+                <li> <p class="date">Published <?php
+$sqldate = $blog->date;
 $date = strtotime($sqldate);
-echo $displaydate = date('j F Y', $date); ?><span class="dot">&#9679</span></p></li>
+echo $displaydate = date('j F Y', $date);
+?><span class="dot">&#9679</span></p></li>
                 <li> <p class="date"><?php echo $blog->genre ?></p></li>
 
 
@@ -81,7 +114,7 @@ if ($video != "") {
 } else {
     ?>
     <script type="text/javascript">$('#video').hide()</script>;
-    <?php }
+<?php }
 ?>
 
 
@@ -107,7 +140,7 @@ if ($video != "") {
 
         <div class="col-md-6 col-md-offset-3 comments-section">
             <!-- if user is not signed in, tell them to sign in. If signed in, present them with comment form -->
-            <?php if (!empty($_SESSION)): ?>
+<?php if (!empty($_SESSION)): ?>
                 <form class="clearfix" action="Views/blogs/read.php" method="post" id="comment_form">
                     <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
                     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['userid'] ?>">
@@ -124,7 +157,8 @@ if ($video != "") {
 
             <!-- Display total number of comments on this post  -->
             <h2><span id="comments_count"><?php $comments = getBlogComments();
-echo count($comments) ?></span> Comment(s)</h2>
+echo count($comments)
+?></span> Comment(s)</h2>
             <hr>
 
 
@@ -145,54 +179,54 @@ echo count($comments) ?></span> Comment(s)</h2>
                                 <p><?php echo $comment->text; ?></p>   
 
                                 <!-- reply link -->    
-                                <?php if (!empty($_SESSION)): ?>
-                                <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-                                <?php else: ?>
-                                <a href="?controller=user&action=login" class="reply-btnlogin">Log in to reply</a>
-                                <?php endif ?>
+        <?php if (!empty($_SESSION)): ?>
+                                    <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
+        <?php else: ?>
+                                    <a href="?controller=user&action=login" class="reply-btnlogin">Log in to reply</a>
+        <?php endif ?>
                                 <button  class="report" id="report-<?php echo $comment->commid; ?>" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
-                            
-                            
-                        
+
+
+
 
 
 
 
 
                             <!-- reply form -->
-                            
+
                             <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
-                            <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
-                                <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
-                                <input type="hidden" id="user_id_reply" name="user_id" value="<?php echo $_SESSION['userid'] ?>">
-                                <button class="btn btn-primary btn-xs pull-right submit-reply" >Submit reply</button>
+                                <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
+                                    <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
+                                    <input type="hidden" id="user_id_reply" name="user_id" value="<?php echo $_SESSION['userid'] ?>">
+                                    <button class="btn btn-primary btn-xs pull-right submit-reply" >Submit reply</button>
 
-                            </form>
+                                </form>
 
 
 
-                            <!-- GET ALL REPLIES -->
+                                <!-- GET ALL REPLIES -->
         <?php $replies = getRepliesByCommentId($comment->commid) ?>
-                            <div class="replies_wrapper_<?php echo $comment->commid; ?>">
+                                <div class="replies_wrapper_<?php echo $comment->commid; ?>">
         <?php if (isset($replies)): ?>
             <?php foreach ($replies as $reply): ?>
 
 
-                                        <!-- reply -->
-                                        <div class="comment reply clearfix">
-                                            <img src="<?php echo getProfileImagebyID($reply['ruser_ID']) ?>" alt="" class="profile_pic">
-                                            <div class="comment-details">
-                                                <span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
+                                            <!-- reply -->
+                                            <div class="comment reply clearfix">
+                                                <img src="<?php echo getProfileImagebyID($reply['ruser_ID']) ?>" alt="" class="profile_pic">
+                                                <div class="comment-details">
+                                                    <span class="comment-name"><?php echo getUsernameById($reply['ruser_ID']) ?></span>
 
-                                                <p><?php echo $reply['reply_TXT']; ?></p>
-                                                
-                                                
+                                                    <p><?php echo $reply['reply_TXT']; ?></p>
+
+
+                                                </div>
                                             </div>
-                                        </div>
-                            <?php endforeach ?>
-                        <?php endif ?>
-                            </div>
+            <?php endforeach ?>
+        <?php endif ?>
+                                </div>
                         </div>
                         <!-- // comment -->
     <?php endforeach ?>
@@ -203,10 +237,10 @@ echo count($comments) ?></span> Comment(s)</h2>
         </div><!-- // all comments -->
     </div>
 
-    
-    
-    
-    
+
+
+
+
     <!-- Javascripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap Javascript -->
@@ -215,7 +249,7 @@ echo count($comments) ?></span> Comment(s)</h2>
     <script src="Views/javascript/commentScript.js"></script>
     <!-- delete blog js -->
     <script src="Views/javascript/deleteBlog.js"></script>
-        <!-- update blog js -->
+    <!-- update blog js -->
     <script src="Views/javascript/updateBlog.js"></script>
-         <!-- rpeort comment js -->
+    <!-- rpeort comment js -->
     <script src="Views/javascript/reportComment.js"></script>

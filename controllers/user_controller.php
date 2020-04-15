@@ -46,6 +46,7 @@ class userController {
           if($_SERVER['REQUEST_METHOD'] == 'GET'){
           if (empty($_SESSION)) {
           return call('pages', 'error');
+          
           }
         $usn = $_SESSION['username'];
         $blogger = User::getUser($usn);

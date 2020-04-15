@@ -24,4 +24,7 @@ class PagesController {
       require_once('views/pages/faq.php');
     }
     
+        public function test() {
+      require_once('views/pages/test.php');
+    }
 }
