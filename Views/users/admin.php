@@ -1,6 +1,7 @@
 <?php 
 $bloggers = userController::bloggerlist();
 $subscribers = userController::subscriberList();
+$flagged= CommentsController::getflaggedcomments();
 ?> <br>
  
 
@@ -102,7 +103,43 @@ $subscribers = userController::subscriberList();
 
                      </div><!-- end of row -->
                      
-                     
+    <div class="row">
+      <?php if (count($flagged) > 0) { ?>
+         <h2>List of flagged comments</h2>
+             <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">Comment</th>
+                                      <th scope="col">User</th>
+                                      <th scope="col">View Blog</th>
+                                      <th scope="col">Remove comment?</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                       <?php foreach ($flagged as $comment) { ?> 
+                                    <tr>
+                                      <th scope="row"><?php echo $comment->text; ?></th>
+                                      <td><?php echo $comment->userid; ?></td>
+                                      <td><a class="btn btn-warning" href="/awesome/index.php?controller=blog&action=read&id=<?php echo $comment->blogid; ?>" role="button">View</a></td>
+                                      <td><a class="btn btn-danger" href="/awesome/index.php?controller=comments&action=removeflaggedcomment&commid=<?php echo $comment->commid; ?>" role="button">Remove</a></td>
+                                    </tr>
+                                    
+                                
+                   <?php
+                }
+                
+                ?> 
+                       </tbody>
+                                </table>   
+                        
+                <?php }
+            else {
+                echo '<p>There are currently no bloggers. </p>';
+            }
+            ?> 
+                                
+
+                     </div><!-- end of row -->                 
                      
                      
      </div><!-- end of container -->

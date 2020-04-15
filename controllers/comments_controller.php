@@ -11,6 +11,17 @@ class CommentsController {
         //require_once('Views/user/myblogs.php');
         
         }
+        
+       public function getflaggedcomments() {
+        require_once('models/flagcomments.php');
+        $flagged = Flaggedc::listflaggedc();
+        return $flagged;
+    }
+     public function removeflaggedcomment() {
+        require_once('models/flagcomments.php');
+        Flaggedc::removeflaggedc($_GET['commid']);
+       
+    }   
 }
 
 
@@ -131,4 +142,6 @@ if (isset($_POST['reply_posted'])) {
 		echo "error";
 		exit();
 	}
+        
+    
 }

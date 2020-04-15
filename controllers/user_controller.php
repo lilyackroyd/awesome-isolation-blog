@@ -61,6 +61,7 @@ class userController {
 
 
     function admin() {
+        require_once('controllers/comments_controller.php');
         require_once('views/users/admin.php');
 //       if (empty($_SESSION)){
 //     return call('pages','error');     
