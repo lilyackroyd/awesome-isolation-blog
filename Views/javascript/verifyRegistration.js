@@ -41,15 +41,15 @@ $(document).ready(function(){
         
         //check passwords match
         if (b_password !== b_password_confirm ){
-        document.getElementById("b_password-match-error").innerHTML = "Password entered do not match";
+        document.getElementById("b_password-match-error").innerHTML = "Passwords entered do not match";
         return;
         }
         if (a_password !== a_password_confirm){
-        document.getElementById("a_password-match-error").innerHTML = "Password entered do not match";
+        document.getElementById("a_password-match-error").innerHTML = "Passwords entered do not match";
         return;
         }
         if(s_password !== s_password_confirm){
-        document.getElementById("s_password-match-error").innerHTML = "Password entered do not match";
+        document.getElementById("s_password-match-error").innerHTML = "Passwords entered do not match";
         return;
         }
         
