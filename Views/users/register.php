@@ -29,11 +29,11 @@
 
     <div class="register-container">
         <div class="welcome">
-            <h1 class="login_sign-in">Create an account</h1>
+            <h1 class="register-title">Create an account</h1>
 
         </div>
 
-        <div class="register-form-block">
+        <div class="regblock">
 
             <form method="post" action="" enctype="multipart/form-data" id="register-form">
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   

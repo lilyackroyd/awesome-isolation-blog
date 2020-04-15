@@ -90,7 +90,7 @@ class userController {
     
     
     
-    function register() {
+    function registertwo() {
         require_once('views/users/register.php');
         require_once('models/register.php');
         include_once('User_validation.php');
@@ -113,21 +113,12 @@ class userController {
 }
 
 
-function registertest(){
+function register(){
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-          require_once('views/users/registertest.php');     
+          require_once('views/users/register.php');     
     } 
-    
-
     else { 
-        //$errors=self::verifyRegistration($_POST['password'],$_POST['password_confirm']);
-        //if($errors==''){
         User::createUser();
-       // }else {
-//            require_once('views/users/registertest.php');  
-//           return $errors;   
-       ///}
-
    }
 }
 

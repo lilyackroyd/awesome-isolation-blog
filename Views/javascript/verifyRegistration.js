@@ -91,13 +91,9 @@ $(document).ready(function(){
 //        document.getElementById("s_username-error").innerHTML = "Username must contain numbers and have between 6 - 12 characters";
 //        return;
 //        }
-        
 
         
-        
-        
-        
-        
+        console.log('here');
         
         
         
