@@ -1,7 +1,7 @@
 <?php 
  
-
-include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'models/comments.php';
+//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/models/comments.php'; 
 //include_once 'models/comments.php'; 
 
 
