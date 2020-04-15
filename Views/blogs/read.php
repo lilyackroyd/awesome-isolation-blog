@@ -3,24 +3,24 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
 //include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
 //include_once 'controllers/comments_controller.php';
 ?>
+<!--<script src="jquery.min.js"></script>-->
 
 <section class="intro-section">
 
 
-    <!------edit and delete buttons that appear above the image if the user is an admin or the author----->
+<!------edit and delete buttons that appear above the image if the user is an admin or the author----->
     <?php
-        if ($blog->status === 'Draft') {
-            $msg = '<div class="alert alert-secondary draft-banner" role="alert">
+    if ($blog->status === 'Draft') {
+        $msg = '<div class="alert alert-secondary draft-banner" role="alert">
             This is blog is still in draft. <a href="?controller=blog&action=update&id=' . $blog->id . '"/>Publish</a> it now.
             </div>';
-            echo $msg;
-        } elseif ($blog->status === 'Published') {
-            ?>
-            <script type="text/javascript">$('.draft-banner').hide()</script>
-        <?php } ?>
-    
-    <div class="blog-popups"> 
+        echo $msg;
+    } elseif ($blog->status === 'Published') {
+        ?>
+        <script type="text/javascript">$('.draft-banner').hide()</script>
+    <?php } ?>
 
+    <div class="blog-popups"> 
         <?php
         //checks if the user is eligible
         if (!empty($_SESSION)) {
@@ -32,44 +32,31 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
 
             // shows the edit / delete buttons if true, otherwise hides them
             if ($alloweduser === TRUE) {
-        ?>
-            <div class="editdelete">
-                <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
-                <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
-            </div>
- <?php } else { ?>
+                ?>
+                <div class="editdelete">
+                    <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
+                    <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
+                </div>
+            <?php } else { ?>
                 <script type="text/javascript">$('.editdelete').hide();</script>
-    <?php }
-}
-?>
-
+            <?php
+            }
+        }
+        ?>
+                
+<!------------------------like a blog icon----------------------->
         <div id="favourite">        
-        <svg class="ico" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
-        </svg>
+            <svg class="ico" id="ico" width="24" height="24" viewBox="0 0 24 24" data-id="<?php echo $_GET['id']?>" data-user="<?php echo $_SESSION['userid']?>">
+            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+            </svg>
         </div>
 
-
-
-        <script>
-            var likeBtn = document.querySelector('.ico');
-
-            likeBtn.addEventListener('click', function () {
-                likeBtn.classList.toggle('liked');
-            });
-
-            document.addEventListener('keydown', function (key) {
-                if (key.key === 'l' || key.key === 'L') {
-                    likeBtn.classList.toggle('liked');
-                }
-            });
-        </script>
 
 
     </div>
 
 
-
+<!------------------------blog content----------------------->
     <div class="blog-image"> 
         <img class="blog-image-image" src="<?php echo $blog->img ?>" alt="" >
     </div> 
@@ -82,10 +69,10 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
                 <li> <img class="author-image" src="<?php echo $blog->authorimage ?>"/></li>
                 <li> <p class="date">By <?php echo $blog->authorfirstname . ' ' . $blog->authorlastname . ' '; ?><span class="dot">&#9679</span></p></li>
                 <li> <p class="date">Published <?php
-$sqldate = $blog->date;
-$date = strtotime($sqldate);
-echo $displaydate = date('j F Y', $date);
-?><span class="dot">&#9679</span></p></li>
+                        $sqldate = $blog->date;
+                        $date = strtotime($sqldate);
+                        echo $displaydate = date('j F Y', $date);
+                        ?><span class="dot">&#9679</span></p></li>
                 <li> <p class="date"><?php echo $blog->genre ?></p></li>
 
 
@@ -158,9 +145,10 @@ if ($video != "") {
 
 
             <!-- Display total number of comments on this post  -->
-            <h2><span id="comments_count"><?php $comments = getBlogComments();
-echo count($comments)
-?></span> Comment(s)</h2>
+            <h2><span id="comments_count"><?php
+                    $comments = getBlogComments();
+                    echo count($comments)
+                    ?></span> Comment(s)</h2>
             <hr>
 
 
@@ -168,7 +156,7 @@ echo count($comments)
 
             <!-- comments wrapper -->
             <div id="comments-wrapper">
-<?php if (isset($comments)): ?>
+                <?php if (isset($comments)): ?>
                     <!-- Display comments -->
     <?php foreach ($comments as $comment): ?>
                         <!-- comment -->
@@ -181,9 +169,9 @@ echo count($comments)
                                 <p><?php echo $comment->text; ?></p>   
 
                                 <!-- reply link -->    
-        <?php if (!empty($_SESSION)): ?>
+                                <?php if (!empty($_SESSION)): ?>
                                     <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
-        <?php else: ?>
+                                <?php else: ?>
                                     <a href="?controller=user&action=login" class="reply-btnlogin">Log in to reply</a>
         <?php endif ?>
                                 <button  class="report" id="report-<?php echo $comment->commid; ?>" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
@@ -209,7 +197,7 @@ echo count($comments)
 
 
                                 <!-- GET ALL REPLIES -->
-        <?php $replies = getRepliesByCommentId($comment->commid) ?>
+                                    <?php $replies = getRepliesByCommentId($comment->commid) ?>
                                 <div class="replies_wrapper_<?php echo $comment->commid; ?>">
         <?php if (isset($replies)): ?>
             <?php foreach ($replies as $reply): ?>
@@ -231,8 +219,8 @@ echo count($comments)
                                 </div>
                         </div>
                         <!-- // comment -->
-    <?php endforeach ?>
-<?php else: ?>
+                    <?php endforeach ?>
+                <?php else: ?>
                     <h2>Be the first to comment on this post</h2>
 <?php endif ?>
             </div><!-- comments wrapper -->
@@ -253,5 +241,7 @@ echo count($comments)
     <script src="Views/javascript/deleteBlog.js"></script>
     <!-- update blog js -->
     <script src="Views/javascript/updateBlog.js"></script>
-    <!-- rpeort comment js -->
+    <!-- report comment js -->
     <script src="Views/javascript/reportComment.js"></script>
+       <!-- like blog js -->
+    <script src="Views/javascript/likeBlog.js"></script>

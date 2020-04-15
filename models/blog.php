@@ -386,9 +386,27 @@ LIMIT 3
         }
                 
     
-    
-    
-    
+        public static function insertLike($blogid,$userid) {
+        $db = Db::getInstance();
+//        $req = $db->execute("SELECT * FROM blog_posts WHERE blog_ID=$blogid");
+//        $result = $req->fetchAll();
+//        $n = $result['blog_'];
+        
+        
+        
+        
+            
+            
+//    	$result = mysqli_query($con, "SELECT * FROM posts WHERE id=$postid");
+//		$row = mysqli_fetch_array($result);
+//		$n = $row['likes'];
+
+		mysqli_query($con, "INSERT INTO likes (userid, postid) VALUES (1, $postid)");
+		mysqli_query($con, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
+
+		echo $n+1;
+		exit();
+        }
     
     
     

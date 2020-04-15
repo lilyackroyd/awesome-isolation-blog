@@ -41,14 +41,14 @@
                 <!-- user type input fields -->
                 <p class="usertype-label"> I want to register as a: </p>
                 <div class="form-check usertype-options">
-                    <input type ='radio'  id='admin' class="form-check-input" name='usertype' value='admin'>
+                    <input type ='radio'  id='admin' class=" form-check-input " name='usertype' value='admin' required>
                     <label for="admin" class="form-check-label">Admin</label>
-                    <input type = 'radio'  id='blogger' class="form-check-input" name ='usertype' value='blogger'>
+                    <input type = 'radio'  id='blogger' class="form-check-input " name ='usertype' value='blogger'required>
                     <label for="blogger" class="form-check-label">Blogger</label>
-                    <input type ='radio'  id="subscriber"  class="form-check-input" name='usertype' value='subscriber'>
+                    <input type ='radio'  id="subscriber"  class=" form-check-input " name='usertype' value='subscriber'required>
                     <label for="subscriber" class="form-check-label">Subscriber</label>
                 </div>
-
+                
 
                 <!-- admin input fields -->
                 <div class="admin box">
