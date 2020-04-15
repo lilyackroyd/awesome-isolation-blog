@@ -395,39 +395,15 @@ LIMIT 3
         $stmt = $db->execute("SELECT blog_LIKES FROM blog_posts WHERE blog_ID=:blogid");
         $stmt->execute(array('blogid' => $blogid,));
         $stmt->fetchAll();
-        $n = ['0']['blog_LIKES'];
-        
-        $stmt = $db->prepare("UPDATE blog_posts SET blog_LIKES= :n +1 WHERE blog_ID=:blogid");
-        $stmt->execute(array('blogid' => $blogid,
-                             'n' => $n,));
-        
-      
+        $n = $stmt['0']['blog_LIKES'];
         
         
-            
-            
-//    	$result = mysqli_query($con, "SELECT * FROM posts WHERE id=$postid");
-//		$row = mysqli_fetch_array($result);
-//		$n = $row['likes'];
-
-//		mysqli_query($con, "INSERT INTO likes (userid, postid) VALUES (1, $postid)");
-//		mysqli_query($con, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
-//
-//		echo $n+1;
-//		exit();
-        }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+//        echo $n+1;
+        
+        return $likes= "1";
+	
+        
+        }   
 }
 
 ?>

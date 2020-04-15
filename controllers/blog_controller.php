@@ -111,9 +111,9 @@ class BlogController {
 //                
 //		$blogid = $_GET['blogid'];
 //                $userid = $_GET['userid'];
-                Blog::insertLike($_GET['blogid'],$_GET['userid']);
+               $likes= Blog::insertLike($_GET['blogid'],$_GET['userid']);
                 
-         
+         return $likes;
                 
 	
 	}

@@ -30,31 +30,63 @@
                 console.log(userid); 
                 
         var xmlhttp = new XMLHttpRequest();
-     
+    
         xmlhttp.open("GET", "?controller=blog&action=likes&blogid=" + blogid + "&userid=" + userid, true);
-        xmlhttp.send();
+        
+        xmlhttp.responseType = 'text';
+        
+        xmlhttp.onload = function () {
+    if (xmlhttp.readyState === xmlhttp.DONE) {
+        if (xmlhttp.status === 200) {
+            console.log(xmlhttp.response);
+            console.log(xmlhttp.responseText);
+        }
+    }
+};
+        
+        xmlhttp.send(null);
       
         
     
-                });});
+               });});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     
 //			$.ajax({
-//				url: 'BlogController/likes',
-//				type: 'post',
-//				data: {
-//					  'liked': 1,
-//					'blogid': blogid,
-//                                        'userid': userid
-//				}
+//				url: "?controller=blog&action=likes&blogid=" + blogid + "&userid=" + userid,
+//				type: 'GET',
+////				data: {
+////					  'liked': 1,
+////					'blogid': blogid,
+////                                        'userid': userid
+////				},
 //				success: function(response){
-//					$post.parent().find('span.likes_count').text(response + " likes");
-//					$post.addClass('hide');
-//					$post.siblings().removeClass('hide');
+//                                    console.log(response); 
+////					$post.parent().find('span.likes_count').text(response + " likes");
+////					$post.addClass('hide');
+////					$post.siblings().removeClass('hide');
 //				}
-//			});
-//		});
-
+//			        });
+//		});});
+            
+            
+            
+            
 		// when the user clicks on unlike
 //		$('.unlike').on('click', function(){
 //			var postid = $(this).data('id');
