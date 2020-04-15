@@ -192,10 +192,10 @@ LIMIT 3
     public static function removeAllBlogComments($id) {
         $db = Db::getInstance();
         $blogid = intval($id);
-        $req = $db->prepare('select comm_ID FROM Comments WHERE blog_ID = :id');
-        $comments = $req->fetch();
-        self::removeAllCommentReplies($comments);
-        $req->execute(array('id' => $id));
+        //$req = $db->prepare('select comm_ID FROM Comments WHERE blog_ID = :id');
+        //$comments = $req->fetch();
+        //self::removeAllCommentReplies($comments);
+        //$req->execute(array('id' => $id));
         $req = $db->prepare('delete FROM Comments WHERE blog_ID = :id');
         $req->execute(array('id' => $id));
     }

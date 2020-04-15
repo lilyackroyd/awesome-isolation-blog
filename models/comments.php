@@ -1,5 +1,5 @@
 <?php
-
+include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
 //include_once 'awesome/connection.php';
 
 class Comments {
