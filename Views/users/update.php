@@ -12,17 +12,33 @@
 
 
         <div class="update-img-container" role="cell"> 
+        <label for="userimage-update">Your profile image:</label> 
+         <br/>
+          <br/>
+         <div class='image-preview'>
             <img src="<?php echo $blogger['user_IMG']; ?>" class="update-img"   alt="...">
+            <i style='z-index:2' id='cross'  class='image-preview fas fa-times-circle fa-2x'></i>
         </div> 
+           </div> 
         
+        <script>
+                
+             $("#cross").click(function(){
+  $(".update-img").hide();
+  $("#cross").hide();
+});
+             
+             
+             </script> 
+  
        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
        <input type="file"  name="userimage-update"  accept="image/*" >
-
+       <br/>
+              <br/>
+                     <br/>
         
         
         <div class="form-group">
-            
-             
             <div class="row">
                 <div class="col">
                     First Name:<input  type="text" class="form-control"  name="firstName" id="firstName" value="<?= $blogger['user_FN'] ?>" required autofocus="true" />              
