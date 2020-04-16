@@ -69,8 +69,13 @@ $(document).ready(function(){
                         var user_id = $('#user_id_reply').val();
                         console.log(user_id);
                         
-			var reply_text = $(this).siblings('textarea').val();
+              
+                        var blog_id = $('#blog_id_reply').val();
+                        console.log(blog_id);
                         
+			var reply_text = $(this).siblings('textarea').val();
+                         console.log(reply_text);
+                         
 			var url = $(this).parent().attr('action');
                         
 			$.ajax({
@@ -78,6 +83,7 @@ $(document).ready(function(){
 				type: "POST",
 				data: { 
                                         user_id: user_id,
+                                        blog_id: blog_id,
 					comment_id: comment_id,
 					reply_text: reply_text,
 					reply_posted: 1

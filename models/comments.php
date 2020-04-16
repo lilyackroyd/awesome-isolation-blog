@@ -2,11 +2,11 @@
 
 
 //include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
-
-include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'connection.php';
-//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/connection.php';
-
 //include_once 'awesome/connection.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'connection.php';
+
+
+
 
 class Comments {
 
@@ -98,12 +98,13 @@ class Comments {
     }
 
     // insert reply into database
-    public static function insertReply($user_id, $comment_id, $reply_text) {
+    public static function insertReply($user_id, $comment_id, $reply_text, $blog_id) {
         $db = Db::getInstance();
-        $request = $db->prepare('INSERT INTO Replies (ruser_ID, comm_ID, reply_TXT) VALUES ( :id , :comm_ID, :reply_TXT)');
+        $request = $db->prepare('INSERT INTO Replies (ruser_ID, comm_ID, reply_TXT, rblog_ID) VALUES ( :id , :comm_ID, :reply_TXT, :blogid)');
         $request->execute(array('id' => $user_id,
             'comm_ID' => $comment_id,
-            'reply_TXT' => $reply_text
+            'reply_TXT' => $reply_text,
+             'blogid' => $blog_id
         ));
         return $request;
     }

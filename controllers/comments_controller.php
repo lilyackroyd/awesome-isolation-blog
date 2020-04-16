@@ -86,6 +86,8 @@ if (isset($_POST['comment_posted'])) {
 						
 						<p>" . $inserted_comment['comm_TXT'] . "</p>
 						<a class='reply-btn' href='#' data-id='" . $inserted_comment['comm_ID'] . "'>reply</a>
+                                                    
+                                                <button  class='report' id='report-".$inserted_comment['comm_ID']."' onclick='reportComment(".$inserted_comment['comm_ID'].",".$inserted_comment['blog_ID'].")'>report <i class='fa fa-flag' aria-hidden='true'></i></button>
 					</div>
 					<!-- reply form -->
 					<form action='Views/blogs/read.php' class='reply_form clearfix' id='comment_reply_form_".$inserted_comment['comm_ID']."' data-id='" . $inserted_comment['comm_ID'] . "'>
@@ -116,9 +118,10 @@ if (isset($_POST['reply_posted'])) {
 	$reply_text = $_POST['reply_text']; 
 	$comment_id = $_POST['comment_id']; 
         $user_id = $_POST['user_id']; 
+        $blog_id = $_POST['blog_id']; 
         
         // insert reply into database
-        $request=Comments::insertReply($user_id, $comment_id, $reply_text);
+        $request=Comments::insertReply($user_id, $comment_id, $reply_text,$blog_id);
 
         // Query same reply from database to send back to be displayed
         $inserted_reply=Comments::retrieveNewReply();
@@ -133,7 +136,7 @@ if (isset($_POST['reply_posted'])) {
 						<span class='comment-name'>" . getUsernameById($inserted_reply['ruser_ID']) . "</span>
 					
 						<p>" . $inserted_reply['reply_TXT'] . "</p>
-						<a class='reply-btn' href='#'>reply</a>
+						
 					</div>
 				</div>";
 		echo $reply;

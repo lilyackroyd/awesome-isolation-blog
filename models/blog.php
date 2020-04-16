@@ -192,19 +192,16 @@ LIMIT 3
     public static function removeAllBlogComments($id) {
         $db = Db::getInstance();
         $blogid = intval($id);
-        //$req = $db->prepare('select comm_ID FROM Comments WHERE blog_ID = :id');
-        //$comments = $req->fetch();
-        //self::removeAllCommentReplies($comments);
-        //$req->execute(array('id' => $id));
+        self::removeAllCommentReplies($blogid);  
         $req = $db->prepare('delete FROM Comments WHERE blog_ID = :id');
         $req->execute(array('id' => $id));
     }
     
-//    public static function removeAllCommentReplies($comments) {
-//        $db = Db::getInstance();
-//        $req = $db->prepare('delete FROM Replies WHERE comm_ID = :comments');
-//        $req->execute(array('comments' => $commentss));
-//    }
+    public static function removeAllCommentReplies( $blogid) {
+        $db = Db::getInstance();
+        $req = $db->prepare('delete FROM Replies WHERE rblog_ID = :blogid');
+        $req->execute(array('blogid' => $blogid));
+    }
     
 //    //attempt to write method to delete blog image so image folder doesn't get clogged up
 //    public static function deleteBlogImage($blogid) {
@@ -396,14 +393,26 @@ LIMIT 3
         $stmt->execute(array('blogid' => $blogid,));
         $stmt->fetchAll();
         $n = $stmt['0']['blog_LIKES'];
-        
-        
 //        echo $n+1;
-        
         return $likes= "1";
-	
+        }  
         
-        }   
+        
+        public static function removeLike($blogid,$userid) {
+        $db = Db::getInstance();
+
+        $req = $db->prepare("delete from Likes where luser_ID=:userid AND lblog_ID =:blogid;");
+        $req->execute(array('userid' => $userid,'blogid' => $blogid,));
+        
+        $stmt = $db->execute("Update blog_posts SET blog_LIKES = blog_LIKES -1 WHERE blog_ID = :blogid");
+        $stmt->execute(array('blogid' => $blogid,));
+        
+        } 
+        
+        
+        
+        
+        
 }
 
 ?>

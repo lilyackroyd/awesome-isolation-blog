@@ -196,6 +196,7 @@ if ($video != "") {
                                 <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
                                     <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
                                     <input type="hidden" id="user_id_reply" name="user_id" value="<?php echo $_SESSION['userid'] ?>">
+                                    <input type="hidden" id="blog_id_reply" name="blog_id" value="<?php echo $_GET['id'] ?>">
                                     <button class="btn btn-primary btn-xs pull-right submit-reply" >Submit reply</button>
 
                                 </form>
