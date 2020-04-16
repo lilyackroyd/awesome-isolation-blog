@@ -269,7 +269,8 @@ class User {
 //        } else {
 //            return userExists($username);    
 //        }
-    }else {echo "That user already exists. Please log in or trying different details";}
+    } else { //this else relates to the username or email already being present in the db, so if $num_rows doesn't ==0)
+      echo "That user already exists. Please log in or trying different details";}
 
     }
     
