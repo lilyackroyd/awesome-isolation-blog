@@ -1,6 +1,7 @@
-  <?php 
+<?php 
+session_start();
   include_once 'controllers/header_controller.php';
-  session_start();?>   
+ ?>   
 
 <!DOCTYPE html>
 <html>

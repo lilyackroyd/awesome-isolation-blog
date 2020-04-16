@@ -27,23 +27,36 @@ $flagged= CommentsController::getflaggedcomments();
  <div class="container">
   <div class="row">
       <?php if (count($bloggers) > 0) { ?>
-         <h2>List of Bloggers</h2>
+         <h2>List of Bloggers by total likes</h2>
              <table class="table">
                                   <thead class="thead-dark">
                                     <tr>
                                       <th scope="col">Image</th>
                                       <th scope="col">First name</th>
                                       <th scope="col">Last name</th>
-                                      <th scope="col">Delete?</th>
+                                       <th scope="col">Email</th>
+                                       <th scope="col">Total Likes</th>
+                                     
                                     </tr>
                                   </thead>
                                   <tbody>
                                        <?php foreach ($bloggers as $blogger) { ?> 
                                     <tr>
-                                        <th scope="row"><img src="<?php echo $blogger->img; ?>" width="75" height="75" style ="border-radius: 50%" alt="no profile pic"></th>
+                                        <th scope="row"><img src="<?php 
+                                        if (file_exists($blogger->img)) {
+                                        echo $blogger->img; }
+                                        else {
+                                        echo "Views/images/avatar.png";
+                                        }
+                                        
+                                        
+                                        
+                                        ?>" width="75" height="75" style ="border-radius: 50%" alt="no profile pic"></th>
                                       <td><?php echo $blogger->firstname; ?></td>
                                       <td><?php echo $blogger->lastname; ?></td>
-                                      <td><?php echo $blogger->id; ?></td>
+                                      <td><?php echo $blogger->email; ?></td>
+                                      <td><?php echo $blogger->totallikes; ?></td>
+                                      
                                     </tr>
                                     
                                 
@@ -71,19 +84,19 @@ $flagged= CommentsController::getflaggedcomments();
              <table class="table">
                                   <thead class="thead-dark">
                                     <tr>
-                                      <!--<th scope="col">Image</th>-->
-                                      <th scope="col">First name</th>
-                                      <th scope="col">Last name</th>
-                                      <th scope="col">Delete?</th>
+                                     
+                                      <th scope="col">Username</th>
+                                      <th scope="col">Email</th>
+                                      
                                     </tr>
                                   </thead>
                                   <tbody>
                                        <?php foreach ($subscribers as $subscriber) { ?> 
                                     <tr>
-                                      <!--<th scope="row"><?php echo $subscriber->img; ?></th>-->
-                                      <td><?php echo $subscriber->firstname; ?></td>
-                                      <td><?php echo $subscriber->lastname; ?></td>
-                                      <td><?php echo $subscriber->id; ?></td>
+                                     
+                                      <td><?php echo $subscriber->username; ?></td>
+                                      <td><?php echo $subscriber->email; ?></td>
+                                     
                                     </tr>
                                     
                                 
@@ -119,7 +132,7 @@ $flagged= CommentsController::getflaggedcomments();
                                        <?php foreach ($flagged as $comment) { ?> 
                                     <tr>
                                       <th scope="row"><?php echo $comment->text; ?></th>
-                                      <td><?php echo $comment->userid; ?></td>
+                                      <td><?php echo $comment->username; ?></td>
                                       <td><a class="btn btn-warning" href="/awesome/index.php?controller=blog&action=read&id=<?php echo $comment->blogid; ?>" role="button">View</a></td>
                                       <td><a class="btn btn-danger" href="/awesome/index.php?controller=comments&action=removeflaggedcomment&commid=<?php echo $comment->commid; ?>" role="button">Remove</a></td>
                                     </tr>

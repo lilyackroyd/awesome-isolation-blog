@@ -89,13 +89,13 @@ class User {
 
     public function getallBloggers() {
         $db = Db::getInstance();
-        $sql = "SELECT * FROM Users WHERE user_TYPE='Blogger'";
+        $sql = "SELECT Users.user_ID,user_EMAIL,user_FN,user_LN,user_IMG,user_UN,SUM(blog_LIKES) AS Total_Likes FROM tadb.Users LEFT JOIN blog_posts ON Users.user_ID=blog_posts.user_ID WHERE user_TYPE='Blogger' group by Users.user_ID order by Total_Likes Desc";
         $req = $db->query($sql);
         //$result = $req->fetchall();
         //return $result;
         foreach ($req->fetchAll() as $blogger) {
             $list[] = new Members(
-                    $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN']);
+                    $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN'],$blogger['user_UN'],$blogger['user_EMAIL'],$blogger['Total_Likes']);
         }
         return $list;
     }
@@ -108,7 +108,7 @@ class User {
         //return $result;
         foreach ($req->fetchAll() as $subscriber) {
             $list[] = new Members(
-                    $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN']);
+                    $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN'],$subscriber['user_UN'],$subscriber['user_EMAIL'],NULL);
         }
         return $list;
     }
