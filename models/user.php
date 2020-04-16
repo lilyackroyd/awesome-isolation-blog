@@ -183,7 +183,7 @@ class User {
       
         //call an error method with all post inputs? If error array is 0 then do the rest, otherwise send back the array?
         $num_rows = self::checkUserExists();
-        echo $num_rows;
+        
         
         //if user is new:
         if ($num_rows == 0) {
@@ -269,7 +269,7 @@ class User {
 //        } else {
 //            return userExists($username);    
 //        }
-    }else {echo "error adding";}
+    }else {echo "That user already exists. Please log in or trying different details";}
 
     }
     
