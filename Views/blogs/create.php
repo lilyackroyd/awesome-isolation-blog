@@ -56,22 +56,8 @@
         </br>
         </br>
         
-        <p>Please give a one word caption for your image.</p>
+        <p>Please give a short caption for your image.</p>
         <input class="shadow-sm p-3 mb-5 bg-white rounded form" name = "caption" placeholder="Enter caption">
-        </br>
-<!--        <?php
-//        const InputKey = 'blogimage';
-////        const AllowedTypes = ['png/jpeg'];
-////        if (!in_array($_FILES[InputKey]['type'], AllowedTypes)) { //if file type is not correct
-////        die("Handle File Type Not Allowed");
-//
-////        $file ='views/images/' . $_FILES[InputKey]['name'];
-//////        if(file_exists($file)){
-//////            $img="<img src='$file' width='150'/>";
-//////            echo $img;
-//////        }
-        ?> -->
-        </br>
         </br>
         
         <!--include youTube link-->

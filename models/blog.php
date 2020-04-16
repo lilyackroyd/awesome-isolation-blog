@@ -307,6 +307,9 @@ LIMIT 3
             //every youtube video link ends with a unique 11 character code so reduce string to just the 11 characters 
             $videolink = substr($filteredvideo, -11);
         }
+            elseif ($_POST['videolink'] ==""){
+                $videolink = "";
+            }
         if(isset($_POST['keywords'])&& $_POST['keywords']!=""){
             $filteredkeywords = filter_input(INPUT_POST, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
         }
