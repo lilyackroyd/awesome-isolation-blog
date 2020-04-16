@@ -114,7 +114,19 @@ class BlogController {
 	}    
          
         
-        
+      public function mylikes() {
+        $id = $_SESSION['userid'];
+        if (empty($id)) {
+            return call('pages', 'error');
+        }
+        try {
+            $blogs = Blog::myLikes($id);
+            require_once('views/users/mylikes.php');
+            return $blogs;
+        } catch (Exception $ex) {
+            return call('pages', 'error');
+        }
+    }   
         
         
 }

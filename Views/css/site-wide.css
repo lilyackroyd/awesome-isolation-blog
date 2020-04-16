@@ -139,6 +139,9 @@ p, text{ font-family: 'Open Sans', sans-serif;
     letter-spacing: 1px;
 }
 
+#icoheader{ margin-top:5px;
+            margin-right:40px; 
+}
 #log-in{
     border: 1px solid black;
     border-radius: 50px;

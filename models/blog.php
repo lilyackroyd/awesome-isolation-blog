@@ -416,8 +416,34 @@ LIMIT 3
         } 
         
         
+         public static function myLikes($userid) {
+            $db = Db::getInstance();
+            
+            $stmt = $db->prepare("select distinct lblog_ID from Likes where luser_ID = :userid;");
+            $stmt->execute(array('userid' => $userid));
+            
+            $ids=[];
+            while ($result=$stmt->fetch(PDO::FETCH_ASSOC)){
+              $ids[] = htmlspecialchars( $result['lblog_ID'], ENT_NOQUOTES, 'UTF-8' );    
+            }
+            //$idvalues=implode(' OR blog_posts.blog_ID= ', $ids);
         
-        
+            //var_dump($ids);
+            
+
+
+             $list = [];
+        $req = $db->prepare("SELECT blog_posts.blog_ID, blog_posts.genre_TAG, blog_posts.user_ID, blog_posts.blog_TITLE, blog_posts.blog_TXT, blog_posts.blog_IMG,blog_posts.blog_VIDEO,blog_posts.blog_STATUS,blog_posts.date_PUB,blog_posts.comm_COUNT,blog_posts.KEYWORDS,Users.user_FN, Users.user_LN, Users.user_IMG
+                        FROM blog_posts
+                        INNER JOIN Users ON blog_posts.user_ID=Users.user_ID WHERE blog_posts.blog_ID = ".implode( "  OR blog_posts.blog_ID=  ", $ids )."");
+        $req->execute();
+        foreach ($req->fetchAll() as $blog) {
+            $list[] = new Blog(
+                    $blog['blog_ID'], $blog['genre_TAG'], $blog['user_ID'], $blog['blog_TITLE'], $blog['blog_TXT'], $blog['blog_IMG'], $blog['blog_VIDEO'], $blog['blog_STATUS'], $blog['date_PUB'], $blog['comm_COUNT'],$blog['user_FN'], $blog['user_LN'], $blog['user_IMG'], $blog['KEYWORDS']);
+        }
+        //print_r($list);
+        return $list;
+         }  
         
 }
 

@@ -32,6 +32,11 @@
                 <li> <a  id="item-4"href="/awesome/index.php?controller=blog&action=readAll&tag=craft">CRAFT</a></li>
             </div>
             <div id="menu-right">
+                <li>
+                <svg class="ico" id="icoheader" width="24" height="24" viewBox="0 0 24 24" onclick="location.href = '?controller=blog&action=mylikes';">
+            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+            </svg>
+                </li>
                 <li><a  id="item-5"href="<?php echo $accountAction= getAccountPage();?>">My Account</a></li>
                 <li><a id="log-in"  href="<?php echo $loginAction=getLoginAction();?>"><?php echo $loginText=getLoginText();?></a></li>
                 <li>
