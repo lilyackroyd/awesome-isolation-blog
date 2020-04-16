@@ -128,7 +128,7 @@ input[type=submit]:hover {
 
 
 <div class="contact-container">
-    <h2 style="text-align:center">Contact us on social media or manually</h2>
+    <h2 style="text-align:center">Contact us on social media or login</h2>
      
     
  
@@ -139,20 +139,20 @@ input[type=submit]:hover {
       </div>
 
       <div class="col">
-        <a href="#" class="fb btn">
+        <a href="https://www.facebook.com/" class="fb btn">
           <i class="fa fa-facebook fa-fw"></i> Via Facebook
          </a>
-        <a href="#" class="twitter btn">
+        <a href="https://twitter.com/home?lang=en-gb" class="twitter btn">
           <i class="fa fa-twitter fa-fw"></i> Via Twitter
         </a>
-        <a href="#" class="insta btn"><i class="fa fa-instagram fa-fw">
+        <a href="https://www.instagram.com/accounts/login/?hl=en" class="insta btn"><i class="fa fa-instagram fa-fw">
           </i> Via Instagram
         </a>
       </div>
 
       <div class="col">
         <div class="hide-md-lg">
-          <p>Or sign in manually:</p>
+          <p>Or login:</p>
         </div>
         <form action="">
         <input type="password" class="contact" name="username" placeholder="Username" required>
@@ -168,7 +168,7 @@ input[type=submit]:hover {
 <div class="bottom-container">
   <div class="row">
     <div class="col">
-      <a href="#" style="color:white" class="btn">Sign up or Subscribe </a>
+      <a href="?controller=user&action=register" style="color:white" class="btn">Subscribe for updates</a>
     </div>
     <div class="col">
       <a href="#" style="color:white" class="btn">Forgot password?</a>

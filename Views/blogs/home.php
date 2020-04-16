@@ -1,7 +1,8 @@
                 <section class="intro-section">
 
-                    <h1>A big sentence about the isolation blog...</h1>
-                    <p>A subtitle line about the blog, what it does, why it's here, what you can do</p>
+                    <h1>"What a lovely surprise to finally discover how unlonely being alone can be". </h1>    
+                    <h3 style align="right">Ellen Burstyn</h3>
+                    <p>Living in the time of the Covid 19 outbreak is scary, strange and unprecedented. We're here to help you through it with a bit of advice, silliness and real life experiences.</p>
 
                 </section>  
 

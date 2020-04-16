@@ -99,10 +99,10 @@
 
                     <div class="col-lg-4 col-md-4 ">
                         <ul class="list-unstyled socila-list">
-                            <li><img src="Views/images/facebook.png" alt="" style="width:48px;height:48px;"/></li>
-                            <li  ><img src="Views/images/twitter.png" alt="" style="width:48px;height:48px;"/></li>
-                            <li><img  src="Views/images/instagram.png" alt="" style="width:48px;height:48px;"/></li>
-                            <li class="social-item-1"><img  src="Views/images/youtube.png" alt="" style="width:48px;height:48px;"/></li>
+                            <li><a href="https://www.facebook.com/"><img src="Views/images/facebook.png" alt="" style="width:48px;height:48px;"/></a></li>
+                            <li><a href="https://twitter.com/home?lang=en-gb"><img src="Views/images/twitter.png" alt="" style="width:48px;height:48px;"/></a></li>
+                            <li><a href="https://www.instagram.com/accounts/login/?hl=en"><img  src="Views/images/instagram.png" alt="" style="width:48px;height:48px;"/></a></li>
+                            <li class="social-item-1"><a href="https://www.youtube.com/"><img src="Views/images/youtube.png" alt="" style="width:48px;height:48px;"/></a></li>
                         </ul>
 
                     </div>
