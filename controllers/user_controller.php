@@ -1,13 +1,5 @@
 <?php
 
-//$username = "";
-//$password = "";
-//$firstname = "";
-//$lastname = "";
-//$email = "";
-//$usertype = "";
-//$image = "";
-//$blogger1 = "";
 
 class userController {
 
@@ -140,16 +132,7 @@ function register(){
      
       
        
-         
-         
-         
-      //check if user exists
-      //check email is email
-      //check username [character no. and numbers]
-      //check passwords match
-      //check password [character no. and numbers]
-      //check image file type
-      //check admin code
+
     }
 
 

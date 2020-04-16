@@ -69,7 +69,6 @@ class BlogController {
     
         public function delete() {
         Blog::deleteBlog($_GET['id']);
-        //require_once('Views/user/myblogs.php');
         }
         
         
@@ -99,8 +98,6 @@ class BlogController {
             require_once('Views/blogs/create.php');
         } else {
             $inserted_id=blog::add();
-            //$blogs = Blog::all(); //$products is used within the view
-            //require_once('views/blogs/readAll.php');
             header("Location: index.php?controller=blog&action=read&id=$inserted_id"); 
         }
     }

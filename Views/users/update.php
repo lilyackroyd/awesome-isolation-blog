@@ -15,12 +15,14 @@
             <img src="<?php echo $blogger['user_IMG']; ?>" class="update-img"   alt="...">
         </div> 
         
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
-        <input type="file" name="userimage" >
+       <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
+       <input type="file"  name="userimage-update"  accept="image/*" >
 
         
         
         <div class="form-group">
+            
+             
             <div class="row">
                 <div class="col">
                     First Name:<input  type="text" class="form-control"  name="firstName" id="firstName" value="<?= $blogger['user_FN'] ?>" required autofocus="true" />              

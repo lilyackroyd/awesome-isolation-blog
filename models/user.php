@@ -133,16 +133,15 @@ class User {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         //if no new image is uploaded, retain the existing image, or replace it if uploaded
-        if ( $_POST['userimage'] == "") {
-        $stmt = $db->prepare("SELECT user_IMG from Users WHERE user_ID =?");
-        $stmt->execute([$id]);
+        if ($_FILES['userimage-update']['size'] > 0  ) {
+        $imagepath="Views/images/".$firstName.$lastName."-profile-image.jpg";
+        self::uploadFile($imagepath);
+        }elseif ($_FILES['userimage-update']['size'] == 0 ){
+        $stmt = $db->prepare("SELECT user_IMG from Users WHERE user_ID = $id");
+        $stmt->execute();
         $existingimage = $stmt->fetchAll();
         $imagepath=$existingimage['0']['user_IMG'];
         } 
-        elseif (isset($_POST['userimage']) && $_POST['userimage'] != "") {
-        $imagepath="Views/images/".$firstName.$lastName."-profile-image.jpg";
-        self::uploadFile($imagepath);
-        }
          
         $req = $db->prepare("Update Users set user_FN=:firstname, user_LN=:lastname, user_UN=:username, user_EMAIL=:email, user_IMG=:image WHERE user_ID=:id");
         $req->bindParam(':firstname', $firstName);
@@ -276,8 +275,8 @@ class User {
     
     
   
-    const AllowedTypes = [ 'image/jpg'];
-    const InputKey = 'userimage';
+    const AllowedTypes = [ 'image/jpg','image/jpeg'];
+    const InputKey = 'userimage-update';
 
 
     public static function uploadFile(string $imagepath) {
