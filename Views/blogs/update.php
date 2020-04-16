@@ -15,7 +15,7 @@
 
 <section class ="main-section-update" >
 
-    <form method="post" action="" name="createblog" class="createblog">
+    <form method="post" action="" name="createblog" class="createblog" enctype="multipart/form-data">
         <div class="updateform" >
         <div class="pure-control-group">
             
@@ -62,7 +62,7 @@
         <!--Image upload, not fully ready yet-->
         <p>Image</p>
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" required/>
-        <input type="file" name="blogimage" value=""/>
+         <input type="file"  name="blogimage"  accept="image/*" >
         </br>
 <!--        <?php
 //        const InputKey = 'blogimage';

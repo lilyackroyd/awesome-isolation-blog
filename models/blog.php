@@ -235,11 +235,17 @@ LIMIT 3
         if(isset($_POST['genretag'])&& $_POST['genretag']!=""){
             $filteredGenre = filter_input(INPUT_POST,'genretag', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-         //checks blog image
-        if(isset($_POST['blogimage'])&& $_POST['blogimage']!=""){
-            $filteredImage = "Views/images/".filter_input(INPUT_POST,'blogimage', FILTER_SANITIZE_SPECIAL_CHARS);
-        }  
-        
+        //if a new blog image is uploaded - uploaded and replace it
+        if($_FILES['blogimage']['size'] > 0){
+            $imagepath = "Views/images/".$id."-".$userid."-image.jpg"; 
+            self::uploadFile($imagepath);       
+        //if no new blog image is uploaded - keep the original one
+        }elseif ($_FILES['blogimage']['size'] == 0 ){
+        $stmt = $db->prepare("SELECT blog_IMG from blog_posts WHERE blog_ID = $id");
+        $stmt->execute();
+        $existingimage = $stmt->fetchAll();
+        $imagepath=$existingimage['0']['blog_IMG'];
+        } 
         
           //checks blog text
         if(isset($_POST['blogstatus'])&& $_POST['blogstatus']!=""){
@@ -260,7 +266,7 @@ LIMIT 3
                 $req->bindParam(':title', $filteredTitle);
                 $req->bindParam(':text', $filteredText);
                 $req->bindParam(':id', $id);
-                $req->bindParam(':image', $filteredImage);
+                $req->bindParam(':image', $imagepath);
                 $req->bindParam(':video', $videolink);
                 $req->bindParam(':status', $filteredStatus);
                 $req->bindParam(':genre', $filteredGenre);
