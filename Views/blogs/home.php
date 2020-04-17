@@ -38,7 +38,7 @@
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
 //                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
-                                                        ?></p>
+                                                        ?>...</p>
                             </p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
@@ -79,7 +79,7 @@
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
 //                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
-                                                        ?></p>
+                                                        ?>...</p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
@@ -119,7 +119,7 @@
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
 //                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
-                                                        ?></p>
+                                                        ?>...</p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 
@@ -159,7 +159,7 @@
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
 //                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
-                                                        ?></p>
+                                                        ?>...</p>
                             <a href='?controller=blog&action=read&id=<?php echo $blog->id;?>'>Read more</a>
                         </div></a>
 

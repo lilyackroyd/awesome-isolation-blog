@@ -1,14 +1,26 @@
 <?php
-include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'controllers/comments_controller.php';
-//include_once '/Applications/XAMPP/xamppfiles/htdocs/awesome/controllers/comments_controller.php';
-//include_once 'controllers/comments_controller.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR . 'controllers/comments_controller.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR. 'models/likes.php';
 ?>
+<!------------------------------------------------------------------>
+
+<?php
+if (!empty($_SESSION)) {
+    $userid = $_SESSION['userid'];
+    $blogid = $_GET['id'];
+}
+//    echo '<script type="text/javascript"> likeHistory(' .  $userid . ','.  $blogid.');</script>'
+//;}
+//
+?>
+
+
+
 
 
 <section class="intro-section">
 
-
-<!------edit and delete buttons that appear above the image if the user is an admin or the author----->
+    <!------edit and delete buttons that appear above the image if the user is an admin or the author----->
     <?php
     if ($blog->status === 'Draft') {
         $msg = '<div class="alert alert-secondary draft-banner" role="alert">
@@ -18,7 +30,7 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
     } elseif ($blog->status === 'Published') {
         ?>
         <script type="text/javascript">$('.draft-banner').hide()</script>
-    <?php } ?>
+        <?php } ?>
 
     <div class="blog-popups"> 
         <?php
@@ -39,30 +51,38 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
                 </div>
             <?php } else { ?>
                 <script type="text/javascript">$('.editdelete').hide();</script>
-            <?php
+                <?php
             }
         }
         ?>
-                
-<!------------------------like a blog icon----------------------->
-   <div id="favourite">        
-            <svg class="ico" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="unliked" data-id="<?php echo $_GET['id']?>" data-user="<?php echo $_SESSION['userid']?>">
+
+        <!------------------------like a blog icon----------------------->
+
+        <?php if (empty($_SESSION)) {
+            ?>
+            <script type="text/javascript">$('.ico').hide()</script> 
+        <?php } 
+        $alreadyliked=likeHistory($_SESSION['userid'],$_GET['id']);
+        if ($alreadyliked===TRUE){
+        echo  '<div id="favourite">        
+            <svg class="ico liked" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="unliked" data-id="'. $_GET['id'].'" data-user="'. $_SESSION['userid'].'">
             <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
-        </div>
-    <?php if (empty($_SESSION)) {
+        </div>'  ; 
+        }
+        elseif($alreadyliked===FALSE){
+        echo 
+            '<div id="favourite">        
+            <svg class="ico" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="unliked" data-id="'.  $_GET['id'].'" data-user="'.  $_SESSION['userid'] .'">
+            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+            </svg>
+        </div>'; 
+        }   
         ?>
-       <script type="text/javascript">$('.ico').hide()</script>
-    <?php } ?>
-
-       
-
-
-
     </div>
 
 
-<!------------------------blog content----------------------->
+    <!------------------------blog content----------------------->
     <div class="blog-image"> 
         <img class="blog-image-image" src="<?php echo $blog->img ?>" alt="" >
     </div> 
@@ -184,12 +204,6 @@ if ($video != "") {
                             </div>
 
 
-
-
-
-
-
-
                             <!-- reply form -->
 
                             <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
@@ -237,7 +251,6 @@ if ($video != "") {
 
 
 
-
     <!-- Javascripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap Javascript -->
@@ -250,5 +263,5 @@ if ($video != "") {
     <script src="Views/javascript/updateBlog.js"></script>
     <!-- report comment js -->
     <script src="Views/javascript/reportComment.js"></script>
-       <!-- like blog js -->
+    <!-- like blog js -->
     <script src="Views/javascript/likeBlog.js"></script>

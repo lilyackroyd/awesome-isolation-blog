@@ -10,13 +10,10 @@ function reportComment(commid,blogid) {
         xmlhttp.send();
         console.log('here');
         
-        //goBackToBlog(blogid);
+
     }
     
    
-//    function goBackToBlog(blogid) {
-//        window.refresh;
-//        window.location.href = "index.php?controller=blog&action=read&id=" + blogid,true;
-//}
+
 
   

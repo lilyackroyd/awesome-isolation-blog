@@ -56,27 +56,27 @@ class User {
     public function loginUser() {
         $usn = $this->username;
         $user = User::getUser($usn);
-        
+
         //hash passwords, uncomment to turn on
-        $isVerified=password_verify($this->password, $user['user_PWD']);
+        $isVerified = password_verify($this->password, $user['user_PWD']);
 //        $pwd = $this->password;
         if ($pwd === $user['user_PWD']) {
             $pwd = TRUE;
         }
-       
+
         if ($isVerified === TRUE && $user['user_TYPE'] === "Admin") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=admin';</script>";
-        } else if ($isVerified === TRUE  && $user['user_TYPE'] === "Blogger") {
+        } else if ($isVerified === TRUE && $user['user_TYPE'] === "Blogger") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=user&action=blogger';</script>";
-        } else if ($isVerified === TRUE  && $user['user_TYPE'] === "Subscriber") {
+        } else if ($isVerified === TRUE && $user['user_TYPE'] === "Subscriber") {
             $_SESSION['username'] = $user['user_UN'];
             $_SESSION['userid'] = $user['user_ID'];
             $_SESSION['loggedin'] = TRUE;
@@ -95,7 +95,7 @@ class User {
         //return $result;
         foreach ($req->fetchAll() as $blogger) {
             $list[] = new Members(
-                    $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN'],$blogger['user_UN'],$blogger['user_EMAIL'],$blogger['Total_Likes']);
+                    $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN'], $blogger['user_UN'], $blogger['user_EMAIL'], $blogger['Total_Likes']);
         }
         return $list;
     }
@@ -108,7 +108,7 @@ class User {
         //return $result;
         foreach ($req->fetchAll() as $subscriber) {
             $list[] = new Members(
-                    $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN'],$subscriber['user_UN'],$subscriber['user_EMAIL'],NULL);
+                    $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN'], $subscriber['user_UN'], $subscriber['user_EMAIL'], NULL);
         }
         return $list;
     }
@@ -133,16 +133,16 @@ class User {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         //if no new image is uploaded, retain the existing image, or replace it if uploaded
-        if ($_FILES['userimage-update']['size'] > 0  ) {
-        $imagepath="Views/images/".$firstName.$lastName."-profile-image.jpg";
-        self::updateUserImage($imagepath);
-        }elseif ($_FILES['userimage-update']['size'] == 0 ){
-        $stmt = $db->prepare("SELECT user_IMG from Users WHERE user_ID = $id");
-        $stmt->execute();
-        $existingimage = $stmt->fetchAll();
-        $imagepath=$existingimage['0']['user_IMG'];
-        } 
-         
+        if ($_FILES['userimage-update']['size'] > 0) {
+            $imagepath = "Views/images/" . $firstName . $lastName . "-profile-image.jpg";
+            self::updateUserImage($imagepath);
+        } elseif ($_FILES['userimage-update']['size'] == 0) {
+            $stmt = $db->prepare("SELECT user_IMG from Users WHERE user_ID = $id");
+            $stmt->execute();
+            $existingimage = $stmt->fetchAll();
+            $imagepath = $existingimage['0']['user_IMG'];
+        }
+
         $req = $db->prepare("Update Users set user_FN=:firstname, user_LN=:lastname, user_UN=:username, user_EMAIL=:email, user_IMG=:image WHERE user_ID=:id");
         $req->bindParam(':firstname', $firstName);
         $req->bindParam(':lastname', $lastName);
@@ -151,7 +151,6 @@ class User {
         $req->bindParam(':id', $id);
         $req->bindParam(':image', $imagepath);
         $req->execute();
-        
     }
 
     public function checkUserExists() {
@@ -167,24 +166,18 @@ class User {
         $numrows = count($rows);
         return $numrows;
     }
-    
-      public function hashPassword($password) {
+
+    public function hashPassword($password) {
         $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
         return $hashedpassword;
     }
-    
-    
-    
-    
-    
-           
+
     public function createUser() {
         $db = Db::getInstance();
-      
+
         //call an error method with all post inputs? If error array is 0 then do the rest, otherwise send back the array?
         $num_rows = self::checkUserExists();
-        
-        
+
         //if user is new:
         if ($num_rows == 0) {
             //santize and prep all the inputs for insertion
@@ -193,7 +186,7 @@ class User {
             }
             if (isset($_POST['password']) && $_POST['password'] != "") {
                 $password = $_POST['password'];
-                 $hashedpassword = self::hashPassword($password);
+                $hashedpassword = self::hashPassword($password);
             }
             if (isset($_POST['email']) && $_POST['email'] != "") {
                 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -207,8 +200,8 @@ class User {
             if (isset($_POST['surname']) && $_POST['surname'] != "") {
                 $lastname = ucfirst(filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS));
             }
-            if ($usertype=='Admin'||$usertype=='Blogger'){
-                $imagepath="Views/images/".$firstname.$lastname.".jpg";
+            if ($usertype == 'Admin' || $usertype == 'Blogger') {
+                $imagepath = "Views/images/" . $firstname . $lastname . ".jpg";
             }
 
             //prepare the statements for each user type: (do we need 2 diff for admin / blogger?
@@ -216,124 +209,73 @@ class User {
             $admin = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
             $blogger = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
 
-
-           //execute the correct query, with the relevant info for each user type:
+            //execute the correct query, with the relevant info for each user type:
 //            try {
-                if ($usertype == 'Subscriber') {
-
-                    $subscriber->execute([':username' => $username,
-                        ':password' =>  $hashedpassword,
-                        ':email' => $email,
-                        ':usertype' => $usertype,]);
-                    
-                         header("Location: index.php?controller=user&action=login"); 
-                }
-                if ($usertype == 'Admin') {
-
-                    $admin->execute([':username' => $username,
-                        ':password' =>  $hashedpassword,
-                        ':email' => $email,
-                        ':usertype' => $usertype,
-                        ':firstname' => $firstname,
-                        ':lastname' => $lastname,
-                        ':image' => $imagepath]);
-                    self::uploadFile($imagepath);
-                     
-                    header("Location: index.php?controller=user&action=login"); 
-                }
-                if ($usertype == 'Blogger') {
-
-                    $blogger->execute([':username' => $username,
-                        ':password' =>  $hashedpassword,
-                        ':email' => $email,
-                        ':usertype' => $usertype,
-                        ':firstname' => $firstname,
-                        ':lastname' => $lastname,
-                        ':image' => $imagepath]);
-                     self::uploadFile($imagepath);
-                         header("Location: index.php?controller=user&action=login"); 
-                }
-                
-                //and then add their details to the session
-//                $_SESSION["username"] = $_POST['username'];
-//                header("Location:../../index.php");
-//                return userAdded($username);
-//                }
-                
-                // otherwise send an error message
-//                catch (PDOException $e) {
-//                $error = $e->errorInfo();
-//                die("Eek, sorry, we couldn't sign you up. Try again?" . $error . $e->getMessage());
-//            }
-//            unset($req);
-//        } else {
-//            return userExists($username);    
-//        }
-    } else { //this else relates to the username or email already being present in the db, so if $num_rows doesn't ==0)
-      echo "That user already exists. Please log in or trying different details";}
-
+            if ($usertype == 'Subscriber') {
+                $subscriber->execute([':username' => $username,
+                    ':password' => $hashedpassword,
+                    ':email' => $email,
+                    ':usertype' => $usertype,]);
+                header("Location: index.php?controller=user&action=login");
+            }
+            if ($usertype == 'Admin') {
+                $admin->execute([':username' => $username,
+                    ':password' => $hashedpassword,
+                    ':email' => $email,
+                    ':usertype' => $usertype,
+                    ':firstname' => $firstname,
+                    ':lastname' => $lastname,
+                    ':image' => $imagepath]);
+                self::uploadFile($imagepath);
+                header("Location: index.php?controller=user&action=login");
+            }
+            if ($usertype == 'Blogger') {
+                $blogger->execute([':username' => $username,
+                    ':password' => $hashedpassword,
+                    ':email' => $email,
+                    ':usertype' => $usertype,
+                    ':firstname' => $firstname,
+                    ':lastname' => $lastname,
+                    ':image' => $imagepath]);
+                self::uploadFile($imagepath);
+                header("Location: index.php?controller=user&action=login");
+            }
+        } else { //this else relates to the username or email already being present in the db, so if $num_rows doesn't ==0)
+            echo "That user already exists. Please log in or trying different details";
+        }
     }
+
     
-    
-  
-    const AllowedTypes = [ 'image/jpg','image/jpeg'];
+    const AllowedTypes = ['image/jpg', 'image/jpeg'];
     const InputKey = 'userimage';
-  const UserUpdateInputKey = 'userimage-update';
+    const UserUpdateInputKey = 'userimage-update';
 
     public static function uploadFile(string $imagepath) {
-
-    	   $tempFile = $_FILES[self::InputKey]['tmp_name'];
-            $path = realpath(__DIR__ . '/..') . '/' .  $imagepath;
-	       $destinationFile = $path ;
-            $error = $_FILES[self::InputKey]['error'];
+        $tempFile = $_FILES[self::InputKey]['tmp_name'];
+        $path = realpath(__DIR__ . '/..') . '/' . $imagepath;
+        $destinationFile = $path;
+        $error = $_FILES[self::InputKey]['error'];
 //        if($error === 0) {           
-	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		echo "";            
-        } 
-        if (file_exists($tempFile)) {
-		unlink($tempFile); 
-        } 
+        if (!move_uploaded_file($tempFile, $destinationFile)) {
+            echo "";
         }
-        
-  
-
+        if (file_exists($tempFile)) {
+            unlink($tempFile);
+        }
+    }
 
     public static function updateUserImage(string $imagepath) {
-        
-
-    	   $tempFile = $_FILES[self::UserUpdateInputKey]['tmp_name'];
-            $path = realpath(__DIR__ . '/..') . '/' .  $imagepath;
-	       $destinationFile = $path ;
-            $error = $_FILES[self::UserUpdateInputKey]['error'];
+        $tempFile = $_FILES[self::UserUpdateInputKey]['tmp_name'];
+        $path = realpath(__DIR__ . '/..') . '/' . $imagepath;
+        $destinationFile = $path;
+        $error = $_FILES[self::UserUpdateInputKey]['error'];
 //        if($error === 0) {           
-	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		echo "";            
-        } 
-        if (file_exists($tempFile)) {
-		unlink($tempFile); 
-        } 
+        if (!move_uploaded_file($tempFile, $destinationFile)) {
+            echo "";
         }
-                
-    
-    
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        if (file_exists($tempFile)) {
+            unlink($tempFile);
+        }
+    }
+
 }

@@ -8,8 +8,6 @@
 //            });
 
 
-
-
 //$('.ico').click(function(e) {
 //  e.preventDefault();
 //  $('.ico').attr('data-status', 'liked');
@@ -25,18 +23,10 @@
 //});
 
 
-
-
 //js to send like data
 $(document).ready(function () {
 
     var likeBtn = document.querySelector('.ico');
-
-
-
-
-
-
 
     // when the user clicks on like
    // $('.ico').on('click', function () {
@@ -73,10 +63,6 @@ $(document).ready(function () {
 
 
  });
-
-
-
-
 
 
 //$(document).ready(function () {

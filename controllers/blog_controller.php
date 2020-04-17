@@ -65,30 +65,26 @@ class BlogController {
             return call('pages', 'error');
         }
     }
-    
-    
-        public function delete() {
+
+    public function delete() {
         Blog::deleteBlog($_GET['id']);
-        }
-        
-        
-        public function update() {
-      if($_SERVER['REQUEST_METHOD'] == 'GET'){
-          if (!isset($_GET['id'])) {
-          return call('pages', 'error');}
-     
-        $blog = Blog::find($_GET['id']);
-        require_once('views/blogs/update.php');
-        }
-        else
-          { 
-            $id = $_GET['id'];
-            Blog::update($id);       
-            $blog = Blog::find($id);
-            header("Location: index.php?controller=blog&action=read&id=$id"); 
-      }
     }
-     
+
+    public function update() {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if (!isset($_GET['id'])) {
+                return call('pages', 'error');
+            }
+
+            $blog = Blog::find($_GET['id']);
+            require_once('views/blogs/update.php');
+        } else {
+            $id = $_GET['id'];
+            Blog::update($id);
+            $blog = Blog::find($id);
+            header("Location: index.php?controller=blog&action=read&id=$id");
+        }
+    }
 
     public function create() {
         //URL is ?controller=products&action=create (directed from my account page)
@@ -97,24 +93,22 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             require_once('Views/blogs/create.php');
         } else {
-            $inserted_id=blog::add();
-            header("Location: index.php?controller=blog&action=read&id=$inserted_id"); 
+            $inserted_id = blog::add();
+            header("Location: index.php?controller=blog&action=read&id=$inserted_id");
         }
     }
 
-       public function likes() {
-               $likes= Blog::insertLike($_GET['blogid'],$_GET['userid']); 
-         return $likes;
-	}
-	
-        
-     public function unlikes() {
-               $likes= Blog::removeLike($_GET['blogid'],$_GET['userid']); 
-         return $likes;
-	}    
-         
-        
-      public function mylikes() {
+    public function likes() {
+        $likes = Blog::insertLike($_GET['blogid'], $_GET['userid']);
+        return $likes;
+    }
+
+    public function unlikes() {
+        $likes = Blog::removeLike($_GET['blogid'], $_GET['userid']);
+        return $likes;
+    }
+
+    public function mylikes() {
         $id = $_SESSION['userid'];
         if (empty($id)) {
             return call('pages', 'error');
@@ -126,12 +120,10 @@ class BlogController {
         } catch (Exception $ex) {
             return call('pages', 'error');
         }
-    }   
-        
-        
+    }
+
+ 
+
 }
-
-
-             
 
 ?>
