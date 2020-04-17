@@ -58,10 +58,8 @@ if (!empty($_SESSION)) {
 
         <!------------------------like a blog icon----------------------->
 
-        <?php if (empty($_SESSION)) {
-            ?>
-            <script type="text/javascript">$('.ico').hide()</script> 
-        <?php } 
+        <?php if (!empty($_SESSION)) {
+            
         $alreadyliked=likeHistory($_SESSION['userid'],$_GET['id']);
         if ($alreadyliked===TRUE){
         echo  '<div id="favourite">        
@@ -78,6 +76,7 @@ if (!empty($_SESSION)) {
             </svg>
         </div>'; 
         }   
+        }
         ?>
     </div>
 
