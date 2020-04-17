@@ -1,7 +1,8 @@
                 <section class="intro-section">
 
                     <h1>"What a lovely surprise to finally discover how unlonely being alone can be". </h1>    
-                    <h3 style align="right">Ellen Burstyn</h3>
+                    <h4 style align="left" >- Ellen Burstyn</h4>
+                    <br>
                     <p>Living in the time of the Covid 19 outbreak is scary, strange and unprecedented. We're here to help you through it with a bit of advice, silliness and real life experiences.</p>
 
                 </section>  

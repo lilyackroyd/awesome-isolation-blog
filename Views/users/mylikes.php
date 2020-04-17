@@ -1,5 +1,8 @@
 <div class="flex-container">
     <section class="intro-section"> 
+        
+        
+  
         <h1>You have <?php echo count($blogs) ?> liked blog(s).</h1><p>     
             
 

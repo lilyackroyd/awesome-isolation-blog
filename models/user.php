@@ -135,7 +135,7 @@ class User {
         //if no new image is uploaded, retain the existing image, or replace it if uploaded
         if ($_FILES['userimage-update']['size'] > 0  ) {
         $imagepath="Views/images/".$firstName.$lastName."-profile-image.jpg";
-        self::uploadFile($imagepath);
+        self::updateUserImage($imagepath);
         }elseif ($_FILES['userimage-update']['size'] == 0 ){
         $stmt = $db->prepare("SELECT user_IMG from Users WHERE user_ID = $id");
         $stmt->execute();
@@ -277,8 +277,8 @@ class User {
     
   
     const AllowedTypes = [ 'image/jpg','image/jpeg'];
-    const InputKey = 'userimage-update';
-
+    const InputKey = 'userimage';
+  const UserUpdateInputKey = 'userimage-update';
 
     public static function uploadFile(string $imagepath) {
 
@@ -286,6 +286,25 @@ class User {
             $path = realpath(__DIR__ . '/..') . '/' .  $imagepath;
 	       $destinationFile = $path ;
             $error = $_FILES[self::InputKey]['error'];
+//        if($error === 0) {           
+	if (!move_uploaded_file($tempFile, $destinationFile)) {
+		echo "";            
+        } 
+        if (file_exists($tempFile)) {
+		unlink($tempFile); 
+        } 
+        }
+        
+  
+
+
+    public static function updateUserImage(string $imagepath) {
+        
+
+    	   $tempFile = $_FILES[self::UserUpdateInputKey]['tmp_name'];
+            $path = realpath(__DIR__ . '/..') . '/' .  $imagepath;
+	       $destinationFile = $path ;
+            $error = $_FILES[self::UserUpdateInputKey]['error'];
 //        if($error === 0) {           
 	if (!move_uploaded_file($tempFile, $destinationFile)) {
 		echo "";            
