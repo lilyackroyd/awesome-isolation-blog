@@ -1051,7 +1051,12 @@ width:29px;}
 }
 
 /*****BLOG PAGE CONTROLS - EDIT/ DEL / LIKE / DRAFT********/
-
+.icon {
+   border-radius: 50%;
+   cursor: pointer;
+   fill: #232323;
+   transition: .4s;  
+}
 
 .ico {
    border-radius: 50%;
