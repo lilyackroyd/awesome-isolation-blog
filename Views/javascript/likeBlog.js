@@ -29,9 +29,9 @@ $(document).ready(function () {
     var likeBtn = document.querySelector('.ico');
 
     // when the user clicks on like
-   // $('.ico').on('click', function () {
-      $('#ico[data-status="unliked"]').on('click', function () {
-        
+    // $('.ico').on('click', function () {
+    $('#ico[data-status="unliked"]').on('click', function () {
+
         $('#ico').attr('data-status', 'liked');
         likeBtn.classList.toggle('liked');
         console.log('here');
@@ -62,44 +62,53 @@ $(document).ready(function () {
     });
 
 
- });
+});
+
+
+
+
+
+
 
 
 //$(document).ready(function () {
 
-    // when the user clicks on an already liked icon - i.e. unlikes
-    //$('.ico liked').on('click', function(){
+// when the user clicks on an already liked icon - i.e. unlikes
+//$('.ico liked').on('click', function(){
 
- $('#ico[data-status="liked"]').on('click', function () {
+$('#ico[data-status="liked"]').on('click', function () {
+    var likeBtn = document.querySelector('.ico');
+    $('.ico liked').attr('data-status', 'unliked');
+    console.log('unlike');
+    
+    likeBtn.classList.toggle('ico');
+    console.log('toggled');
 
-$('.ico liked').attr('data-status', 'unliked');
-        console.log('unlike');
+    var icon = document.getElementById('ico');
+    console.log(icon);
+    var blogid = icon.getAttribute('data-id');
+    console.log(blogid);
+    var userid = icon.getAttribute('data-user');
+    console.log(userid);
 
-        var icon = document.getElementById('ico');
-        console.log(icon);
-        var blogid = icon.getAttribute('data-id');
-        console.log(blogid);
-        var userid = icon.getAttribute('data-user');
-        console.log(userid);
+    var xmlhttp = new XMLHttpRequest();
 
-        var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "?controller=blog&action=unlikes&blogid=" + blogid + "&userid=" + userid, true);
 
-        xmlhttp.open("GET", "?controller=blog&action=unlikes&blogid=" + blogid + "&userid=" + userid, true);
+    xmlhttp.responseType = 'text';
 
-        xmlhttp.responseType = 'text';
-
-        xmlhttp.onload = function () {
-            if (xmlhttp.readyState === xmlhttp.DONE) {
-                if (xmlhttp.status === 200) {
+    xmlhttp.onload = function () {
+        if (xmlhttp.readyState === xmlhttp.DONE) {
+            if (xmlhttp.status === 200) {
 //            console.log(xmlhttp.response);
 //            console.log(xmlhttp.responseText);
-                }
             }
-        };
+        }
+    };
 
-        xmlhttp.send(null);
+    xmlhttp.send(null);
 
-    });
+});
 
 
 
