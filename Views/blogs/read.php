@@ -52,7 +52,7 @@ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIREC
         </div>
     <?php if (empty($_SESSION)) {
         ?>
-        <script type="text/javascript">$('.ico').hide()</script>
+       <script type="text/javascript">$('.ico').hide()</script>
     <?php } ?>
 
        

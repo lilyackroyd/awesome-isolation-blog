@@ -23,6 +23,8 @@
                                 <img  class="card-img-top" alt="..." src="/awesome/<?php echo $blog->img ?>"/> 
                                 <div class="card-body">
                                     <h4 class="card-title"><?php echo $blog->title ?></h4>
+                                    <p style="font-size:13px; color:darkslategray;"><?php $sqldate = $blog->date;$date = strtotime($sqldate);echo $displaydate = date('j F Y', $date);?>
+                                <span class="dot">&#9679</span><?php echo $blog->authorfirstname . ' ' . $blog->authorlastname . ' '; ?></p>
                                     <p class="card-text"><?php $string = strip_tags("$blog->text");
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
