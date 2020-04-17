@@ -129,13 +129,13 @@ p, text{ font-family: 'Open Sans', sans-serif;
 }
 
 .header .menu #menu-right {
-    width: 50%;
+    width: 55%;
     float: right;
 }
 
 .header .menu #menu-left {    
     float: left;
-    width: 50%;
+    width: 45%;
     letter-spacing: 1px;
 }
 

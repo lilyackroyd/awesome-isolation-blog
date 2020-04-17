@@ -38,3 +38,16 @@ elseif (!empty($_SESSION) && $_SESSION["usertype"]==='Admin') {
     return $action;
 }
 }
+
+
+function myLikesAction(){
+   if (empty($_SESSION)){
+       $likesaction='?controller=user&action=login';
+    return $likesaction;
+   }
+elseif (!empty($_SESSION)) {
+     $likesaction='?controller=blog&action=mylikes';
+      return $likesaction;
+}
+
+}
