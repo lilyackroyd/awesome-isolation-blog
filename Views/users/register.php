@@ -1,6 +1,4 @@
-<?php include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR.'models/user.php';?>
-
-
+<?php include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR . 'models/user.php'; ?>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -23,15 +21,11 @@
 
 
 <div class="register-section">
-
-
-
-
     <div class="register-container">
         <div class="welcome">
             <h1 class="register-title">Create an account</h1>
         </div>
-        
+
 
         <div class="regblock">
 
@@ -45,11 +39,12 @@
                     <label for="admin" class="form-check-label">Admin</label>
                     <input type = 'radio'  id='blogger' class="form-check-input " name ='usertype' value='blogger'required>
                     <label for="blogger" class="form-check-label">Blogger</label>
-                    <input type ='radio'  id="subscriber"  class=" form-check-input " name='usertype' value='subscriber'required>
+                    <input type ='radio'  id="subscriber"  class="form-check-input" name='usertype' value='subscriber'required>
                     <label for="subscriber" class="form-check-label">Subscriber</label>
                 </div>
-                
 
+                
+                
                 <!-- admin input fields -->
                 <div class="admin box">
                     <div class="form-group">
@@ -106,7 +101,7 @@
                         <input type="password" class="admin-list form-control col-7" placeholder="Enter code:" name='admin_code' id="admin_code">
                     </div>
                     <div id="admin-code-error"></div>
-                    
+
                 </div>
 
 
@@ -179,7 +174,7 @@
                             <div class="col">
                                 <label for="username">Username:</label>
                                 <input class="subscriber-list form-control" placeholder="Create a username" id='sub_username' name='username' >
-            <div id="s_username-error"></div>    
+                                <div id="s_username-error"></div>    
                             </div>
                         </div></div>
                     <br/> 
@@ -198,12 +193,12 @@
                         <div id="s_password-match-error" ></div>
                         <div id="s_password-error"></div>
                     </div> <br/> 
- 
+
                 </div>
 
-<div class="buttonbox">
-                        <button type="submit" value="submit"  name='btnsubmit' id="btnsubmit" class="btn-register">Create account</button> 
-                    </div>
+                <div class="buttonbox">
+                    <button type="submit" value="submit"  name='btnsubmit' id="btnsubmit" class="btn-register">Create account</button> 
+                </div>
 
             </form>
 

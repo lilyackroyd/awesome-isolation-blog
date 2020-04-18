@@ -1,11 +1,9 @@
 <div class="flex-container">
+    
+    
     <section class="intro-section"> 
-        
-        
-  
-        <h1>You have <?php echo count($blogs) ?> liked blog(s).</h1><p>     
-            
-
+        <h1>You have <?php echo count($blogs) ?> liked blog(s).</h1>     
+       
     </section> 
 
 
@@ -28,7 +26,7 @@
                                     <p class="card-text"><?php $string = strip_tags("$blog->text");
                                                  $excerpt = substr($string, 0, 100);
                                                  echo $result = substr($excerpt, 0, strrpos($excerpt, ' '));  
-//                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
+                                              //gets text, takes first 100 characters, but cuts off at the end of a whole word
                                                         ?>...</p>
                                     <a  href='?controller=blog&action=read&id=<?php echo $blog->id; ?>'>Read more</a>
                                 </div></a>
@@ -37,8 +35,6 @@
 
                     <?php
                 }
-            } else {
-                echo '<p>You currently have no liked blogs.</p>';
             }
             ?>
 
