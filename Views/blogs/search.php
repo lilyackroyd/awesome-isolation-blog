@@ -1,9 +1,9 @@
-<div class="flex-container">
+
                 <section class="intro-section"> 
             <h1>Search results for "<?php echo $searches?>"</h1>
             
                 </section> 
-            <section class="main-section">
+            
 
                     
                          <div class="table-container-search" role="table" aria-label="">
@@ -46,5 +46,5 @@
             
             
 
-            </section>
-            </div>
+      
+         
