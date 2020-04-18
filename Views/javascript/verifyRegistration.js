@@ -38,6 +38,7 @@ $(document).ready(function(){
         // get the form action url
         var url = $('#register-form').attr('action');
         
+             console.log('got to passwords match check');
         
         //check passwords match
         if (b_password !== b_password_confirm ){
@@ -53,14 +54,16 @@ $(document).ready(function(){
         return;
         }
         
+             console.log('got to admin pwd check');
+        
         //check admin password
         if (admin_code !== '' ){
             if(admin_code!=="Ryan"){
         document.getElementById("admin-code-error").innerHTML = "Admin code is incorrect";
         return;
         }}
-    
-    
+        
+             console.log('got to pwd check');
         
         //check password
           var pwdRegex = new RegExp('^[a-zA-Z0-9]{6,12}$');
@@ -81,29 +84,29 @@ $(document).ready(function(){
         return;
         }
         
-        
+           console.log('got to usn check');
         
         //check username
-//        var usnRegex = new RegExp('{6,12}$');
-//          var busnresult = usnRegex.test(b_username);
-//          var ausnresult = usnRegex.test(a_username);
-//          var susnresult = usnRegex.test(s_username);
-//
-//           if(b_username!=='' && busnresult===false){
-//        document.getElementById("b_username-error").innerHTML = "Username must be between 6 - 12 characters";
-//        return;
-//        }
-//            if(a_username!=='' && ausnresult===false){
-//        document.getElementById("a_username-error").innerHTML = "Username must be between 6 - 12 characters";
-//        return;
-//        }
-//              if(s_username!=='' && susnresult===false){
-//        document.getElementById("s_username-error").innerHTML = "Username must be between 6 - 12 characters";
-//        return;
-//        }
+        var usnRegex = new RegExp('^[a-zA-Z0-9]{6,12}$');
+          var busnresult = usnRegex.test(b_username);
+          var ausnresult = usnRegex.test(a_username);
+          var susnresult = usnRegex.test(s_username);
+
+           if(b_username!=='' && busnresult===false){
+        document.getElementById("b_username-error").innerHTML = "Username must be between 6 - 12 characters";
+        return;
+        }
+            if(a_username!=='' && ausnresult===false){
+        document.getElementById("a_username-error").innerHTML = "Username must be between 6 - 12 characters";
+        return;
+        }
+              if(s_username!=='' && susnresult===false){
+        document.getElementById("s_username-error").innerHTML = "Username must be between 6 - 12 characters";
+        return;
+        }
 
         
-        console.log('here');
+     
         
         
         

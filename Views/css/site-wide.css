@@ -778,7 +778,8 @@ text-align: center
 }
 
 #s_password-match-error,#a_password-match-error,#b_password-match-error,#admin-code-error,
-#a_password-error,#b_password-error,#s_password-error
+#a_password-error,#b_password-error,#s_password-error,
+#s_username-error, #b_username-error,#a_username-error
 {
     color:red;
     font-size: 14px;
