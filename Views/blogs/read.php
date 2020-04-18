@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR . 'controllers/comments_controller.php';
-include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR. 'models/likes.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'awesome' . DIRECTORY_SEPARATOR . 'models/likes.php';
 ?>
 <!------------------------------------------------------------------>
 
@@ -9,14 +9,8 @@ if (!empty($_SESSION)) {
     $userid = $_SESSION['userid'];
     $blogid = $_GET['id'];
 }
-//    echo '<script type="text/javascript"> likeHistory(' .  $userid . ','.  $blogid.');</script>'
-//;}
-//
+
 ?>
-
-
-
-
 
 <section class="intro-section">
 
@@ -30,7 +24,7 @@ if (!empty($_SESSION)) {
     } elseif ($blog->status === 'Published') {
         ?>
         <script type="text/javascript">$('.draft-banner').hide()</script>
-        <?php } ?>
+    <?php } ?>
 
     <div class="blog-popups"> 
         <?php
@@ -58,24 +52,24 @@ if (!empty($_SESSION)) {
 
         <!------------------------like a blog icon----------------------->
 
-        <?php if (!empty($_SESSION)) {
-            
-        $alreadyliked=likeHistory($_SESSION['userid'],$_GET['id']);
-        if ($alreadyliked===TRUE){
-        echo  '<div id="favourite">        
-            <svg class="ico liked" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="liked" data-id="'. $_GET['id'].'" data-user="'. $_SESSION['userid'].'">
+        <?php
+        if (!empty($_SESSION)) {
+
+            $alreadyliked = likeHistory($_SESSION['userid'], $_GET['id']);
+            if ($alreadyliked === TRUE) {
+                echo '<div id="favourite">        
+            <svg class="ico liked" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="liked" data-id="' . $_GET['id'] . '" data-user="' . $_SESSION['userid'] . '">
             <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
-        </div>'  ; 
-        }
-        elseif($alreadyliked===FALSE){
-        echo 
-            '<div id="favourite">        
-            <svg class="ico" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="unliked" data-id="'.  $_GET['id'].'" data-user="'.  $_SESSION['userid'] .'">
+        </div>';
+            } elseif ($alreadyliked === FALSE) {
+                echo
+                '<div id="favourite">        
+            <svg class="ico" id="ico" width="24" height="24" viewBox="0 0 24 24" data-status="unliked" data-id="' . $_GET['id'] . '" data-user="' . $_SESSION['userid'] . '">
             <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
-        </div>'; 
-        }   
+        </div>';
+            }
         }
         ?>
     </div>
@@ -106,10 +100,6 @@ if (!empty($_SESSION)) {
     </div>
 </section>
 
-
-
-
-
 <!----main-section  - if needed. This is where the rest of the page content goes------------> 
 <section class="main-section">
     <div class="blog-text">  
@@ -132,16 +122,6 @@ if ($video != "") {
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
 <!-------------------------------------comment section---------------------------------------------------------------->    
 
 
@@ -154,18 +134,18 @@ if ($video != "") {
 
         <div class="col-md-6 col-md-offset-3 comments-section">
             <!-- if user is not signed in, tell them to sign in. If signed in, present them with comment form -->
-<?php if (!empty($_SESSION)): ?>
+            <?php if (!empty($_SESSION)): ?>
                 <form class="clearfix" action="Views/blogs/read.php" method="post" id="comment_form">
                     <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
                     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['userid'] ?>">
                     <input type="hidden" id="blog_id" name="blog_id" value="<?php echo $_GET['id'] ?>">
                     <button class="btn btn-primary btn-sm pull-right" name="submit_comment" id="submit_comment" >Submit comment</button>
                 </form>
-<?php else: ?>
+            <?php else: ?>
                 <div class="well" style="margin-top: 20px;">
                     <h4 class="text-center"><a href="?controller=user&action=login">Log in</a> to post a comment</h4>
                 </div>
-<?php endif ?>
+            <?php endif ?>
 
 
 
@@ -176,14 +156,11 @@ if ($video != "") {
                     ?></span> Comment(s)</h2>
             <hr>
 
-
-
-
             <!-- comments wrapper -->
             <div id="comments-wrapper">
                 <?php if (isset($comments)): ?>
                     <!-- Display comments -->
-    <?php foreach ($comments as $comment): ?>
+                    <?php foreach ($comments as $comment): ?>
                         <!-- comment -->
                         <div class="comment clearfix">
                             <img src="<?php echo getProfileImagebyID($comment->userid) ?>" alt="" class="profile_pic">
@@ -198,13 +175,12 @@ if ($video != "") {
                                     <a class="reply-btn" href="" data-id="<?php echo $comment->commid; ?>">reply</a>
                                 <?php else: ?>
                                     <a href="?controller=user&action=login" class="reply-btnlogin">Log in to reply</a>
-        <?php endif ?>
+                                <?php endif ?>
                                 <button  class="report" id="report-<?php echo $comment->commid; ?>" onclick="reportComment(<?php echo $comment->commid; ?>,<?php echo $_GET['id']; ?>)">report <i class="fa fa-flag" aria-hidden="true"></i></button>
                             </div>
 
 
                             <!-- reply form -->
-
                             <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
                                 <form action="Views/blogs/read.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment->commid; ?>" data-id="<?php echo $comment->commid; ?>">
                                     <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
@@ -214,14 +190,11 @@ if ($video != "") {
 
                                 </form>
 
-
-
                                 <!-- GET ALL REPLIES -->
-                                    <?php $replies = getRepliesByCommentId($comment->commid) ?>
+                                <?php $replies = getRepliesByCommentId($comment->commid) ?>
                                 <div class="replies_wrapper_<?php echo $comment->commid; ?>">
-        <?php if (isset($replies)): ?>
-            <?php foreach ($replies as $reply): ?>
-
+                                    <?php if (isset($replies)): ?>
+                                        <?php foreach ($replies as $reply): ?>
 
                                             <!-- reply -->
                                             <div class="comment reply clearfix">
@@ -234,15 +207,15 @@ if ($video != "") {
 
                                                 </div>
                                             </div>
-            <?php endforeach ?>
-        <?php endif ?>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </div>
                         </div>
                         <!-- // comment -->
                     <?php endforeach ?>
                 <?php else: ?>
                     <h2>Be the first to comment on this post</h2>
-<?php endif ?>
+                <?php endif ?>
             </div><!-- comments wrapper -->
         </div><!-- // all comments -->
     </div>

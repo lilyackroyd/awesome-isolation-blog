@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Cabin', sans-serif;}
 .jqte_toolbar {
 	overflow:auto;
 	padding:3px 4px;
-	background:#EEE;
+	background:#f9bb26;
 	border-bottom:#BBB 1px solid;
 }
 .jqte_tool {
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Cabin', sans-serif;}
 	cursor:pointer;
 }
 .jqte_tool, .jqte_tool_icon, .jqte_tool_label {
-	border:#EEE 1px solid;
+	border:#f9bb26 1px solid;
 	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px
 }
 .jqte_hiddenField {
