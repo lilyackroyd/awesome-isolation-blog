@@ -32,6 +32,8 @@ $(document).ready(function () {
     // $('.ico').on('click', function () {
     $('#ico[data-status="unliked"]').on('click', function () {
 
+
+
         $('#ico').attr('data-status', 'liked');
         likeBtn.classList.toggle('liked');
         console.log('here');
@@ -77,11 +79,11 @@ $(document).ready(function () {
 //$('.ico liked').on('click', function(){
 
 $('#ico[data-status="liked"]').on('click', function () {
-    var likeBtn = document.querySelector('.ico');
-    $('.ico liked').attr('data-status', 'unliked');
-    console.log('unlike');
+    var likeBtn = document.querySelector('.ico ');
+    //$('.ico liked').attr('data-status', 'unliked');
+    //console.log('unlike');
     
-    likeBtn.classList.toggle('ico');
+    likeBtn.classList.remove("liked");
     console.log('toggled');
 
     var icon = document.getElementById('ico');

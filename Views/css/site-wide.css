@@ -1062,6 +1062,8 @@ width:29px;}
    transition: .4s;  
 }
 
+
+
 .liked {
    transform: scale(1.7) rotate(360deg);
    background-color: #C62828;
