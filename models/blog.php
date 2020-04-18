@@ -307,9 +307,13 @@ LIMIT 3
         }
         if (isset($_POST['keywords']) && $_POST['keywords'] != "") {
             $filteredkeywords = filter_input(INPUT_POST, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
+        } elseif ($_POST['keywords'] == "") {
+            $filteredkeywords = "";
         }
         if (isset($_POST['caption']) && $_POST['caption'] != "") {
             $filteredcaption = "Views/images/" . filter_input(INPUT_POST, 'caption', FILTER_SANITIZE_SPECIAL_CHARS) . ".jpeg";
+        } elseif ($_POST['caption'] == "") {
+            $filteredcaption = "";
         }
 //        if(isset($_FILES['myUploader'])&& $_FILES['myUploader']!=""){
 //            $filteredImage = filter_input(INPUT_POST,'myUploader', FILTER_SANITIZE_SPECIAL_CHARS);
