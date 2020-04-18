@@ -30,8 +30,8 @@
     <div class="register-container">
         <div class="welcome">
             <h1 class="register-title">Create an account</h1>
-
         </div>
+        
 
         <div class="regblock">
 

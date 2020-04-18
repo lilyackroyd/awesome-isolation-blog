@@ -91,8 +91,6 @@ class User {
         $db = Db::getInstance();
         $sql = "SELECT Users.user_ID,user_EMAIL,user_FN,user_LN,user_IMG,user_UN,SUM(blog_LIKES) AS Total_Likes FROM tadb.Users LEFT JOIN blog_posts ON Users.user_ID=blog_posts.user_ID WHERE user_TYPE='Blogger' group by Users.user_ID order by Total_Likes Desc";
         $req = $db->query($sql);
-        //$result = $req->fetchall();
-        //return $result;
         foreach ($req->fetchAll() as $blogger) {
             $list[] = new Members(
                     $blogger['user_ID'], $blogger['user_IMG'], $blogger['user_FN'], $blogger['user_LN'], $blogger['user_UN'], $blogger['user_EMAIL'], $blogger['Total_Likes']);
@@ -104,8 +102,6 @@ class User {
         $db = Db::getInstance();
         $sql = "SELECT * FROM Users WHERE user_TYPE='Subscriber'";
         $req = $db->query($sql);
-        //$result = $req->fetchall();
-        //return $result;
         foreach ($req->fetchAll() as $subscriber) {
             $list[] = new Members(
                     $subscriber['user_ID'], $subscriber['user_IMG'], $subscriber['user_FN'], $subscriber['user_LN'], $subscriber['user_UN'], $subscriber['user_EMAIL'], NULL);
@@ -174,8 +170,6 @@ class User {
 
     public function createUser() {
         $db = Db::getInstance();
-
-        //call an error method with all post inputs? If error array is 0 then do the rest, otherwise send back the array?
         $num_rows = self::checkUserExists();
 
         //if user is new:
@@ -204,13 +198,12 @@ class User {
                 $imagepath = "Views/images/" . $firstname . $lastname . ".jpg";
             }
 
-            //prepare the statements for each user type: (do we need 2 diff for admin / blogger?
+            //prepare the statements for each user type: (do we need 2 diff for admin / blogger?)
             $subscriber = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE) VALUES (:email, :username, :password, :usertype)");
             $admin = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
             $blogger = $db->prepare("INSERT INTO Users (user_EMAIL, user_UN, user_PWD, user_TYPE, user_FN, user_LN, user_IMG) VALUES (:email, :username, :password, :usertype,:firstname,:lastname,:image)");
 
             //execute the correct query, with the relevant info for each user type:
-//            try {
             if ($usertype == 'Subscriber') {
                 $subscriber->execute([':username' => $username,
                     ':password' => $hashedpassword,
@@ -241,7 +234,10 @@ class User {
                 header("Location: index.php?controller=user&action=login");
             }
         } else { //this else relates to the username or email already being present in the db, so if $num_rows doesn't ==0)
-            echo "That user already exists. Please log in or trying different details";
+            
+            echo '<script type="text/javascript"> alert("That user already exists. Please log in or try different details"); window.location.href = "?controller=user&action=register"; </script>';
+            
+ 
         }
     }
 
@@ -254,8 +250,7 @@ class User {
         $tempFile = $_FILES[self::InputKey]['tmp_name'];
         $path = realpath(__DIR__ . '/..') . '/' . $imagepath;
         $destinationFile = $path;
-        $error = $_FILES[self::InputKey]['error'];
-//        if($error === 0) {           
+        $error = $_FILES[self::InputKey]['error'];         
         if (!move_uploaded_file($tempFile, $destinationFile)) {
             echo "";
         }
@@ -268,8 +263,7 @@ class User {
         $tempFile = $_FILES[self::UserUpdateInputKey]['tmp_name'];
         $path = realpath(__DIR__ . '/..') . '/' . $imagepath;
         $destinationFile = $path;
-        $error = $_FILES[self::UserUpdateInputKey]['error'];
-//        if($error === 0) {           
+        $error = $_FILES[self::UserUpdateInputKey]['error'];       
         if (!move_uploaded_file($tempFile, $destinationFile)) {
             echo "";
         }

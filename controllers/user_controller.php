@@ -34,6 +34,7 @@ class userController {
 //   }     
     }
 
+    
     function update() {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (empty($_SESSION)) {
