@@ -59,36 +59,46 @@ $(document).ready(function(){
         document.getElementById("admin-code-error").innerHTML = "Admin code is incorrect";
         return;
         }}
+    
+    
         
         //check password
-//          var pwdRegex = new RegExp('^[a-zA-Z0-9]{6,12}$');
-//
-//          if(!pwdRegex.test(b_password)){
-//        document.getElementById("b_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
-//        return;
-//        }
-//         if(!pwdRegex.test(a_password)){
-//        document.getElementById("a_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
-//        return;
-//        }
-//           if(!pwdRegex.test(s_password)){
-//        document.getElementById("s_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
-//        return;
-//        }
+          var pwdRegex = new RegExp('^[a-zA-Z0-9]{6,12}$');
+          var bresult = pwdRegex.test(b_password);
+          var aresult = pwdRegex.test(a_password);
+          var sresult = pwdRegex.test(s_password);
+          
+          if(b_password!=='' && bresult===false){
+        document.getElementById("b_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
+        return;
+        }
+         if(a_password!=='' && aresult===false){
+        document.getElementById("a_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
+        return;
+        }
+           if(s_password!=='' && sresult===false){
+        document.getElementById("s_password-error").innerHTML = "Password must contain numbers and have between 6 - 12 characters";
+        return;
+        }
+        
+        
         
         //check username
-//        var usnRegex = new RegExp('^[a-zA-Z0-9]{6,12}$');
+//        var usnRegex = new RegExp('{6,12}$');
+//          var busnresult = usnRegex.test(b_username);
+//          var ausnresult = usnRegex.test(a_username);
+//          var susnresult = usnRegex.test(s_username);
 //
-//          if(!usnRegex.test(b_password)){
-//        document.getElementById("b_username-error").innerHTML = "Username must contain numbers and have between 6 - 12 characters";
+//           if(b_username!=='' && busnresult===false){
+//        document.getElementById("b_username-error").innerHTML = "Username must be between 6 - 12 characters";
 //        return;
 //        }
-//         if(!usnRegex.test(a_password)){
-//        document.getElementById("a_username-error").innerHTML = "Username must contain numbers and have between 6 - 12 characters";
+//            if(a_username!=='' && ausnresult===false){
+//        document.getElementById("a_username-error").innerHTML = "Username must be between 6 - 12 characters";
 //        return;
 //        }
-//           if(!usnRegex.test(s_password)){
-//        document.getElementById("s_username-error").innerHTML = "Username must contain numbers and have between 6 - 12 characters";
+//              if(s_username!=='' && susnresult===false){
+//        document.getElementById("s_username-error").innerHTML = "Username must be between 6 - 12 characters";
 //        return;
 //        }
 

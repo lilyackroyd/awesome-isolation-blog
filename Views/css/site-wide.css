@@ -777,7 +777,9 @@ text-align: center
     margin-top:50px;
 }
 
-#s_password-match-error,#a_password-match-error,#b_password-match-error,#admin-code-error{
+#s_password-match-error,#a_password-match-error,#b_password-match-error,#admin-code-error,
+#a_password-error,#b_password-error,#s_password-error
+{
     color:red;
     font-size: 14px;
     padding-top:3px;
