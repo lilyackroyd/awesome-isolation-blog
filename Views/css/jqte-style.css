@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Cabin', sans-serif;}
 
 .jqte * {
 	color:#000;
-	font-family:'Open Sans', sans-serif;  
+	font-family: 'Cabin', sans-serif;  
 	font-size:14px;
 }
 .jqte_focused {
@@ -295,7 +295,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Cabin', sans-serif;}
 	font-size:12px
 }
 .jqte_format_7 {
-	font-family:"Courier New", Courier, monospace
+	font-family:'Cabin', sans-serif;
 }
 
 /* font size menu */
