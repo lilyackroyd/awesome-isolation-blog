@@ -11,9 +11,8 @@ class userController {
             echo
             $usn = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
             $psw = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-
             $login = new User($usn, $psw);
-            $login->loginUser();
+            $login->loginUser(); 
         }
     }
 //    catch (Exception $ex){

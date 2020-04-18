@@ -60,9 +60,9 @@ class User {
         //hash passwords, uncomment to turn on
         $isVerified = password_verify($this->password, $user['user_PWD']);
 //        $pwd = $this->password;
-        if ($pwd === $user['user_PWD']) {
-            $pwd = TRUE;
-        }
+//        if ($pwd === $user['user_PWD']) {
+//            $pwd = TRUE;
+//        }
 
         if ($isVerified === TRUE && $user['user_TYPE'] === "Admin") {
             $_SESSION['username'] = $user['user_UN'];
@@ -82,8 +82,8 @@ class User {
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['usertype'] = $user['user_TYPE'];
             echo "<script> location.href='/awesome/index.php?controller=blog&action=home';</script>";
-        } else {
-            die("Incorrect details");
+        } else if ($isVerified === FALSE) {
+            echo '<script type="text/javascript">alert("Incorrect details entered, please try again");</script>';
         }
     }
 
