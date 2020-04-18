@@ -86,39 +86,47 @@
         
         
         
-        <!----Including the footer------------------------------------------------------------------>   
-                    <footer id="footer">
-            <div class="footer-container">
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
+        <!----Including the footer------------------------------------------------------------------> 
+         <footer>
+        <div class="table-container-footer" id="footer"role="table" aria-label="">
+      <div class="flex-table row" id="footer-row" role="rowgroup"> 
+          
+            
+            
+                
+          
+                <div class="flex-row-footer" id="footer-left" role="cell">
                         <h6>The Awesome Isolation Blog</h6>
-                        <ul class="list-unstyled two-column">
+                        <ul class="footer-pages">
                             <li><a href="?controller=pages&action=about">About</a></li>
                               <li><a href="?controller=pages&action=contact">Contact</a></li>
                                <li><a href="?controller=pages&action=faq">FAQs</a></li>
                                   <li><a href="?controller=user&action=login">Log in</a></li>
+</ul>
+                        
+                        </div>
+             
+                    
 
-                        </ul>
-
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-4 ">
+         
+                      <div class="flex-row-footer" id="footer-right" role="cell">
                         <ul class="list-unstyled socila-list">
-                            <li><a href="https://www.facebook.com/"><img src="Views/images/facebook.png" alt="" style="width:48px;height:48px;"/></a></li>
+                            <li><a href="https://www.facebook.com/"><img src="Views/images/facebook.png" alt="" style="width:48px;height:48px; background-color:white"/></a></li>
                             <li><a href="https://twitter.com/home?lang=en-gb"><img src="Views/images/twitter.png" alt="" style="width:48px;height:48px;"/></a></li>
-                            <li><a href="https://www.instagram.com/accounts/login/?hl=en"><img  src="Views/images/instagram.png" alt="" style="width:48px;height:48px;"/></a></li>
-                            <li class="social-item-1"><a href="https://www.youtube.com/"><img src="Views/images/youtube.png" alt="" style="width:48px;height:48px;"/></a></li>
+                            <li><a href="https://www.instagram.com/accounts/login/?hl=en"><img  src="Views/images/instagram.png" alt="" style="width:48px;height:48px;background-color:white"/></a></li>
+                            <li><a href="https://www.youtube.com/"><img src="Views/images/youtube.png" alt="" style="width:48px;height:48px;background-color:white"/></a></li>
                         </ul>
 
                     </div>
+              
 
-                </div>
-            </div>
+              
+          
 
-        </footer>
-        </div>
+        
+        </div></div>
+             </footer>
+  
             <script>
 $('.card')
     .on('mouseenter', function(){
