@@ -97,7 +97,7 @@
 <div class="flex-row-about" role="cell">        
     <div class="card">
         <div class="image">
-      <img src="Views/images/profile.png" alt="Claire" class="profile-image">
+      <img src="Views/images/Claire-baby.jpg" alt="Claire" class="profile-image">
       </div>
       <div class="container-about">
         <h2>Claire</h2>
