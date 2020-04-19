@@ -3,7 +3,21 @@ $(document).ready(function(){
     // When submits the form, prevent it immediately being sent server side
     $(document).on('click', '#btnsubmit', function (e) {
         e.preventDefault();
-        //console.log('here');
+        
+       // get all the error message elements and clear any previous errors
+      document.getElementById("b_password-match-error").innerHTML = " ";
+      document.getElementById("a_password-match-error").innerHTML = " ";
+      document.getElementById("s_password-match-error").innerHTML = " ";
+      document.getElementById("admin-code-error").innerHTML = " ";
+      document.getElementById("b_password-error").innerHTML = " ";
+      document.getElementById("a_password-error").innerHTML = " ";
+      document.getElementById("s_password-error").innerHTML = " ";
+      document.getElementById("b_username-error").innerHTML = " ";
+      document.getElementById("a_username-error").innerHTML = " ";
+      document.getElementById("s_username-error").innerHTML = " ";
+       
+      
+      
         // assign all the post values to variables 
         var admin_type = $('#admin').val();
         var blogger_type = $('#blogger').val();
