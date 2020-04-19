@@ -41,7 +41,7 @@ if (!empty($_SESSION)) {
                 ?>
                 <div class="editdelete">
                     <button id="editdelete" class="btn btn-primary" onclick="updateBlog(<?php echo $blog->id; ?>)"><i class="fas fa-edit"></i> Edit blog</button>
-                    <button id="editdelete" class="btn btn-danger" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
+                    <button id="editdelete-delete" class="btn btn-danger" data-usertype="<?php echo $_SESSION['usertype']?>" onclick="deleteBlog(<?php echo $blog->id; ?>)"><i class="fas fa-trash-alt"></i> Delete blog</button>
                 </div>
             <?php } else { ?>
                 <script type="text/javascript">$('.editdelete').hide();</script>
