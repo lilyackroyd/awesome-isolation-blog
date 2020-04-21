@@ -113,7 +113,7 @@
 
     <div class="card">
         <div class="image">
-      <img src="Views/images/profile.png" alt="Sophie" class="profile-image">
+      <img src="Views/images/Sophie_Baby.jpg" alt="Sophie" class="profile-image">
       </div>
       <div class="container-about">
         <h2>Sophie</h2>
@@ -129,7 +129,7 @@
   <div class="flex-row-about" role="cell">  
     <div class="card">
         <div class="image">
-      <img src="Views/images/profile.png" alt="Sarah" class="profile-image">
+      <img src="Views/images/sarahbabypic.png" alt="Sarah" class="profile-image">
       </div>
       <div class="container-about">
         <h2>Sarah</h2>
@@ -146,7 +146,7 @@
        <div class="flex-row-about" role="cell">     
     <div class="card">
         <div class="image">
-      <img src="Views/images/profile.png" alt="Lily" class="profile-image">
+      <img src="Views/images/lily.jpg" alt="Lily" class="profile-image">
       </div>
       <div class="container-about">
         <h2>Lily</h2>
@@ -163,7 +163,7 @@
                <div class="flex-row-about" role="cell"> 
     <div class="card">
         <div class="image">
-      <img src="Views/images/profile.png" alt="Sophia" class="profile-image">
+      <img src="Views/images/Sophia.png" alt="Sophia" class="profile-image">
       </div>
       <div class="container-about">
         <h2>Sophia</h2>
